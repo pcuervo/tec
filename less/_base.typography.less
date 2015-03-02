@@ -2,29 +2,44 @@
     #FONTFACE
 \*------------------------------------*/
 
-// @font-face {
-// 	font-family: 'font-name';
-// 	src: url('fonts/font-name.eot');
-// 	src: url('fonts/font-name.eot?#iefix') format('embedded-opentype'),
-// 		url('fonts/font-name.woff2') format('woff2'),
-// 		url('fonts/font-name.woff') format('woff'),
-// 		url('fonts/font-name.ttf') format('truetype'),
-// 		url('fonts/font-name.svg#font-name') format('svg');
-// 	font-weight: normal;
-// 	font-style: normal;
-// }
+@font-face {
+	font-family: 'haas lt';
+	src: url('fonts/haas lt.eot');
+	src: url('fonts/haas lt.eot?#iefix') format('embedded-opentype'),
+		url('fonts/haas lt.ttf') format('truetype'),
+		url('fonts/haas lt.otf') format('embedded-opentype'),
+		url('fonts/haas lt-clean.ttf') format('truetype'),
+		url('fonts/haas lt.svg#haas lt') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'haas md';
+	src: url('fonts/haas md.eot');
+	src: url('fonts/haas md.eot?#iefix') format('embedded-opentype'),
+		url('fonts/haas md.ttf') format('truetype'),
+		url('fonts/haas md.otf') format('embedded-opentype'),
+		url('fonts/haas md-clean.ttf') format('truetype'),
+		url('fonts/haas md.svg#haas md') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
 
 
 
 
 /*------------------------------------*\
-    #GENRALES
+	#GENRALES
 \*------------------------------------*/
 
 /**
  * HTML general elements
 **/
-body{ font-family: 'font-name'; color: @dark; }
+body{
+	font-family: 'haas lt';
+	color: @dark;
+}
 
 /**
  * Headers

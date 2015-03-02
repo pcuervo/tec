@@ -2,21 +2,20 @@
  * Main containers 100% height
 **/
 html, body,
-.container, .content-wrapper{
+.container{
 	height: 100%;
-	background: @light;
 }
 
 /**
  * These wrappers maintains the scroll and the full-height menu
 **/
 .container {
-	background: @light;
+	background: url('images/bg.png') repeat @light;
 	position: relative;
 	overflow: hidden;
 }
-.content-wrapper, .content { position: relative; }
-.content-wrapper { overflow-y: scroll; -webkit-overflow-scrolling: touch; }
+
+.content { position: relative; }
 
 /**
  * Maintains everything at the same widht
