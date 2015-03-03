@@ -1,8 +1,9 @@
 /*------------------------------------*\
 	#BUTTONS
 \*------------------------------------*/
-.button{
-	padding: 5px 30px 5px 30px;
+.button, button{
+	height: auto;
+	padding: 5px 30px 5px 30px; border: none;
 	.font( 12px, 1, 400, 'haas th' ); text-align: center; text-transform: uppercase; text-decoration: none; color: @light;
 	background: @highlight;
 	.border-radius(20px);
@@ -15,11 +16,16 @@
 /*------------------------------------*\
 	#STYLES
 \*------------------------------------*/
-.button--hollow{
-	border: 3px solid @light;
-	background: transparent;
+
+.button--circle{
+	padding: 7px 5px;
+	.border-radius(50%);
 }
 
+.button--rounded-corners{
+	padding: 15px;
+	.border-radius(5px);
+}
 
 .button__share{ padding: @unidad (@unidad/4); }
 .button__share i{ font-size: 16px; }
@@ -51,14 +57,9 @@
 /*------------------------------------*\
 	#COLORES
 \*------------------------------------*/
-.button--hollow.button--dark{
-	border-color: @dark;
-	color: @dark;
-	background: none;
-}
 
-.button--dark{
-	background: @dark;
+.button--light{
+	background: rgba(255, 255, 255, 0.5);
 	color: @light;
 }
 
@@ -74,6 +75,25 @@
 		padding: 10px 35px 10px 35px;
 		.font( 16px, 1, 400, 'haas th' );
 		.border-radius(20px);
+	}
+
+
+
+
+
+
+	/*------------------------------------*\
+		#STYLES
+	\*------------------------------------*/
+
+	.button--circle{
+		padding: 7px 5px;
+		.border-radius(50%);
+	}
+
+	.button--rounded-corners{
+		padding: 20px;
+		.border-radius(5px);
 	}
 
 }

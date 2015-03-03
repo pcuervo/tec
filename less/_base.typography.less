@@ -73,6 +73,22 @@ h1, h2, h3, h4, h5, h6{
 	.font-smoothing;
 }
 
+h2, h3, h3{
+	width: 100%;
+}
+
+h2{
+	.font( 26px, 1, 'haas th'); letter-spacing: 1px;
+	margin-bottom: 5px;
+}
+h3{
+	.font( 12px, 1, 600,  'haas md');
+	margin: 0;
+}
+h4{
+	.font( 16px, 1.3, 'haas md');
+	margin: 0;
+}
 h5{
 	margin: 0;
 }
@@ -99,6 +115,10 @@ h5{
 p{
 	margin: 0 0 1em 0;
 	.font( 20px, 30px, normal, 'haas md' );
+}
+
+a{
+	color: @light;
 }
 
 
@@ -135,3 +155,28 @@ p{
 /*------------------------------------*\
     #INFO
 \*------------------------------------*/
+
+
+
+
+
+/*------------------------------------*\
+    #MEDIUM
+\*------------------------------------*/
+
+@media (min-width: @medium) {
+
+	h2{
+		.font( 32px, 1, 'haas th'); letter-spacing: 1px;
+		margin-bottom: 5px;
+	}
+	h3{
+		.font( 14px, 1, 600, 'haas md');
+		margin: 0;
+	}
+	h4{
+		.font( 20px, 1.3, 'haas md');
+		margin: 0;
+	}
+
+}

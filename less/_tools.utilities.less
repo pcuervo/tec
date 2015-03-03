@@ -65,6 +65,13 @@
 /*------------------------------------*\
 	#SCREENS
 \*------------------------------------*/
+.opacity--full{
+	width: 100%; height: 100%;
+	.opacity;
+	position: absolute; top: 0; left: 0;
+	z-index: @zIndex-1;
+}
+
 .opacity-gradient{
 	width: 100%;
 	.opacity-gradient;
@@ -115,8 +122,14 @@
 **/
 
 .bg-image{
-	background-size: cover !important; background-position: center center;
+	background-size: 150%; background-position: center center;
 	position: relative;
+	.transition;
+
+	&:hover{
+		background-size: 170%;
+	}
+
 }
 
 

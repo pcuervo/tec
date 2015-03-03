@@ -1,0 +1,41 @@
+/*------------------------------------*\
+    #MODAL
+\*------------------------------------*/
+
+.modal-wrapper{
+	width: 100%; height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	position: fixed; top: 0; left: 0;
+	z-index: 9999;
+}
+
+.modal{
+	width: 90%; max-width: 400px; height: auto; max-height: 90%; overflow-y: scroll;
+	padding: @unidad;
+	background: @light;
+	position: relative;
+	.center-full();
+}
+
+.close{
+	color: @light;
+	position: absolute; top: 0; right: 0;
+	cursor: pointer;
+}
+
+p:last-child, .paso:last-child{
+	margin-bottom: 0;
+}
+
+
+/*------------------------------------*\
+	#STYLES
+\*------------------------------------*/
+
+.modal--large{
+	max-width: 800px;
+}
+
+.modal--transparent{
+	background: transparent;
+}
