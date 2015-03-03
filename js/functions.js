@@ -32,18 +32,20 @@
 function runCycle(selector){
 	$(selector).cycle({
 		'fx'               	: 'scrollHorz',
-		//'timeout'          	: 0,
+		'timeout'          	: 0,
 		'swipe'				: true,
-		'prev'             	: '.cycle-prev',
-		'next'             	: '.cycle-next',
 		'slides'           	: '>a,>img',
 		'youtube'          	: true,
-		'log'				: true
+		'log'				: false
 	});
 }
 
 function runFitVids(selector){
 	$(selector).fitVids();
+}
+
+function runFitText(selector, compress){
+	$(selector).fitText(compress);
 }
 
 
