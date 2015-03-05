@@ -3,6 +3,7 @@
 \*------------------------------------*/
 .grid{
 	padding: 20px 0; margin-top: 100vh;
+	.transition;
 }
 
 
@@ -72,6 +73,53 @@
 
 	.item__share{
 		top: 20px; right: 20px;
+	}
+
+}
+
+
+
+
+/*------------------------------------*\
+	#GRID STATES
+\*------------------------------------*/
+.grid.closed{
+
+	margin-top: 150px;
+
+
+	/**
+	 * small
+	**/
+	@media (min-width: @small) {
+	}
+
+	/**
+	 * small & landscape
+	**/
+	@media (min-width: @small) and (orientation: landscape) {
+		margin-top: 100px;
+	}
+
+	/**
+	 * medium
+	**/
+	@media (min-width: @medium) {
+		margin-top: 300px;
+	}
+
+	/**
+	 * medium & landscape
+	**/
+	@media (min-width: @medium) and (orientation: landscape) {
+		margin-top: 150px;
+	}
+
+	/**
+	 * large
+	**/
+	@media (min-width: @large) {
+		margin-top: 300px;
 	}
 
 }

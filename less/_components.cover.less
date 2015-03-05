@@ -1,4 +1,3 @@
-
 /*------------------------------------*\
 	#COVER
 \*------------------------------------*/
@@ -7,7 +6,9 @@
 	width: 100%; height: 100vh;
 	margin-bottom: 20px;
 	position: fixed; top: 0; left: 0;
-	z-index: -1;
+	.box-shadow( ~"0 1px 4px 2px rgba(00,0,0,0.9), 0 3px 24px 8px rgba(0,0,0,0.6)" );
+	overflow: hidden;
+	.transition;
 }
 
 .scroll-down{
@@ -21,7 +22,11 @@
 	}
 }
 
-
+.cover .screen{
+	opacity: 0;
+	visibility: hidden;
+	.transition;
+}
 
 
 
@@ -130,7 +135,7 @@
 @media (min-width: @medium) and (orientation: landscape) {
 
 	.display-texts{
-		height: 35vh;
+		height: 50vh;
 	}
 
 	.sub-title{
@@ -150,6 +155,119 @@
 
 	.display-texts{
 		height: 25vh;
+	}
+
+}
+
+
+
+
+/*------------------------------------*\
+	#COVER STATES
+\*------------------------------------*/
+.cover.closed{
+	/**
+	 * This
+	**/
+	height: 150px;
+
+
+	/**
+	 * Elements
+	**/
+	.screen{
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.slideshow{
+		height: 150px;
+	}
+
+	/**
+	 * small
+	**/
+	@media (min-width: @small) {
+	}
+
+	/**
+	 * small & landscape
+	**/
+	@media (min-width: @small) and (orientation: landscape) {
+
+		/**
+		 * This
+		**/
+		height: 100px;
+
+
+		/**
+		 * Elements
+		**/
+		.slideshow{
+			height: 100px;
+		}
+
+	}
+
+	/**
+	 * medium
+	**/
+	@media (min-width: @medium) {
+
+		/**
+		 * This
+		**/
+		height: 300px;
+
+
+		/**
+		 * Elements
+		**/
+		.slideshow{
+			height: 300px;
+		}
+
+	}
+
+	/**
+	 * medium & landscape
+	**/
+	@media (min-width: @medium) and (orientation: landscape) {
+
+		/**
+		 * This
+		**/
+		height: 150px;
+
+
+		/**
+		 * Elements
+		**/
+		.slideshow{
+			height: 150px;
+		}
+
+	}
+
+	/**
+	 * large
+	**/
+	@media (min-width: @large) {
+
+		/**
+		 * This
+		**/
+		height: 300px;
+
+
+		/**
+		 * Elements
+		**/
+		.slideshow{
+			height: 300px;
+		}
+
 	}
 
 }

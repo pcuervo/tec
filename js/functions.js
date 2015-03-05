@@ -34,10 +34,11 @@ function runCycle(selector){
 		'fx'               	: 'scrollHorz',
 		'timeout'          	: 0,
 		'swipe'				: true,
-		'slides'           	: '>a,>img',
+		'slides'           	: '.covervid-wrapper--wrapper',
 		'youtube'          	: true,
 		'log'				: false
 	});
+	toggleVideoPlay(selector);
 }
 
 function runFitVids(selector){
@@ -48,6 +49,12 @@ function runFitText(selector, compress){
 	$(selector).fitText(compress);
 }
 
+function runMCustomScrollbar(selector){
+	$(selector).mCustomScrollbar({
+		theme: "minimal"
+	});
+}
+
 /**
  * Opens Modal
  * @param element
@@ -56,9 +63,7 @@ function openModal(element){
 	var aAbrir = element.data('modal');
 	console.log(aAbrir);
 	aAbrir = $('#modal-'+aAbrir+'.modal-wrapper' );
-	aAbrir.fadeIn('fast', function(){
-		$(this).removeClass('hide');
-	});
+	aAbrir.removeClass('hide');
 }
 
 /**
@@ -66,10 +71,7 @@ function openModal(element){
  * @param element to be closed
 **/
 function closeModal(element){
-	var aCerrar = element.parent().parent();
-	aCerrar.fadeOut('fast', function(){
-		$(this).addClass('hide');
-	});
+	$('.modal-wrapper').addClass('hide');
 }
 
 
@@ -77,6 +79,56 @@ function closeModal(element){
 /*------------------------------------*\
 	#Triggered events
 \*------------------------------------*/
+
+function isTop(){
+	var scrollAmount = $(window).scrollTop();
+	if ( scrollAmount <= 0 ){
+		return true;
+	}
+	return false;
+}
+
+function toggleCover(toggled){
+
+	if ( toggled ){
+		showCover();
+		showGrid();
+		return;
+	}
+
+	hideCover();
+	hideGrid();
+}
+
+function showCover(){
+	$('.cover').removeClass('closed');
+}
+
+function hideCover(){
+	$('.cover').addClass('closed');
+}
+
+function showGrid(){
+	$('.grid').removeClass('closed');
+}
+
+function hideGrid(){
+	$('.grid').addClass('closed');
+}
+
+
+function toggleVideoPlay(selector){
+	$(selector).on('cycle-after',function(e, optionHash, outgoingSlideEl, incomingSlideEl, forwardFlag) {
+	var active = $(incomingSlideEl);
+	$('.covervid-wrapper--wrapper .covervid-video').each(function(){
+		$(this)[0].pause();
+	});
+	$('.cycle-slide-active .covervid-video').get(0).play();
+
+});
+}
+
+
 
 
 
