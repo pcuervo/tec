@@ -1,0 +1,140 @@
+.slideshow {
+	width: 100%; height: 49vh;
+	margin-bottom: 1vh;
+	position: relative;
+	overflow: hidden;
+}
+
+.slideshow > .cycle-slide, .slideshow > img,
+.slideshow iframe, .slideshow object, .slideshow embed{
+	width: 100%; height: 100%
+}
+
+.slideshow video{
+	width: 100%; height: auto;
+	position: absolute; top: 50%; left: 50%;
+	.translate(-50%, -50%);
+}
+
+.covervid-wrapper--wrapper{
+	  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 99;
+  opacity: 1;
+  visibility: visible;
+  display: block;
+}
+
+.covervid-wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+
+
+
+
+
+
+/*------------------------------------*\
+	#CONTROLS
+\*------------------------------------*/
+
+.cycle-control{
+	font-size: 20px;
+	opacity: 0.8;
+	cursor: pointer;
+	position: absolute; top: 50%;
+	.z-index-10();
+}
+
+.cycle-prev{
+	left: 5%;
+}
+.cycle-next{
+	right: 5%;
+}
+
+
+
+
+/*------------------------------------*\
+    #SMALL
+\*------------------------------------*/
+@media (min-width: @small) {
+
+	.slideshow{
+		height: 59vh;
+	}
+
+
+}
+
+
+
+
+/*------------------------------------*\
+    #SMALL & LANDSCAPE
+\*------------------------------------*/
+
+@media (min-width: @small) and (orientation: landscape) {
+
+	.slideshow{
+		height: 49vh;
+	}
+
+}
+
+
+
+
+/*------------------------------------*\
+    #MEDIUM
+\*------------------------------------*/
+
+@media (min-width: @medium) {
+
+	.slideshow{
+		height: 59vh;
+	}
+
+	.cycle-control{
+		font-size: 30px;
+	}
+
+}
+
+
+
+
+/*------------------------------------*\
+    #MEDIUM & LANDSCAPE
+\*------------------------------------*/
+
+@media (min-width: @medium) and (orientation: landscape) {
+
+	.slideshow{
+		height: 49vh;
+	}
+
+}
+
+
+
+
+
+/*------------------------------------*\
+    #LARGE
+\*------------------------------------*/
+
+@media (min-width: @large) {
+
+	.slideshow{
+		height: 74vh;
+	}
+
+}

@@ -1,0 +1,182 @@
+/*------------------------------------*\
+    #FONTFACE
+\*------------------------------------*/
+
+@font-face {
+	font-family: 'haas th';
+	src: url('fonts/haas th.eot');
+	src: url('fonts/haas th.eot?#iefix') format('embedded-opentype'),
+		url('fonts/haas th.ttf') format('truetype'),
+		url('fonts/haas th.otf') format('embedded-opentype'),
+		url('fonts/haas th-clean.ttf') format('truetype'),
+		url('fonts/haas th.svg#haas th') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'haas lt';
+	src: url('fonts/haas lt.eot');
+	src: url('fonts/haas lt.eot?#iefix') format('embedded-opentype'),
+		url('fonts/haas lt.ttf') format('truetype'),
+		url('fonts/haas lt.otf') format('embedded-opentype'),
+		url('fonts/haas lt-clean.ttf') format('truetype'),
+		url('fonts/haas lt.svg#haas lt') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'haas md';
+	src: url('fonts/haas md.eot');
+	src: url('fonts/haas md.eot?#iefix') format('embedded-opentype'),
+		url('fonts/haas md.ttf') format('truetype'),
+		url('fonts/haas md.otf') format('embedded-opentype'),
+		url('fonts/haas md-clean.ttf') format('truetype'),
+		url('fonts/haas md.svg#haas md') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'haas blk';
+	src: url('fonts/haas blk.eot');
+	src: url('fonts/haas blk.eot?#iefix') format('embedded-opentype'),
+		url('fonts/haas blk.ttf') format('truetype'),
+		url('fonts/haas blk.otf') format('embedded-opentype'),
+		url('fonts/haas blk-clean.ttf') format('truetype'),
+		url('fonts/haas blk.svg#haas blk') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+
+
+/*------------------------------------*\
+	#GENRALES
+\*------------------------------------*/
+
+/**
+ * HTML general elements
+**/
+body{
+	font-family: 'haas lt';
+	color: @dark;
+}
+
+/**
+ * Headers
+**/
+h1, h2, h3, h4, h5, h6{
+	margin-top: 0;
+	.font-smoothing;
+}
+
+h2, h3, h3{
+	width: 100%;
+}
+
+h2{
+	.font( 26px, 1, 'haas th'); letter-spacing: 1px;
+	margin-bottom: 5px;
+}
+h3{
+	.font( 12px, 1, 600,  'haas md');
+	margin: 0;
+}
+h4{
+	.font( 16px, 1.3, 'haas md');
+	margin: 0;
+}
+h5{
+	margin: 0;
+}
+
+/**
+ * Titles, subtitles
+**/
+.title{
+
+}
+.sub-title{
+
+}
+
+.bg-image .title, .bg-image .sub-title{ color: @light; }
+.bg-image .title{
+	width: 100%;
+	text-align: center;
+}
+
+/**
+ * Content
+**/
+p{
+	margin: 0 0 1em 0;
+	.font( 20px, 30px, normal, 'haas md' );
+}
+
+a{
+	color: @light;
+}
+
+
+/**
+ * Image captions
+**/
+.image-caption{
+	//.font( 18px, 28px, normal, 'font-name' ); color: @light-dark;
+}
+
+
+
+
+/*------------------------------------*\
+    #UTILITIES
+\*------------------------------------*/
+
+/**
+ * Text Alignment
+**/
+.text-left{ text-align: left; }
+.text-center{ text-align: center; }
+.text-right{ text-align: right; }
+
+/**
+ * Text Transform
+**/
+.uppercase{ text-transform: uppercase; }
+.lowercase{ text-transform: lowercase; }
+
+
+
+
+/*------------------------------------*\
+    #INFO
+\*------------------------------------*/
+
+
+
+
+
+/*------------------------------------*\
+    #MEDIUM
+\*------------------------------------*/
+
+@media (min-width: @medium) {
+
+	h2{
+		.font( 32px, 1, 'haas th'); letter-spacing: 1px;
+		margin-bottom: 5px;
+	}
+	h3{
+		.font( 14px, 1, 600, 'haas md');
+		margin: 0;
+	}
+	h4{
+		.font( 20px, 1.3, 'haas md');
+		margin: 0;
+	}
+
+}

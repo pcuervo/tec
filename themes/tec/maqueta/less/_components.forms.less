@@ -1,0 +1,49 @@
+/*------------------------------------*\
+    #FORM RESET
+\*------------------------------------*/
+fieldset{
+	padding: 0; border: none; margin: 0;
+}
+
+
+
+
+
+/*------------------------------------*\
+    #FORM ELEMENTS
+\*------------------------------------*/
+
+fieldset input:first-child{
+	.border-radiuses( 5px, 0, 0, 5px );
+}
+fieldset input:last-child{
+	.border-radiuses( 0, 5px, 5px, 0 );
+}
+fieldset textarea{
+	.border-radius( 5px );
+}
+
+input, textarea{
+	width: 100%;
+	padding: 10px;
+	border: none;
+}
+
+input{
+	height: 50px;
+	border-bottom: 1px solid @dark;
+}
+
+textarea{
+	height: 100px;
+}
+
+button[type='submit']{
+	background: @highlight;
+	color: @light;
+}
+
+form p{
+	.font(12px, 1, 100, 'haas th'); color: @light;
+	letter-spacing: 1px;
+}
