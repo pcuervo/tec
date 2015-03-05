@@ -61,7 +61,6 @@ function runMCustomScrollbar(selector){
 **/
 function openModal(element){
 	var aAbrir = element.data('modal');
-	console.log(aAbrir);
 	aAbrir = $('#modal-'+aAbrir+'.modal-wrapper' );
 	aAbrir.removeClass('hide');
 }

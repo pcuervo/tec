@@ -44,3 +44,33 @@ p:last-child, .paso:last-child{
 .modal--transparent{
 	background: transparent;
 }
+
+.modal--read-mode{
+	width: 100%; height: 100%;
+	max-width: none; max-height: none;
+	background: @light;
+	overflow-y: scroll;
+}
+
+.modal--read-mode .close{
+	color: @highlight;
+}
+
+.modal--read-mode .modal-content{
+	width: 90%; max-width: 800px;
+	margin: 0 auto;
+}
+
+
+
+
+/*------------------------------------*\
+	#LEMENETS INSIDE
+\*------------------------------------*/
+.modal{
+
+	.title{
+		line-height: 55px;
+	}
+
+}
