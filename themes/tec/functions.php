@@ -6,11 +6,8 @@
 
 
 	define( 'JSPATH', get_template_directory_uri() . '/js/' );
-
 	define( 'CSSPATH', get_template_directory_uri() . '/css/' );
-
 	define( 'THEMEPATH', get_template_directory_uri() . '/' );
-
 	define( 'SITEURL', site_url('/') );
 
 
@@ -32,6 +29,76 @@
 		wp_enqueue_style( 'styles', get_stylesheet_uri() );
 
 	});
+
+// FRONT END SCRIPTS FOOTER //////////////////////////////////////////////////////
+	function footerScripts(){
+		if( wp_script_is( 'functions', 'done' ) ) {
+
+			/*------------------------------------*\
+			    #HOME
+			\*------------------------------------*/
+			if ( is_home() ) { ?>
+				<script type="text/javascript">
+					(function( $ ) {
+						"use strict";
+						$(function(){
+
+						});
+					}(jQuery));
+				</script>
+			<?php } ?>
+
+			<!-- /**********************************\ -->
+			<!-- #GLOBAL -->
+			<!-- \**********************************/ -->
+			<script type="text/javascript">
+				(function( $ ) {
+					"use strict";
+					$(function(){
+						/*------------------------------------*\
+							#ON LOAD
+						\*------------------------------------*/
+
+						runCycle('.js-slideshow');
+						runMCustomScrollbar('.modal');
+						$('.covervid-video').coverVid(640, 360);
+
+
+
+
+
+						/*------------------------------------*\
+							#Triggered events
+						\*------------------------------------*/
+
+						$(window).on("scroll",function(){
+							toggleCover(isTop());
+						});
+
+						$('.js-open-modal').on('click', function(){
+							openModal( $(this) );
+						});
+						$('.modal-wrapper .close').on('click', function(){
+							closeModal( $(this) );
+						});
+
+
+
+
+
+
+						/*------------------------------------*\
+							#RESPONSIVE
+						\*------------------------------------*/
+						$(window).resize(function(){
+
+						});
+					});
+				}(jQuery));
+			</script>
+		<?php }
+		}
+	add_action( 'wp_footer', 'footerScripts', 21 );
 
 
 
