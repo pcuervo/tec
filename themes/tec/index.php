@@ -4,21 +4,19 @@
 		<div class="[ slideshow ][ js-slideshow ][ z-index zindex-1 ]">
 			<div class="[ covervid-wrapper--wrapper ]">
 				<div class="covervid-wrapper">
-					<video class="covervid-video">
+					<video controls class="covervid-video">
 						<source src="<?php echo THEMEPATH; ?>videos/video1.mp4" type="video/mp4">
 						<source src="<?php echo THEMEPATH; ?>videos/video1.webm" type="video/webm">
 						<source src="<?php echo THEMEPATH; ?>videos/video1.ogv" type="video/ogg">
 					</video>
-					Tu navegador no soporta la reproducción nativa de videos, por favor actualiza.
 				</div>
 			</div>
 			<div class="[ covervid-wrapper--wrapper ]">
 				<div class="covervid-wrapper">
-					<video class="covervid-video">
+					<video controls class="covervid-video">
 						<source src="<?php echo THEMEPATH; ?>videos/video1.mp4" type="video/mp4">
 						<source src="<?php echo THEMEPATH; ?>videos/video1.webm" type="video/webm">
 						<source src="<?php echo THEMEPATH; ?>videos/video1.ogv" type="video/ogg">
-						Tu navegador no soporta la reproducción nativa de videos, por favor actualiza.
 					</video>
 				</div>
 			</div>

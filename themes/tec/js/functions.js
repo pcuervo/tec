@@ -9,7 +9,6 @@
 
 
 
-
 		/*------------------------------------*\
 			#Triggered events
 		\*------------------------------------*/
@@ -30,6 +29,11 @@ var $=jQuery.noConflict();
 
 
 function runCycle(selector){
+	$(selector).on( 'cycle-initialized cycle-after', function( event, opts ) {
+		console.log('initialized');
+		videoEnds('.cycle-slide-active .covervid-video' );
+	});
+
 	$(selector).cycle({
 		'fx'               	: 'scrollHorz',
 		'timeout'          	: 0,
@@ -38,7 +42,13 @@ function runCycle(selector){
 		'youtube'          	: true,
 		'log'				: false
 	});
+
 	toggleVideoPlay(selector);
+
+}
+
+function cycleNext(){
+	$('.js-slideshow').cycle('next');
 }
 
 function runFitVids(selector){
@@ -92,11 +102,13 @@ function toggleCover(toggled){
 	if ( toggled ){
 		showCover();
 		showGrid();
+		playVideo('.cycle-slide-active .covervid-video');
 		return;
 	}
 
 	hideCover();
 	hideGrid();
+	pauseVideos('.covervid-wrapper--wrapper .covervid-video');
 }
 
 function showCover(){
@@ -118,15 +130,33 @@ function hideGrid(){
 
 function toggleVideoPlay(selector){
 	$(selector).on('cycle-after',function(e, optionHash, outgoingSlideEl, incomingSlideEl, forwardFlag) {
-	var active = $(incomingSlideEl);
-	$('.covervid-wrapper--wrapper .covervid-video').each(function(){
-		$(this)[0].pause();
+		var active = $(incomingSlideEl);
+		$('.covervid-wrapper--wrapper .covervid-video').each(function(){
+			$(this)[0].pause();
+		});
+		playVideo('.cycle-slide-active .covervid-video');
 	});
-	$('.cycle-slide-active .covervid-video').get(0).play();
-
-});
 }
 
+function pauseVideos(selector){
+	$(selector).each(function(){
+		$(this)[0].pause();
+	});
+}
+
+function playVideo(selector){
+	$(selector).get(0).play();
+
+}
+
+function videoEnds(selector){
+	$(selector).each(function(){
+		console.log($(this));
+		$(this).bind('ended', function(){
+			cycleNext();
+		});
+	});
+}
 
 
 
