@@ -50,87 +50,42 @@
 	<section class="[ wrapper ]">
 		<div class="[ grid ][ z-index z-index-1 ]">
 			<div class="[ clearfix ]">
-				<article class="[ span xmall-12 medium-6 xlarge-3 ][ item ][ bg-image ]" style="background-image: url(<?php echo THEMEPATH; ?>images/persona.jpg);">
-					<span class="[ screen opacity--full ]"></span>
-					<a href="#" class="[ block ][ js-open-modal ]" data-modal="una-historia">
-						<div class="[ square ][ z-index z-index-2 ]">
-							<div class="[ item__header ]">
-								<div class="[ item__name ][ columna xmall-6 ]">
-									<h3>Luís Garcia</h3>
-									<h4>CEO Microrobotx</h4>
+				<?php
+					if( have_posts() ) : while( have_posts() ) : the_post();
+					$puesto     = get_post_meta($post->ID, '_detalles_puesto_meta', true);
+					$nombre     = get_post_meta($post->ID, '_detalles_nombre_meta', true);
+					$generacion = get_post_meta($post->ID, '_detalles_generacion_meta', true);
+				?>
+
+					<article class="[ span xmall-12 medium-6 xlarge-3 ][ item ][ bg-image ]" style="background-image: url(<?php echo THEMEPATH; ?>images/persona.jpg);">
+						<span class="[ screen opacity--full ]"></span>
+						<a href="#" class="[ block ][ js-open-modal ]" data-modal="una-historia">
+							<div class="[ square ][ z-index z-index-2 ]">
+								<div class="[ item__header ]">
+									<div class="[ item__name ][ columna xmall-6 ]">
+										<h3><?php echo $nombre; ?></h3>
+										<h4><?php echo $puesto; ?></h4>
+									</div>
 								</div>
-							</div>
-							<div class="[ item__footer ]">
-								<div class="[ item__title ]">
-									<h2>Nunca pierdas tu tiempo, es lo más valioso que tienes.</h2>
-									<h3>2005 - 2009</h3>
+								<div class="[ item__footer ]">
+									<div class="[ item__title ]">
+										<h2><?php the_title(); ?></h2>
+										<h3><?php echo $generacion; ?></h3>
+									</div>
 								</div>
-							</div>
-						</div><!-- square -->
-					</a>
-					<div class="[ item__share ][ z-index z-index-3 ]">
-						<a href="facebook" class="[ button button--circle button--light ][ inline-block ]">
-							<i class="[ icon-facebook ]"></i>
+							</div><!-- square -->
 						</a>
-						<a href="twitter" class="[ button button--circle button--light ][ inline-block ]">
-							<i class="[ icon-twitter ]"></i>
-						</a>
-					</div>
-				</article><!-- item -->
-				<article class="[ span xmall-12 medium-6 xlarge-3 ][ item ][ bg-image ]" style="background-image: url(<?php echo THEMEPATH; ?>images/persona.jpg);">
-					<span class="[ screen opacity--full ]"></span>
-					<a href="#" class="[ block ]">
-						<div class="[ square ][ z-index z-index-2 ]">
-							<div class="[ item__header ]">
-								<div class="[ item__name ][ columna xmall-6 ]">
-									<h3>Luís Garcia</h3>
-									<h4>CEO Microrobotx</h4>
-								</div>
-							</div>
-							<div class="[ item__footer ]">
-								<div class="[ item__title ]">
-									<h2>Nunca pierdas tu tiempo, es lo más valioso que tienes.</h2>
-									<h3>2005 - 2009</h3>
-								</div>
-							</div>
-						</div><!-- square -->
-					</a>
-					<div class="[ item__share ][ z-index z-index-3 ]">
-						<a href="facebook" class="[ button button--circle button--light ][ inline-block ]">
-							<i class="[ icon-facebook ]"></i>
-						</a>
-						<a href="twitter" class="[ button button--circle button--light ][ inline-block ]">
-							<i class="[ icon-twitter ]"></i>
-						</a>
-					</div>
-				</article><!-- item -->
-				<article class="[ span xmall-12 medium-6 xlarge-3 ][ item ][ bg-image ]" style="background-image: url(<?php echo THEMEPATH; ?>images/persona.jpg);">
-					<span class="[ screen opacity--full ]"></span>
-					<a href="#" class="[ block ]">
-						<div class="[ square ][ z-index z-index-2 ]">
-							<div class="[ item__header ]">
-								<div class="[ item__name ][ columna xmall-6 ]">
-									<h3>Luís Garcia</h3>
-									<h4>CEO Microrobotx</h4>
-								</div>
-							</div>
-							<div class="[ item__footer ]">
-								<div class="[ item__title ]">
-									<h2>Nunca pierdas tu tiempo, es lo más valioso que tienes.</h2>
-									<h3>2005 - 2009</h3>
-								</div>
-							</div>
-						</div><!-- square -->
-					</a>
-					<div class="[ item__share ][ z-index z-index-3 ]">
-						<a href="facebook" class="[ button button--circle button--light ][ inline-block ]">
-							<i class="[ icon-facebook ]"></i>
-						</a>
-						<a href="twitter" class="[ button button--circle button--light ][ inline-block ]">
-							<i class="[ icon-twitter ]"></i>
-						</a>
-					</div>
-				</article><!-- item -->
+						<div class="[ item__share ][ z-index z-index-3 ]">
+							<a href="facebook" class="[ button button--circle button--light ][ inline-block ]">
+								<i class="[ icon-facebook ]"></i>
+							</a>
+							<a href="twitter" class="[ button button--circle button--light ][ inline-block ]">
+								<i class="[ icon-twitter ]"></i>
+							</a>
+						</div>
+					</article><!-- item -->
+
+				<?php endwhile; endif; ?>
 			</div><!-- row -->
 		</div><!-- grid -->
 	</section><!-- wrapper -->
