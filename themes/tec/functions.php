@@ -108,8 +108,8 @@
 							e.preventDefault();
 							var data = $(this).serializeArray();
 
-							var file_data = $('#foto').prop('files')[0]; 
-							data.push({name: 'file', value: file_data});
+							// var file_data = $('#foto').prop('files')[0]; 
+							// data.push({name: 'file', value: file_data});
 							console.log(data);
 							guardarHistoria(data);
 						});

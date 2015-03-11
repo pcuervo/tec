@@ -171,17 +171,17 @@ function loginFacebook(){
 		if (response.authResponse) {
 			console.log('El usuario autorizó ingresar con Facebook...');
 			FB.api('/me', function(response) {
-				
+
 				if( existeHistoriaUsuario() ) {
 					console.log('el usuario actual ya envió una historia...');
-					// mostrar leyenda... 
+					// mostrar leyenda...
 				}
 
 				mostrarFotoPerfil(response.id);
 				$('.js-nombre').val(response.name);
 				$('.js-fb-id').val(response.id);
-				$('.bg-facebook').addClass('hidden--xmall');
-				$('.forma-tu-historia').removeClass('hidden--xmall');
+				$('.step-1').addClass('hidden--xmall');
+				$('.step-2').removeClass('hidden--xmall');
 			});
 		} else {
 			console.log('El usuario canceló o no aceptó ingresar con Facebook...');
@@ -220,8 +220,9 @@ function guardarHistoria(data_historia){
 		ajax_url,
 		data_historia,
 		function(response){
-			$('.forma-tu-historia').addClass('hidden--xmall');
-			$('.success-message').removeClass('hidden--xmall');
+			console.log(response);
+			$('.step-2').addClass('hidden--xmall');
+			$('.step-3').removeClass('hidden--xmall');
 		}
 	);
 }
