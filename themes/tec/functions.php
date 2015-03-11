@@ -63,6 +63,11 @@
 						runMCustomScrollbar('.modal');
 						$('.covervid-video').coverVid(640, 360);
 
+						$('body').formplate();
+						$('.forma-tu-historia input[type=file]').nicefileinput({
+							label : 'Agregar imagen a mi historia'
+						});
+
 
 
 

@@ -30,7 +30,6 @@ var $=jQuery.noConflict();
 
 function runCycle(selector){
 	$(selector).on( 'cycle-initialized cycle-after', function( event, opts ) {
-		console.log('initialized');
 		videoEnds('.cycle-slide-active .covervid-video' );
 	});
 
@@ -151,7 +150,6 @@ function playVideo(selector){
 
 function videoEnds(selector){
 	$(selector).each(function(){
-		console.log($(this));
 		$(this).bind('ended', function(){
 			cycleNext();
 		});
