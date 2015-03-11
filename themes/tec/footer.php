@@ -14,7 +14,7 @@
 							<i class="[ icon-facebook ]"></i>
 						</a>
 						<div class="clear"></div>
-						<form action="" class="[ forma forma-tu-historia ]">
+						<form action="" class="[ forma forma-tu-historia ]" enctype="multipart/form-data">
 							<fieldset class="[ margin-bottom--small ]">
 								<input type="text" class="[ js-nombre ]"  name="nombre" placeholder="Tu nombre">
 								<select name="campus" id="campus">
@@ -132,7 +132,7 @@
 								<textarea name="titulo" id="" placeholder="Quote"></textarea>
 							</fieldset>
 							<fieldset class="[ margin-bottom--small ]">
-								<input class="[ block ][ columna xmall-12 ][ button button--rounded-corners button--dark ]" type="button" value="Agregar imagen a mi historia">
+								<input name="file" class="[ block ][ columna xmall-12 ][ button button--rounded-corners button--dark ]" type="file" id="foto" value="Agregar imagen a mi historia">
 							</fieldset>
 							<fieldset class="[ margin-bottom--small ]">
 								<input class="[ columna xmall-12 ][ button button--rounded-corners ]" type="checkbox" name="acepto" value="true">Deseo que mi historia se publique en mi muro de Facebook.

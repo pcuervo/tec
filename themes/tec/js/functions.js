@@ -173,11 +173,13 @@ function loginFacebook(){
 		if (response.authResponse) {
 			console.log('El usuario autorizó ingresar con Facebook...');
 			FB.api('/me', function(response) {
+				
 				if( existeHistoriaUsuario() ) {
 					console.log('el usuario actual ya envió una historia...');
 					// mostrar leyenda... 
 				}
 
+				mostrarFotoPerfil(response.id);
 				$('.js-nombre').val(response.name);
 				$('.js-fb-id').val(response.id);
 				console.log(response);
@@ -186,6 +188,26 @@ function loginFacebook(){
 			console.log('El usuario canceló o no aceptó ingresar con Facebook...');
 		}
 	});
+}
+
+function mostrarFotoPerfil(id){
+	FB.api(
+		"/"+id+"/picture",
+		{
+			"redirect": false,
+			"height": 200,
+			"width": 200,
+			"type": "normal"
+		},
+		function (response) {
+			if (response && !response.error) {
+				console.log(response);
+				var profile_pic = '<img src="'+response.data.url+'" />';
+				console.log(profile_pic);
+				$('.forma-tu-historia').prepend(profile_pic);
+			}
+		}
+	);
 }
 
 
