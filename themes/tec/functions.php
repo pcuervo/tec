@@ -106,7 +106,11 @@
 						});
 						$('.forma-tu-historia').submit(function(e){
 							e.preventDefault();
-							var data = $(this).serialize();
+							var data = $(this).serializeArray();
+
+							var file_data = $('#foto').prop('files')[0]; 
+							data.push({name: 'file', value: file_data});
+							console.log(data);
 							guardarHistoria(data);
 						});
 
@@ -357,9 +361,27 @@
 		$generacion = $_POST['generacion'];
 		$historia = $_POST['historia'];
 		$titulo = $_POST['titulo'];
+		$puesto = (isset($_POST['puesto'])) ? $_POST['puesto'] : '';
+		$publicar_fb = (isset($_POST['acepto'])) ? $_POST['acepto'] : 'false';
 		$facebook_id = $_POST['id'];
 
-		echo json_encode($nombre , JSON_FORCE_OBJECT);
+		$post_historia = array(
+			'post_title'    => $titulo,
+			'post_content'  => $historia,
+			'post_status'   => 'draft',
+			'post_author'   => 1,
+		);
+		$post_id = wp_insert_post( $post_historia );
+
+		// Agregar metadata
+		add_post_meta( $post_id, '_detalles_nombre_meta', $nombre, false ) || update_post_meta( $post_id, '_detalles_nombre_meta', $nombre );
+		add_post_meta( $post_id, '_detalles_puesto_meta', $puesto, false ) || update_post_meta( $post_id, '_detalles_puesto_meta', $puesto );
+		add_post_meta( $post_id, '_detalles_generacion_meta', $generacion, false ) || update_post_meta( $post_id, '_detalles_generacion_meta', $generacion );
+		add_post_meta( $post_id, '_detalles_fbid_meta', $facebook_id, false ) || update_post_meta( $post_id, '_detalles_fbid_meta', $facebook_id );
+		add_post_meta( $post_id, '_detalles_publicar_fb_meta', $publicar_fb, false ) || update_post_meta( $post_id, '_detalles_publicar_fb_meta', $publicar_fb );
+
+
+		echo json_encode($post_id, JSON_FORCE_OBJECT);
 		exit();
 	} // get_descripcion_coleccion
 	add_action("wp_ajax_guardar_historia", "guardar_historia");
