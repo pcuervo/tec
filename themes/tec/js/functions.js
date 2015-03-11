@@ -171,16 +171,16 @@ function loginFacebook(){
 		if (response.authResponse) {
 			console.log('El usuario autorizó ingresar con Facebook...');
 			FB.api('/me', function(response) {
-				
+
 				if( existeHistoriaUsuario() ) {
 					console.log('el usuario actual ya envió una historia...');
-					// mostrar leyenda... 
+					// mostrar leyenda...
 				}
 
 				mostrarFotoPerfil(response.id);
 				$('.js-nombre').val(response.name);
 				$('.js-fb-id').val(response.id);
-				console.log(response);
+				//console.log(response);
 			});
 		} else {
 			console.log('El usuario canceló o no aceptó ingresar con Facebook...');

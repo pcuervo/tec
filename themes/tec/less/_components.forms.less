@@ -14,7 +14,10 @@ fieldset{
 \*------------------------------------*/
 
 fieldset input[name='nombre']{
-	margin: 0; .border-radiuses( 5px, 0, 0, 5px );
+	padding-right: 50px; .border-radiuses( 5px, 0, 0, 5px ); margin: 0;
+}
+fieldset input[name='puesto']{
+	margin: 0;
 }
 fieldset select[name='generacion']{
 	.border-radiuses( 0, 5px, 5px, 0 );
@@ -39,10 +42,6 @@ input{
 	border-bottom: 1px solid @dark;
 }
 
-textarea{
-	height: 100px;
-}
-
 button[type='submit']{
 	background: @highlight;
 	color: @light;
@@ -51,6 +50,23 @@ button[type='submit']{
 form p{
 	.font(12px, 1, 100, 'haas th'); color: @light;
 	letter-spacing: 1px;
+}
+
+
+
+
+/*------------------------------------*\
+    #FORM IMAGE
+\*------------------------------------*/
+.forma-tu-historia{
+	position: relative;
+}
+
+.forma-tu-historia img{
+	width: 40px;
+	position: absolute; top: 5px; right: 5px;
+	.border-radius(50%);
+	z-index: 10;
 }
 
 
@@ -421,7 +437,7 @@ border-radius:2px;
 -moz-border-radius:2px;
 -webkit-border-radius:2px;
 background-clip:padding-box;
-margin:0 0 1.5em;
+margin:0;
 padding:10px;
 }
 
