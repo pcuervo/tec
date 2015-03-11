@@ -9,16 +9,16 @@
 			<div class="[ modal modal--transparent ]">
 				<div class="[ modal-content ]">
 					<div class="[ modal-body ]">
-						<!-- <a href="" class="[ block ][ columna xmall-12 ][ button button--rounded-corners ][ margin-bottom--small ][ bg-facebook ]">
+						<a href="" class="[ block ][ columna xmall-12 ][ button button--rounded-corners ][ margin-bottom--small ][ bg-facebook ]">
 							<span class="[ ]">Ingresa con facebook</span>
 							<i class="[ icon-facebook ]"></i>
 						</a>
 						<div class="clear"></div>
 						<form action="" class="[ forma forma-tu-historia ]">
 							<fieldset class="[ margin-bottom--small ]">
-								<input type="text" placeholder="Tu nombre">
-								<input type="text" placeholder="Ciudad">
-								<input type="text" placeholder="Generación">
+								<input type="text" class="[ js-nombre ]" name="nombre" placeholder="Tu nombre">
+								<input type="text" name="ciudad" placeholder="Ciudad">
+								<input type="text" name="generacion" placeholder="Generación">
 							</fieldset>
 							<fieldset class="[ margin-bottom--small ]">
 								<textarea name="historia" id="" placeholder="Tu historia"></textarea>
@@ -29,18 +29,20 @@
 							<fieldset class="[ margin-bottom--small ]">
 								<input class="[ block ][ columna xmall-12 ][ button button--rounded-corners ]" type="button" value="Adjunta una imagen">
 							</fieldset>
+							<input type="hidden" class="[ js-fb-id ]" name="id">
+							<input type="hidden" name="action" value="guardar_historia">
 							<fieldset class="[ margin-bottom--small ]">
 								<button class="[ block ][ columna xmall-12 ][ button button--rounded-corners ]" type="submit">Enviar</button>
 							</fieldset>
-							<p class="[ text-center ]">Tu historia será revisada por nosotros y se te notificará en cuanto esté aprobada.</p>
-						</form> -->
-						<div class="[ success-message ]">
+							<p class="[ text-center ]">Tu historia será revisada por nosotros y se te notificará en cuanto esté aprobada y sea publicada en Facebook.</p>
+						</form>
+						<!-- <div class="[ success-message ]">
 							<p class="[ title ][ text-center ][ margin-bottom--large ][ light ]">Gracias por compartir tu historia con México</p>
 							<a href="https://www.facebook.com/dialog/share_open_graph?app_id=145634995501895&display=popup&action_type=og.likes&action_properties=%7B%22object%22%3A%22https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2F%22%7D&redirect_uri=https%3A%2F%2Fdevelopers.facebook.com%2Ftools%2Fexplorer" class="[ block ][ columna xmall-12 ][ button button--rounded-corners ][ margin-bottom--small ][ bg-facebook ]">
 								<span class="[ ]">Compártela con Facebook</span>
 								<i class="[ icon-facebook ]"></i>
 							</a>
-						</div>
+						</div> -->
 					</div><!-- modal-body -->
 				</div><!-- modal-content -->
 			</div>
