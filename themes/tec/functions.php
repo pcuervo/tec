@@ -58,6 +58,20 @@
 						/*------------------------------------*\
 							#ON LOAD
 						\*------------------------------------*/
+						window.fbAsyncInit = function() {
+						    FB.init({
+						      	appId      : '419093274917539',
+						      	xfbml      : true,
+						      	version    : 'v2.2'
+						    });
+						};
+						(function(d, s, id){
+							var js, fjs = d.getElementsByTagName(s)[0];
+							if (d.getElementById(id)) {return;}
+							js = d.createElement(s); js.id = id;
+							js.src = "//connect.facebook.net/en_US/sdk.js";
+							fjs.parentNode.insertBefore(js, fjs);
+						}(document, 'script', 'facebook-jssdk'));
 
 						runCycle('.js-slideshow');
 						runMCustomScrollbar('.modal');
@@ -86,6 +100,16 @@
 						$('.modal-wrapper .close').on('click', function(){
 							closeModal( $(this) );
 						});
+						$('.bg-facebook').on('click', function(e){
+							e.preventDefault();
+							loginFacebook();
+						});
+						$('.forma-tu-historia').submit(function(e){
+							e.preventDefault();
+							var data = $(this).serialize();
+							guardarHistoria(data);
+						});
+
 
 
 
@@ -317,3 +341,27 @@
 			OR isset($query->post_title) AND preg_match("/$string/i", remove_accents(str_replace(' ', '-', $query->post_title) ) ) )
 			echo 'active';
 	}
+
+
+
+// AJAX REQUESTS //////////////////////////////////////////////////////
+
+
+
+	/**
+	 * Guarda la historia del usuario como un post con status 'Unpublish'
+	 */
+	function guardar_historia(){
+		$nombre = $_POST['nombre'];
+		$campus = $_POST['campus'];
+		$generacion = $_POST['generacion'];
+		$historia = $_POST['historia'];
+		$titulo = $_POST['titulo'];
+		$facebook_id = $_POST['id'];
+
+		echo json_encode($nombre , JSON_FORCE_OBJECT);
+		exit();
+	} // get_descripcion_coleccion
+	add_action("wp_ajax_guardar_historia", "guardar_historia");
+	add_action("wp_ajax_nopriv_guardar_historia", "guardar_historia");
+

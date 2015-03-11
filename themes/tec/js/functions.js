@@ -156,8 +156,50 @@ function videoEnds(selector){
 	});
 }
 
+function existeHistoriaUsuario(facebookId){
+	return 0;
+}
 
 
+
+/*------------------------------------*\
+	#FACEBOOK RELATED
+\*------------------------------------*/
+
+function loginFacebook(){
+	FB.login(function(response) {
+		if (response.authResponse) {
+			console.log('El usuario autorizó ingresar con Facebook...');
+			FB.api('/me', function(response) {
+				if( existeHistoriaUsuario() ) {
+					console.log('el usuario actual ya envió una historia...');
+					// mostrar leyenda... 
+				}
+
+				$('.js-nombre').val(response.name);
+				$('.js-fb-id').val(response.id);
+				console.log(response);
+			});
+		} else {
+			console.log('El usuario canceló o no aceptó ingresar con Facebook...');
+		}
+	});
+}
+
+
+/*------------------------------------*\
+	#AJAX
+\*------------------------------------*/
+
+function guardarHistoria(data_historia){
+	$.post(
+		ajax_url,
+		data_historia,
+		function(response){
+			console.log(response);
+		}
+	);
+}
 
 
 
