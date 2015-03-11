@@ -57,7 +57,7 @@
 					$generacion = get_post_meta($post->ID, '_detalles_generacion_meta', true);
 				?>
 
-					<article class="[ span xmall-12 medium-6 xlarge-3 ][ item ][ bg-image ]" style="background-image: url(<?php the_post_thumbnail('full' ); ?>);">
+					<article class="[ span xmall-12 medium-6 ][ item ][ bg-image ]" style="background-image: url(<?php the_post_thumbnail('full' ); ?>);">
 						<span class="[ screen opacity--full ]"></span>
 						<a href="#" class="[ block ][ js-open-modal ]" data-modal="una-historia">
 							<div class="[ square ][ z-index z-index-2 ]">

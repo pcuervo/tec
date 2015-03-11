@@ -21,15 +21,15 @@
 								<fieldset class="[ margin-bottom--small ]">
 									<div class="[ formplate ]">
 										<!-- <label for="nombre">Tu nombre</label> -->
-										<input type="text" name="nombre" class="[ js-nombre ]" placeholder="Tu nombre">
+										<input type="text" name="nombre" class="[ js-nombre ][ required ]" placeholder="Tu nombre*">
 									</div><!-- formplate -->
 									<div class="[ formplate ]">
 										<!-- <label for="nombre">Tu nombre</label> -->
 										<input type="text" name="puesto" placeholder="Tu puesto">
 									</div><!-- formplate -->
 									<div class="[ formplate ]">
-										<select name="campus" id="campus">
-											<option selected="true" disabled="disabled">Campus</option>
+										<select name="campus" id="campus" class="[ required ]">
+											<option selected="true" disabled="disabled">Campus*</option>
 											<option value="Aguascalientes">Aguascalientes</option>
 											<option value="Central de Veracruz">Central de Veracruz</option>
 											<option value="Chiapas">Chiapas</option>
@@ -59,8 +59,8 @@
 										</select>
 									</div><!-- formplate -->
 									<div class="[ formplate ][ generacion ]">
-										<select name="generacion" id="campus">
-											<option selected="true" disabled="disabled">Generación</option>
+										<select name="generacion" id="campus" class="[ required ]">
+											<option selected="true" disabled="disabled">Generación*</option>
 											<option value="1947">1947</option>
 											<option value="1948">1948</option>
 											<option value="1949">1949</option>
@@ -141,12 +141,12 @@
 								</fieldset>
 								<fieldset class="[ margin-bottom--small ]">
 									<div class="[ formplate ]">
-										<textarea name="historia" id="" placeholder="Tu historia"></textarea>
+										<textarea class="[ required ]" name="historia" id="" placeholder="Tu historia*"></textarea>
 									</div><!-- formplate -->
 								</fieldset>
 								<fieldset class="[ margin-bottom--small ]">
 									<div class="[ formplate ]">
-										<textarea name="titulo" id="" placeholder="Quote"></textarea>
+										<textarea class="[ required ]" name="titulo" id="" placeholder="Quote*"></textarea>
 									</div><!-- formplate -->
 								</fieldset>
 								<fieldset class="[ margin-bottom ]">

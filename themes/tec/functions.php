@@ -59,11 +59,11 @@
 							#ON LOAD
 						\*------------------------------------*/
 						window.fbAsyncInit = function() {
-						    FB.init({
-						      	appId      : '419093274917539',
-						      	xfbml      : true,
-						      	version    : 'v2.2'
-						    });
+							FB.init({
+								appId	: '419093274917539',
+								xfbml	: true,
+								version : 'v2.2'
+							});
 						};
 						(function(d, s, id){
 							var js, fjs = d.getElementsByTagName(s)[0];
@@ -104,15 +104,8 @@
 							e.preventDefault();
 							loginFacebook();
 						});
-						$('.forma-tu-historia').submit(function(e){
-							e.preventDefault();
-							var data = $(this).serializeArray();
 
-							// var file_data = $('#foto').prop('files')[0]; 
-							// data.push({name: 'file', value: file_data});
-							console.log(data);
-							guardarHistoria(data);
-						});
+						formValidation('.forma-tu-historia');
 
 
 

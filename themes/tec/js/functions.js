@@ -160,6 +160,17 @@ function existeHistoriaUsuario(facebookId){
 	return 0;
 }
 
+function formValidation(forma){
+	$(forma).validate({
+		submitHandler:function(){
+			switch(forma){
+				case '.forma-tu-historia':
+					guardarHistoria();
+					break;
+			}
+		}
+	});
+}
 
 
 /*------------------------------------*\
@@ -215,7 +226,9 @@ function mostrarFotoPerfil(id){
 	#AJAX
 \*------------------------------------*/
 
-function guardarHistoria(data_historia){
+function guardarHistoria(){
+	var data_historia = $('.forma-tu-historia').serializeArray();
+	console.log(data_historia);
 	$.post(
 		ajax_url,
 		data_historia,
