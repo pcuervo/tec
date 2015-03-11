@@ -4,7 +4,7 @@
 		<div class="[ slideshow ][ js-slideshow ][ z-index zindex-1 ]">
 			<div class="[ covervid-wrapper--wrapper ]">
 				<div class="covervid-wrapper">
-					<video controls class="covervid-video">
+					<video class="covervid-video">
 						<source src="<?php echo THEMEPATH; ?>videos/video1.mp4" type="video/mp4">
 						<source src="<?php echo THEMEPATH; ?>videos/video1.webm" type="video/webm">
 						<source src="<?php echo THEMEPATH; ?>videos/video1.ogv" type="video/ogg">
@@ -13,7 +13,7 @@
 			</div>
 			<div class="[ covervid-wrapper--wrapper ]">
 				<div class="covervid-wrapper">
-					<video controls class="covervid-video">
+					<video class="covervid-video">
 						<source src="<?php echo THEMEPATH; ?>videos/video1.mp4" type="video/mp4">
 						<source src="<?php echo THEMEPATH; ?>videos/video1.webm" type="video/webm">
 						<source src="<?php echo THEMEPATH; ?>videos/video1.ogv" type="video/ogg">
@@ -57,7 +57,7 @@
 					$generacion = get_post_meta($post->ID, '_detalles_generacion_meta', true);
 				?>
 
-					<article class="[ span xmall-12 medium-6 xlarge-3 ][ item ][ bg-image ]" style="background-image: url(<?php echo THEMEPATH; ?>images/persona.jpg);">
+					<article class="[ span xmall-12 medium-6 xlarge-3 ][ item ][ bg-image ]" style="background-image: url(<?php the_post_thumbnail('full' ); ?>);">
 						<span class="[ screen opacity--full ]"></span>
 						<a href="#" class="[ block ][ js-open-modal ]" data-modal="una-historia">
 							<div class="[ square ][ z-index z-index-2 ]">
