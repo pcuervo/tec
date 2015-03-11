@@ -180,7 +180,8 @@ function loginFacebook(){
 				mostrarFotoPerfil(response.id);
 				$('.js-nombre').val(response.name);
 				$('.js-fb-id').val(response.id);
-				console.log(response);
+				$('.bg-facebook').addClass('hidden--xmall');
+				$('.forma-tu-historia').removeClass('hidden--xmall');
 			});
 		} else {
 			console.log('El usuario canceló o no aceptó ingresar con Facebook...');
@@ -209,6 +210,7 @@ function mostrarFotoPerfil(id){
 }
 
 
+
 /*------------------------------------*\
 	#AJAX
 \*------------------------------------*/
@@ -218,7 +220,8 @@ function guardarHistoria(data_historia){
 		ajax_url,
 		data_historia,
 		function(response){
-			console.log(response);
+			$('.forma-tu-historia').addClass('hidden--xmall');
+			$('.success-message').removeClass('hidden--xmall');
 		}
 	);
 }

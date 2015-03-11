@@ -14,11 +14,11 @@
 							<i class="[ icon-facebook ]"></i>
 						</a>
 						<div class="clear"></div>
-						<form action="" class="[ forma forma-tu-historia ]" enctype="multipart/form-data">
+						<form action="" class="[ forma forma-tu-historia ][ hidden--xmall ]" enctype="multipart/form-data">
 							<fieldset class="[ margin-bottom--small ]">
 								<div class="[ formplate ]">
 									<!-- <label for="nombre">Tu nombre</label> -->
-									<input type="text" name="nombre" placeholder="Tu nombre">
+									<input type="text" name="nombre" class="js-nombre" placeholder="Tu nombre">
 								</div><!-- formplate -->
 								<div class="[ formplate ]">
 									<select name="campus" id="campus">
@@ -147,15 +147,16 @@
 							</fieldset>
 							<fieldset class="[ margin-bottom--small ]">
 								<div class="[ formplate ]">
-									<input class="toggler" name="acepto" value="toggler" type="checkbox">
+									<input class="toggler" name="acepto" value="true" type="checkbox">
 									<p class="[ text-center ]">Deseo que mi historia se publique en mi muro de Facebook.</p>
 								</div><!-- formplate -->
 							</fieldset>
+							<input type="hidden" class="js-fb-id">
 							<fieldset class="[ margin-bottom--small ]">
 								<button class="[ block ][ columna xmall-12 ][ button button--rounded-corners ]" type="submit">Enviar</button>
 							</fieldset>
 						</form>
-						<div class="[ success-message ]">
+						<div class="[ success-message ][ hidden--xmall ]">
 							<p class="[ title ][ text-center ][ margin-bottom--large ][ light ]">Gracias por compartir tu historia con México</p>
 							<p class="[ text-center ][ light ]">Tu historia será revisada por nosotros y se te notificará en cuanto esté aprobada.</p>
 						</div>
