@@ -158,7 +158,7 @@
 										<p class="[ text-center ]">Deseo que mi historia se publique en mi muro de Facebook.</p>
 									</div><!-- formplate -->
 								</fieldset>
-								<input type="hidden" class="js-fb-id">
+								<input type="hidden" class="js-fb-id" name="id">
 								<input type="hidden" name="action" value="guardar_historia">
 								<fieldset class="[ margin-bottom--small ]">
 									<button class="[ block ][ columna xmall-12 ][ button button--rounded-corners ]" type="submit">Enviar</button>
@@ -172,7 +172,10 @@
 								<div class="[ clear ]"></div>
 								<button class="[ js-close ][ button ]">Hecho</button>
 							</div>
-						</article><!-- step-2 -->
+						</article><!-- step-3 -->
+						<article class="[ step-4 ][ hidden--xmall ]">
+							<p class="[ title ][ margin-bottom--large ][ light ]">Ya has creado una historia... CAMBIAR COPY</p>
+						</article><!-- step-4 -->
 					</div><!-- modal-body -->
 				</div><!-- modal-content -->
 			</div>
@@ -186,7 +189,7 @@
 					<div class="[ modal-header ][ border-bottom margin-bottom ]">
 						<h2 class="[ text-center ]"></h2>
 						<br />
-						<img class="[ block center ][ img-circle ]" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p200x200/1234659_10152389287406329_7556410121216893285_n.jpg?oh=2ff35b3edd466fc77b6223ff98be178c&amp;oe=557A8245&amp;__gda__=1434365882_1812a3b28a1e4983e9cfd7c3112e9e1c">
+						<div class="js-profile-pic"></div>
 						<h4 class="[ text-center ]"><span class="[ js-nombre ]"></span> - <span class="[ js-puesto ]"></span></h4>
 						<h3 class="[ text-center ]">Generación <span class="[ js-generacion ]"></span></h3>
 					</div><!-- modal-header -->

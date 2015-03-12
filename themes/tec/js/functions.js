@@ -156,10 +156,6 @@ function videoEnds(selector){
 	});
 }
 
-function existeHistoriaUsuario(facebookId){
-	return 0;
-}
-
 function formValidation(forma){
 	$(forma).validate({
 		submitHandler:function(){
@@ -183,38 +179,53 @@ function loginFacebook(){
 			console.log('El usuario autorizó ingresar con Facebook...');
 			FB.api('/me', function(response) {
 
-				if( existeHistoriaUsuario() ) {
-					console.log('el usuario actual ya envió una historia...');
-					// mostrar leyenda...
-				}
-
-				mostrarFotoPerfil(response.id);
+				mostrarFotoPerfilHistoria(response.id, 50, 50);
 				$('.js-nombre').val(response.name);
 				$('.js-fb-id').val(response.id);
 				$('.step-1').addClass('hidden--xmall');
 				$('.step-2').removeClass('hidden--xmall');
+
+				existeHistoriaUsuario(response.id);
 			});
 		} else {
 			console.log('El usuario canceló o no aceptó ingresar con Facebook...');
 		}
-	});
+	}, { scope: 'public_profile, publish_actions'});
 }
 
-function mostrarFotoPerfil(id){
+function mostrarFotoPerfilHistoria(id, width, height){
 	FB.api(
 		"/"+id+"/picture",
 		{
 			"redirect": false,
-			"height": 200,
-			"width": 200,
+			"height": height,
+			"width": width,
 			"type": "normal"
 		},
 		function (response) {
 			if (response && !response.error) {
-				console.log(response);
+				var profile_pic = '<img src="'+response.data.url+'" />';
+				$('.forma-tu-historia').prepend(profile_pic);
+			}
+		}
+	);
+}
+
+function mostrarFotoPerfilSingle(id, width, height){
+
+	FB.api(
+		"/"+id+"/picture",
+		{
+			"redirect": false,
+			"height": height,
+			"width": width,
+			"type": "normal"
+		},
+		function (response) {
+			if (response && !response.error) {
 				var profile_pic = '<img src="'+response.data.url+'" />';
 				console.log(profile_pic);
-				$('.forma-tu-historia').prepend(profile_pic);
+				$('.js-profile-pic').prepend(profile_pic);
 			}
 		}
 	);
@@ -249,11 +260,13 @@ function insertPostContent(element){
 		ajax_url,
 		data,
 		function(response){
-			//console.log(response);
+			console.log(response);
 			var json_posts = $.parseJSON(response);
 			var html_resultados;
 			var num_posts = -1;
 
+			console.log(json_posts.meta_content.fb_id);
+			mostrarFotoPerfilSingle(json_posts.meta_content.fb_id, 150, 150);
 			$('#modal-historia h2').text(json_posts.meta_content.titulo);
 			$('#modal-historia .js-nombre').text(json_posts.meta_content.nombre);
 			$('#modal-historia .js-puesto').text(json_posts.meta_content.puesto);
@@ -266,7 +279,26 @@ function insertPostContent(element){
 	);
 }
 
+function existeHistoriaUsuario(facebookId){
+	var data = {};
+	data['action'] = 'tiene_historia';
+	data['facebook_id'] = facebookId;
+	console.log(facebookId);
 
+	$.ajax({
+        async: false,
+        type: 'post',
+        url: ajax_url,
+        data: data,
+        success: function(response) {
+        	if(response == '1') {
+	        	$('.step-2').addClass('hidden--xmall');
+				$('.step-4').removeClass('hidden--xmall');
+			}
+        },
+    });
+	
+}// existeHistoriaUsuario
 
 /*------------------------------------*\
 	#RESPONSIVE
