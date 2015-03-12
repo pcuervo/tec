@@ -32,12 +32,12 @@
 							</h1>
 						</div>
 						<div class="[ columna xmall-6 ][ menu__item ][ text-right ]">
-							<a href="#">
+							<a class="[ js-open-search ]" href="#">
 								<i class="icon-search"></i>
 							</a>
 							<div class="[ search-form--wrapper ][ opened ]">
 								<form action="#" class="[ search-form ]">
-									<div class="[ radios ] [ row ]">
+									<div class="[ radios ][ row ][ margin-bottom--small ]">
 										<div class="[ formplate ][ columna xmall-4 ][ text-center ]">
 											<input type="radio" name="radio-search" value="nombre" id="radio-nombre">
 											<label for="radio-nombre">Nombre</label>
@@ -166,8 +166,11 @@
 											<option value="2020">2020</option>
 										</select>
 									</div>
-									<fieldset class="[ margin-bottom--small ][ search-submit ][ js-search-submit ]">
-										<button class="[ block ][ columna xmall-12 ][ button button--rounded-corners ]" type="submit">Buscar</button>
+									<fieldset class="[ margin-bottom--small ][ text-center ][ search-submit ][ js-search-submit ]">
+										<button class="[ button button--rounded-corners ]" type="submit">Buscar</button>
+									</fieldset>
+									<fieldset class="[ margin-bottom--small ][ text-center ]">
+										<button class="[ button button--rounded-corners button--dark ][ js-close-search ]" type="button">Cancelar<buttona>
 									</fieldset>
 								</form>
 							</div>

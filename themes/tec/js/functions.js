@@ -82,6 +82,21 @@ function closeModal(element){
 	$('.modal-wrapper').addClass('hide');
 }
 
+/**
+ * Opens Search
+ * @param element
+**/
+function openSearch(){
+	$('.search-form--wrapper' ).addClass('opened');
+}
+
+/**
+ * Closes Search
+ * @param element to be closed
+**/
+function closeSearch(){
+	$('.search-form--wrapper' ).removeClass('opened');
+}
 
 
 /*------------------------------------*\
@@ -173,6 +188,7 @@ function formValidation(forma){
 		}
 	});
 }
+
 
 
 /*------------------------------------*\

@@ -126,9 +126,9 @@ padding-right:36px;
 .formplate .fp-checkbox,.formplate .fp-radio {
 display:inline-block;
 position:relative;
-margin-right:6px;
+margin-right:0px;
 margin-top:0;
-margin-bottom:2px;
+margin-bottom:5px;
 width:22px;
 height:22px;
 line-height:1.375rem;
@@ -308,6 +308,7 @@ label.error{
 	border-bottom:1px solid #d1d1d1;
 	background-clip:padding-box;
 	z-index:1;
+	line-height: 1;
 }
 
 .fp-select:before {
@@ -754,16 +755,17 @@ background-color:@highlight;
 \*------------------------------------*/
 
 .search-form--wrapper{
-	width: 0;
-	padding: 10px;
+	width: 200%;
+	padding: 10px 10px 2px 10px; border: 1px solid @highlight;
 	background: @light; color: @highlight;
-	position: absolute; top: 0; right: 0;
+	line-height: 1;
+	position: absolute; top: -400px; right: 0;
 	.transition;
 	overflow: hidden;
 }
 
 .search-form--wrapper.opened{
-	width: 200%;
+	top: 0;
 }
 
 .search-form{
@@ -774,7 +776,8 @@ background-color:@highlight;
 }
 
 .search-form label{
-	font-size: 15px;
+	display: block;
+	font-size: 15px; line-height: 1;
 }
 
 .search-form label.error{
@@ -794,4 +797,44 @@ background-color:@highlight;
 
 .search-submit{
 	margin-top: 10px;
+}
+
+/**
+ * small
+**/
+@media (min-width: @small) {
+}
+
+/**
+ * small & landscape
+**/
+@media (min-width: @small) and (orientation: landscape) {
+}
+
+/**
+ * medium
+**/
+@media (min-width: @medium) {
+
+	.search-form--wrapper{
+		width: 100%;
+	}
+
+}
+
+/**
+ * medium & landscape
+**/
+@media (min-width: @medium) and (orientation: landscape) {
+}
+
+/**
+ * large
+**/
+@media (min-width: @large) {
+
+	.search-form--wrapper{
+		width: 80%;
+	}
+
 }

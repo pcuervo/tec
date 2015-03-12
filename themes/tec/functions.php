@@ -105,6 +105,14 @@
 						$('.modal-wrapper .js-close').on('click', function(){
 							closeModal( $(this) );
 						});
+
+						$('.js-open-search').on('click', function(){
+							openSearch();
+						});
+						$('.js-close-search').on('click', function(){
+							closeSearch();
+						});
+
 						$('.bg-facebook').on('click', function(e){
 							e.preventDefault();
 							loginFacebook();
