@@ -82,6 +82,8 @@
 							label : 'Agregar imagen a mi historia'
 						});
 
+						radioIsSelected('.search-form');
+
 
 
 
@@ -103,12 +105,25 @@
 						$('.modal-wrapper .js-close').on('click', function(){
 							closeModal( $(this) );
 						});
+
+						$('.js-open-search').on('click', function(){
+							openSearch();
+						});
+						$('.js-close-search').on('click', function(){
+							closeSearch();
+						});
+
 						$('.bg-facebook').on('click', function(e){
 							e.preventDefault();
 							loginFacebook();
 						});
 
 						formValidation('.forma-tu-historia');
+						formValidation('.search-form');
+
+						$('.search-form input[name="radio-search"]').change(function() {
+							radioIsSelected('.search-form');
+						});
 
 
 
@@ -306,7 +321,7 @@
 
 // HELPER METHODS AND FUNCTIONS //////////////////////////////////////////////////////
 
-
+	show_admin_bar(false);
 
 	/**
 	 * Print the <title> tag based on what is being viewed.
@@ -438,6 +453,7 @@
 			'titulo'		=> $titulo,
 			'historia'		=> $content,
 			'fb_id'			=> $facebook_id,
+			'content'		=> $content
 		);
 
 		echo json_encode($post_content, JSON_FORCE_OBJECT);

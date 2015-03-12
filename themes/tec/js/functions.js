@@ -82,6 +82,21 @@ function closeModal(element){
 	$('.modal-wrapper').addClass('hide');
 }
 
+/**
+ * Opens Search
+ * @param element
+**/
+function openSearch(){
+	$('.search-form--wrapper' ).addClass('opened');
+}
+
+/**
+ * Closes Search
+ * @param element to be closed
+**/
+function closeSearch(){
+	$('.search-form--wrapper' ).removeClass('opened');
+}
 
 
 /*------------------------------------*\
@@ -101,7 +116,9 @@ function toggleCover(toggled){
 	if ( toggled ){
 		showCover();
 		showGrid();
-		playVideo('.cycle-slide-active .covervid-video');
+		if ( $('#modal-historia').hasClass('hide') ){
+			playVideo('.cycle-slide-active .covervid-video');
+		}
 		return;
 	}
 
@@ -169,6 +186,7 @@ function formValidation(forma){
 }
 
 
+
 /*------------------------------------*\
 	#FACEBOOK RELATED
 \*------------------------------------*/
@@ -229,6 +247,29 @@ function mostrarFotoPerfilSingle(id, width, height){
 			}
 		}
 	);
+}
+
+function radioIsSelected(forma){
+	console.log(forma);
+	if ( $(forma+" input[name='radio-search']:checked").val() == 'nombre'){
+		$('.search-field').hide();
+		$('.search-field input, .search-field select').removeClass('required');
+		$('.js-search-nombre').show();
+		$('.js-search-nombre input').addClass('required');
+		$('.js-search-submit').show();
+	} else if ( $(forma+" input[name='radio-search']:checked").val() == 'campus'){
+		$('.search-field').hide();
+		$('.search-field input, .search-field select').removeClass('required');
+		$('.js-search-campus').show();
+		$('.js-search-campus select').addClass('required');
+		$('.js-search-submit').show();
+	} else if ( $(forma+" input[name='radio-search']:checked").val() == 'generacion'){
+		$('.search-field').hide();
+		$('.search-field input, .search-field select').removeClass('required');
+		$('.js-search-generacion').show();
+		$('.js-search-generacion select').addClass('required');
+		$('.js-search-submit').show();
+	}
 }
 
 
