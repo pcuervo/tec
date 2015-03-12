@@ -122,12 +122,6 @@ z-index:4;
 padding-right:36px;
 }
 
-@font-face {
-font-family:formplate;
-src:url(fonts/icomoon.eot?#iefix) format(embedded-opentype),url(fonts/icomoon.woff?) format(woff),url(fonts/icomoon.ttf?) format(truetype),url(fonts/icomoon.svg?#icomoon) format(svg);
-font-weight:400;
-font-style:normal;
-}
 
 .formplate .fp-checkbox,.formplate .fp-radio {
 display:inline-block;
@@ -308,8 +302,8 @@ label.error{
 .fp-select {
 	display:inline-block;
 	position:relative;
-	width:100%;
-	font-family:formplate;
+	width: 100%;
+	font-family:'formplate';
 	background-color:#fff;
 	border-bottom:1px solid #d1d1d1;
 	background-clip:padding-box;
@@ -320,7 +314,7 @@ label.error{
 	position:absolute;
 	right:7px;
 	height:50px;
-	content:"";
+	content:"\e601";
 	font-size:20px;
 	line-height: 50px;
 	color:#d1d1d1;
@@ -751,4 +745,53 @@ background-color:@highlight;
 }
 .NFI-filename {
 	display: none !important;
+}
+
+
+
+/*------------------------------------*\
+	#SEARCH FORM
+\*------------------------------------*/
+
+.search-form--wrapper{
+	width: 0;
+	padding: 10px;
+	background: @light; color: @highlight;
+	position: absolute; top: 0; right: 0;
+	.transition;
+	overflow: hidden;
+}
+
+.search-form--wrapper.opened{
+	width: 200%;
+}
+
+.search-form{
+}
+
+.search-form .fp-select {
+	border:1px solid #d1d1d1;
+}
+
+.search-form label{
+	font-size: 15px;
+}
+
+.search-form label.error{
+	display: block;
+	margin: 2px 0;
+	text-align: center;
+	line-height: normal;
+}
+
+.search-form input{
+	margin: 0;
+}
+
+.search-field, .search-submit{
+	display: none;
+}
+
+.search-submit{
+	margin-top: 10px;
 }

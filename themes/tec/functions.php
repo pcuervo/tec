@@ -82,6 +82,8 @@
 							label : 'Agregar imagen a mi historia'
 						});
 
+						radioIsSelected('.search-form');
+
 
 
 
@@ -109,6 +111,11 @@
 						});
 
 						formValidation('.forma-tu-historia');
+						formValidation('.search-form');
+
+						$('.search-form input[name="radio-search"]').change(function() {
+							radioIsSelected('.search-form');
+						});
 
 
 
@@ -274,7 +281,7 @@
 
 // HELPER METHODS AND FUNCTIONS //////////////////////////////////////////////////////
 
-
+	show_admin_bar(false);
 
 	/**
 	 * Print the <title> tag based on what is being viewed.
@@ -403,7 +410,7 @@
 			'nombre'		=> $nombre,
 			'generacion'	=> $generacion,
 			'titulo'		=> $titulo,
-			'historia'		=> $content
+			'content'		=> $content
 		);
 
 		echo json_encode($post_content, JSON_FORCE_OBJECT);
