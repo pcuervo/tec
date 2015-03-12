@@ -228,14 +228,40 @@ function mostrarFotoPerfil(id){
 
 function guardarHistoria(){
 	var data_historia = $('.forma-tu-historia').serializeArray();
-	console.log(data_historia);
+	//console.log(data_historia);
 	$.post(
 		ajax_url,
 		data_historia,
 		function(response){
-			console.log(response);
+			//console.log(response);
 			$('.step-2').addClass('hidden--xmall');
 			$('.step-3').removeClass('hidden--xmall');
+		}
+	);
+}
+
+function insertPostContent(element){
+	var post_id = $(element).data('id');
+	var data = {};
+	data['action'] = 'get_post_meta_content';
+	data['post_id'] = post_id;
+	$.post(
+		ajax_url,
+		data,
+		function(response){
+			//console.log(response);
+			var json_posts = $.parseJSON(response);
+			var html_resultados;
+			var num_posts = -1;
+
+			$('#modal-historia h2').text(json_posts.meta_content.titulo);
+			$('#modal-historia .js-nombre').text(json_posts.meta_content.nombre);
+			$('#modal-historia .js-puesto').text(json_posts.meta_content.puesto);
+			$('#modal-historia .js-generacion').text(json_posts.meta_content.generacion);
+			$('#modal-historia .js-nombre').text(json_posts.meta_content.nombre);
+			$('#modal-historia .js-imagen').text(json_posts.meta_content.imagen);
+			$('#modal-historia .js-historia').text(json_posts.meta_content.historia);
+
 		}
 	);
 }

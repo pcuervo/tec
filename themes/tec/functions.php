@@ -97,7 +97,10 @@
 						$('.js-open-modal').on('click', function(){
 							openModal( $(this) );
 						});
-						$('.modal-wrapper .close').on('click', function(){
+						$('.grid .js-open-modal').on('click', function(){
+							insertPostContent( $(this) );
+						});
+						$('.modal-wrapper .js-close').on('click', function(){
 							closeModal( $(this) );
 						});
 						$('.bg-facebook').on('click', function(e){
@@ -379,4 +382,33 @@
 	} // get_descripcion_coleccion
 	add_action("wp_ajax_guardar_historia", "guardar_historia");
 	add_action("wp_ajax_nopriv_guardar_historia", "guardar_historia");
+
+	/**
+	 * Sacar información de un post a partir de un ID
+	 */
+	function get_post_meta_content(){
+
+		$post_id = $_POST['post_id'];
+		$post = get_post($post_id);
+
+		// Get metadata
+		$puesto     = get_post_meta($post_id, '_detalles_puesto_meta', true);
+		$nombre     = get_post_meta($post_id, '_detalles_nombre_meta', true);
+		$generacion = get_post_meta($post_id, '_detalles_generacion_meta', true);
+		$titulo     = $post->post_title;
+		$content 	= $post->post_content;
+
+		$post_content['meta_content'] = array(
+			'puesto'		=> $puesto,
+			'nombre'		=> $nombre,
+			'generacion'	=> $generacion,
+			'titulo'		=> $titulo,
+			'historia'		=> $content
+		);
+
+		echo json_encode($post_content, JSON_FORCE_OBJECT);
+		exit();
+	} // get_descripcion_coleccion
+	add_action("wp_ajax_get_post_meta_content", "get_post_meta_content");
+	add_action("wp_ajax_nopriv_get_post_meta_content", "get_post_meta_content");
 

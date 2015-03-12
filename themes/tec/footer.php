@@ -3,7 +3,7 @@
 		<footer>
 		</footer>
 		<div id="modal-form" class="[ modal-wrapper ] [ hide ]">
-			<div class="[ close ][ z-index- ]">
+			<div class="[ close ][ js-close ][ z-index- ]">
 				<i class="[ fa fa-times ]"></i>
 			</div>
 			<div class="[ modal modal--transparent ]">
@@ -166,32 +166,38 @@
 							</form>
 						</article><!-- step-2 -->
 						<article class="[ step-3 ][ hidden--xmall ]">
-							<div class="[ success-message ]">
-								<p class="[ title ][ text-center ][ margin-bottom--large ][ light ]">Gracias por compartir tu historia con México</p>
-								<p class="[ text-center ][ light ]">Tu historia será revisada por nosotros y se te notificará en cuanto esté aprobada.</p>
+							<div class="[ success-message ][ text-center ]">
+								<p class="[ title ][ margin-bottom--large ][ light ]">Gracias por compartir tu historia con México</p>
+								<p class="[ light ]">Tu historia será revisada por nosotros y se te notificará en cuanto esté aprobada.</p>
+								<div class="[ clear ]"></div>
+								<button class="[ js-close ][ button ]">Hecho</button>
 							</div>
 						</article><!-- step-2 -->
 					</div><!-- modal-body -->
 				</div><!-- modal-content -->
 			</div>
 		</div>
-		<div id="modal-una-historia" class="[ modal-wrapper ] [ hide ]">
+		<div id="modal-historia" class="[ modal-wrapper ] [ hide ]">
 			<div class="[ modal modal--read-mode ]">
-				<div class="[ close ]">
+				<div class="[ close ][ js-close ]">
 					<i class="[ icon-close ]"></i>
 				</div>
 				<div class="[ modal-content ]">
-					<div class="[ modal-header ] [ border-bottom margin-bottom-small ]">
-						<h2 class="[ text-center ]">Nunca pierdas tu tiempo, es lo más valioso que tienes.</h2>
+					<div class="[ modal-header ][ border-bottom margin-bottom ]">
+						<h2 class="[ text-center ]"></h2>
 						<br />
-						<h4 class="[ text-center ]">Luís Garcia - CEO Microrobotx</h4>
-						<h3 class="[ text-center ]">Generación 2005 - 2009</h3>
+						<img class="[ block center ][ img-circle ]" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p200x200/1234659_10152389287406329_7556410121216893285_n.jpg?oh=2ff35b3edd466fc77b6223ff98be178c&amp;oe=557A8245&amp;__gda__=1434365882_1812a3b28a1e4983e9cfd7c3112e9e1c">
+						<h4 class="[ text-center ]"><span class="[ js-nombre ]"></span> - <span class="[ js-puesto ]"></span></h4>
+						<h3 class="[ text-center ]">Generación <span class="[ js-generacion ]"></span></h3>
 					</div><!-- modal-header -->
 					<br />
 					<div class="[ modal-body ]">
-						<p>Nec enim, dum metuit, iustus est, et certe, si metuere destiterit, non erit; Utrum igitur tibi litteram videor an totas paginas commovere? Itaque ab his ordiamur. Quodsi ipsam honestatem undique pertectam atque absolutam. Comprehensum, quod cognitum non habet? Duo Reges: constructio interrete.</p>
-						<p>Quicquid enim a sapientia proficiscitur, id continuo debet expletum esse omnibus suis partibus; Illi enim inter se dissentiunt. Et ille ridens: Video, inquit, quid agas; Habent enim et bene longam et satis litigiosam disputationem. Prioris generis est docilitas, memoria;</p>
-						<p>Istam voluptatem perpetuam quis potest praestare sapienti? Et nunc quidem quod eam tuetur, ut de vite potissimum loquar, est id extrinsecus; Piso, familiaris noster, et alia multa et hoc loco Stoicos irridebat: Quid enim? Quae duo sunt, unum facit. Paria sunt igitur. Eorum enim omnium multa praetermittentium, dum eligant aliquid, quod sequantur, quasi curta sententia;</p>
+						<div class="[ js-imagen ]">
+
+						</div>
+						<div class="[ js-historia ]">
+
+						</div>
 					</div><!-- modal-body -->
 				</div><!-- modal-content -->
 			</div>

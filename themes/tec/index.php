@@ -52,14 +52,15 @@
 			<div class="[ clearfix ]">
 				<?php
 					if( have_posts() ) : while( have_posts() ) : the_post();
-					$puesto     = get_post_meta($post->ID, '_detalles_puesto_meta', true);
-					$nombre     = get_post_meta($post->ID, '_detalles_nombre_meta', true);
-					$generacion = get_post_meta($post->ID, '_detalles_generacion_meta', true);
+						$puesto       = get_post_meta($post->ID, '_detalles_puesto_meta', true);
+						$nombre       = get_post_meta($post->ID, '_detalles_nombre_meta', true);
+						$generacion   = get_post_meta($post->ID, '_detalles_generacion_meta', true);
+						$thumbnailSRC = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );
 				?>
 
-					<article class="[ span xmall-12 medium-6 ][ item ][ bg-image ]" style="background-image: url(<?php the_post_thumbnail('full' ); ?>);">
+					<article class="[ span xmall-12 medium-6 ][ item ][ bg-image ]" style="background-image: url(<?php echo $thumbnailSRC[0]; ?>">
 						<span class="[ screen opacity--full ]"></span>
-						<a href="#" class="[ block ][ js-open-modal ]" data-modal="una-historia">
+						<a href="#" class="[ block ][ js-open-modal ]" data-modal="historia" data-id="<?php echo $post->ID; ?>">
 							<div class="[ square ][ z-index z-index-2 ]">
 								<div class="[ item__header ]">
 									<div class="[ item__name ][ columna xmall-6 ]">
