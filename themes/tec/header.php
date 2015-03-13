@@ -4,6 +4,23 @@
 
 		<title><?php print_title(); ?></title>
 
+		<link rel="icon" sizes="16x16 32x32 48x48 64x64" href="<?php echo THEMEPATH; ?>favicon.ico"/>
+		<!--[if IE]>
+		<link rel="shortcut icon" href="<?php echo THEMEPATH; ?>favicon.ico"/>
+		<![endif]-->
+		<!-- Optional: Android & iPhone-->
+		<link rel="apple-touch-icon-precomposed" href="<?php echo THEMEPATH; ?>favicon-152.png"/>
+		<!-- Optional: IE10 Tile.-->
+		<meta name="msapplication-TileColor" content="#FFFFFF"/>
+		<meta name="msapplication-TileImage" content="favicon-144.png"/>
+		<!-- Optional: ipads, androids, iphones, ...-->
+		<link rel="apple-touch-icon-precomposed" sizes="152x152" href="<?php echo THEMEPATH; ?>favicon-152.png"/>
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo THEMEPATH; ?>favicon-144.png"/>
+		<link rel="apple-touch-icon-precomposed" sizes="120x120" href="<?php echo THEMEPATH; ?>favicon-120.png"/>
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo THEMEPATH; ?>favicon-114.png"/>
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo THEMEPATH; ?>favicon-72.png"/>
+		<link rel="apple-touch-icon-precomposed" href="<?php echo THEMEPATH; ?>favicon-57.png"/>
+
 		<link rel="shortcut icon" href="<?php echo THEMEPATH; ?>images/favicon.ico">
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -35,7 +52,7 @@
 							<a class="[ js-open-search ]" href="#">
 								<i class="icon-search"></i>
 							</a>
-							<div class="[ search-form--wrapper ][ opened ]">
+							<div class="[ search-form--wrapper ]">
 								<form action="#" class="[ search-form ]">
 									<div class="[ radios ][ row ][ margin-bottom--small ]">
 										<div class="[ formplate ][ columna xmall-4 ][ text-center ]">

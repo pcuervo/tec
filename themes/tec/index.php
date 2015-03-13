@@ -1,4 +1,8 @@
-<?php get_header(); ?>
+<?php
+	get_header();
+
+	$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+?>
 	<section class="[ cover ][ z-index-3 ]">
 		<span class="[ screen opacity-gradient--full--5 ][ z-index-3 ]"></span>
 		<div class="[ slideshow ][ js-slideshow ][ z-index zindex-1 ]">
@@ -56,9 +60,12 @@
 						$nombre       = get_post_meta($post->ID, '_detalles_nombre_meta', true);
 						$generacion   = get_post_meta($post->ID, '_detalles_generacion_meta', true);
 						$thumbnailSRC = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );
+						$nombre = get_the_title( $post->ID );
+						$nombre = urlencode ( $nombre );
+						$actual_link = $actual_link+'?x='+$post->ID
 				?>
 
-					<article class="[ span xmall-12 medium-6 ][ item ][ bg-image ]" style="background-image: url(<?php echo $thumbnailSRC[0]; ?>">
+					<article class="[ span xmall-12 medium-6 ][ item ][ bg-image ]" data-id="<?php echo $post->ID; ?>" style="background-image: url(<?php echo $thumbnailSRC[0]; ?>">
 						<span class="[ screen opacity--full ]"></span>
 						<a href="#" class="[ block ][ js-open-modal ]" data-modal="historia" data-id="<?php echo $post->ID; ?>">
 							<div class="[ square ][ z-index z-index-2 ]">
@@ -77,13 +84,16 @@
 							</div><!-- square -->
 						</a>
 						<div class="[ item__share ][ z-index z-index-3 ]">
-							<a href="facebook" class="[ button button--circle button--light ][ inline-block ]">
+							<a href="facebook" class="[ button button--circle button--light ][ js-share-fb ][ inline-block ]">
 								<i class="[ icon-facebook ]"></i>
 							</a>
-							<a href="twitter" class="[ button button--circle button--light ][ inline-block ]">
+							<a href="https://twitter.com/share?url=<?php echo $actual_link; ?>&text=<?php echo $nombre ?>&via=Tec" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="[ button button--circle button--light ][ inline-block ]">
 								<i class="[ icon-twitter ]"></i>
 							</a>
 						</div>
+
+
+
 					</article><!-- item -->
 
 				<?php endwhile; endif; ?>

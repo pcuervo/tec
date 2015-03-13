@@ -189,6 +189,15 @@ function formValidation(forma){
 	});
 }
 
+function postToFacebook(postName, postLink, postCaption){
+	FB.ui({
+		method: 'feed',
+		name: postName,
+		link: postLink,
+		caption: postCaption
+	}, function(response){});
+}
+
 
 
 /*------------------------------------*\

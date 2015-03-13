@@ -125,6 +125,23 @@
 							radioIsSelected('.search-form');
 						});
 
+						window.fbAsyncInit = function() {
+							FB.init({
+								appId      : '551510448309522',
+								xfbml      : true,
+								version    : 'v2.1'
+							});
+						};
+						$('.js-share-fb').click(function(e){
+							e.preventDefault();
+
+							var postID = $(this).closest('.js-open-modal').data('id');
+							console.log(postID);
+							//postToFacebook();
+						});
+
+
+
 
 
 
