@@ -60,7 +60,7 @@
 						\*------------------------------------*/
 						window.fbAsyncInit = function() {
 							FB.init({
-								appId	: '419093274917539',
+								appId	: '706805166104322',
 								xfbml	: true,
 								version : 'v2.2'
 							});
@@ -161,6 +161,38 @@
 		}
 	add_action( 'wp_footer', 'footerScripts', 21 );
 
+
+	function admin_footer_scripts() {
+	?>
+		<script type="text/javascript">
+			(function( $ ) {
+				"use strict";
+				$(function(){
+
+						window.fbAsyncInit = function() {
+							FB.init({
+								appId	: '706805166104322',
+								xfbml	: true,
+								version : 'v2.2'
+							});
+							postToWall();
+						};
+						(function(d, s, id){
+							var js, fjs = d.getElementsByTagName(s)[0];
+							if (d.getElementById(id)) {return;}
+							js = d.createElement(s); js.id = id;
+							js.src = "//connect.facebook.net/en_US/sdk.js";
+							fjs.parentNode.insertBefore(js, fjs);
+						}(document, 'script', 'facebook-jssdk'));
+
+						
+					
+				});
+			}(jQuery));
+		</script>
+	<?php
+	}
+	add_action('admin_footer', 'admin_footer_scripts');
 
 
 // ADMIN SCRIPTS AND STYLES //////////////////////////////////////////////////////////
@@ -424,17 +456,20 @@
 		$post = get_post($post_id);
 
 		// Get metadata
-		$puesto     = get_post_meta($post_id, '_detalles_puesto_meta', true);
-		$nombre     = get_post_meta($post_id, '_detalles_nombre_meta', true);
-		$generacion = get_post_meta($post_id, '_detalles_generacion_meta', true);
-		$titulo     = $post->post_title;
-		$content 	= $post->post_content;
+		$puesto     	= get_post_meta($post_id, '_detalles_puesto_meta', true);
+		$nombre     	= get_post_meta($post_id, '_detalles_nombre_meta', true);
+		$generacion 	= get_post_meta($post_id, '_detalles_generacion_meta', true);
+		$facebook_id 	= get_post_meta($post_id, '_detalles_fbid_meta', true);
+		$titulo     	= $post->post_title;
+		$content 		= $post->post_content;
 
 		$post_content['meta_content'] = array(
 			'puesto'		=> $puesto,
 			'nombre'		=> $nombre,
 			'generacion'	=> $generacion,
 			'titulo'		=> $titulo,
+			'historia'		=> $content,
+			'fb_id'			=> $facebook_id,
 			'content'		=> $content
 		);
 
@@ -444,3 +479,54 @@
 	add_action("wp_ajax_get_post_meta_content", "get_post_meta_content");
 	add_action("wp_ajax_nopriv_get_post_meta_content", "get_post_meta_content");
 
+
+	/**
+	 * Revisar si el usuario ya posteo una historia. 
+	 */
+	function tiene_historia(){
+
+		$facebook_id = $_POST['facebook_id'];
+
+		$args = array(
+		   'meta_query' => array(
+		       array(
+		           'key'	=> '_detalles_fbid_meta',
+		           'value' 	=> $facebook_id
+		       )
+		   ),
+		   'fields' => 'ids'
+		 );
+		 // perform the query
+		 $fb_id_query = new WP_Query( $args );
+		 $fb_ids = $fb_id_query->posts;
+
+		 $existe = 0;
+		 if ( ! empty( $fb_ids ) ) {
+		     $existe = 1;
+		 }
+
+		echo json_encode($existe, JSON_FORCE_OBJECT);
+		exit();
+	} // get_descripcion_coleccion
+	add_action("wp_ajax_tiene_historia", "tiene_historia");
+	add_action("wp_ajax_nopriv_tiene_historia", "tiene_historia");
+
+
+	function check_post_story_facebook( $hook ){
+		global $post;
+
+		if ( 'post.php' == $hook  && 'post' == $post->post_type && isset($_GET['message']) ) {     
+	        $message_id = absint( $_GET['message'] );
+	        $post_id = $_GET['post'];
+
+	        $publicar 		= get_post_meta($post_id, '_detalles_publicar_fb_meta', true);
+			$facebook_id 	= get_post_meta($post_id, '_detalles_fbid_meta', true);
+			$status =  get_post_status( $post_id );
+
+			if( $publicar == 'true' && $status == 'publish' )  {
+				update_post_meta($post_id, '_detalles_publicar_fb_meta', 'false' );
+				wp_localize_script( 'admin-js', 'published_post_id', $facebook_id );
+			}
+	    }
+	}
+	add_action( 'admin_enqueue_scripts', 'check_post_story_facebook');
