@@ -58,9 +58,12 @@
 						/*------------------------------------*\
 							#ON LOAD
 						\*------------------------------------*/
+						<?php global $id_historia_usuario; ?>
+						var test_app_id = '706805166104322';
+						var prod_app_id = '706804956104343'
 						window.fbAsyncInit = function() {
 							FB.init({
-								appId	: '706805166104322',
+								appId	: test_app_id,
 								xfbml	: true,
 								version : 'v2.2'
 							});
@@ -85,6 +88,12 @@
 						radioIsSelected('.search-form');
 
 
+						<?php if ($id_historia_usuario != '') { ?>
+							openModal( 'historia' );
+							insertPostContent( <?php echo $id_historia_usuario; ?> );
+						<?php } ?>
+
+
 
 
 
@@ -92,15 +101,19 @@
 							#Triggered events
 						\*------------------------------------*/
 
+
+
 						$(window).on("scroll",function(){
 							toggleCover(isTop());
 						});
 
 						$('.js-open-modal').on('click', function(){
-							openModal( $(this) );
+							var modalType = $(this).data('modal');
+							openModal( modalType );
 						});
 						$('.grid .js-open-modal').on('click', function(){
-							insertPostContent( $(this) );
+							var id = $(this).data('id');
+							insertPostContent( id );
 						});
 						$('.modal-wrapper .js-close').on('click', function(){
 							closeModal( $(this) );
@@ -118,6 +131,21 @@
 							loginFacebook();
 						});
 
+						$('.js-facebook-photos').on('click', function(e){
+							e.preventDefault();
+							$('.js-facebook-photos-container').show();
+							var facebook_id = $('.js-fb-id').val();
+							getFacebookAlbums(facebook_id);
+						});
+
+						$('.js-facebook-photos-container').on('click', '.fb-photo', function(e){
+							e.preventDefault();
+							$('.js-facebook-photos-container').hide();
+							var selected_photo_url = $(this).attr('src');
+							$('.js-fb-selected-photo').attr('src', selected_photo_url);
+							$('.js-fb-photo-url').val(selected_photo_url);
+						});
+
 						formValidation('.forma-tu-historia');
 						formValidation('.search-form');
 
@@ -125,13 +153,6 @@
 							radioIsSelected('.search-form');
 						});
 
-						window.fbAsyncInit = function() {
-							FB.init({
-								appId      : '551510448309522',
-								xfbml      : true,
-								version    : 'v2.1'
-							});
-						};
 						$('.js-share-fb').click(function(e){
 							e.preventDefault();
 
@@ -168,10 +189,11 @@
 			(function( $ ) {
 				"use strict";
 				$(function(){
-
+						var test_app_id = '706805166104322';
+						var prod_app_id = '706804956104343'
 						window.fbAsyncInit = function() {
 							FB.init({
-								appId	: '706805166104322',
+								appId	: test_app_id,
 								xfbml	: true,
 								version : 'v2.2'
 							});
@@ -424,6 +446,10 @@
 		$puesto = (isset($_POST['puesto'])) ? $_POST['puesto'] : '';
 		$publicar_fb = (isset($_POST['acepto'])) ? $_POST['acepto'] : 'false';
 		$facebook_id = $_POST['id'];
+		$fb_access_token = $_POST['access_token'];
+
+		$app_id = '706805166104322';
+		$app_secret = '6cf91ae86165bf49a1c08cce1132906f';
 
 		$post_historia = array(
 			'post_title'    => $titulo,
@@ -440,8 +466,13 @@
 		add_post_meta( $post_id, '_detalles_fbid_meta', $facebook_id, false ) || update_post_meta( $post_id, '_detalles_fbid_meta', $facebook_id );
 		add_post_meta( $post_id, '_detalles_publicar_fb_meta', $publicar_fb, false ) || update_post_meta( $post_id, '_detalles_publicar_fb_meta', $publicar_fb );
 
+		$token_url = "https://graph.facebook.com/oauth/access_token?client_id=". $app_id ."&client_secret=". $app_secret ."&grant_type=fb_exchange_token&fb_exchange_token=". $fb_access_token; 
+	    $token_response = file_get_contents($token_url);
+		$params = null;
+		parse_str($token_response, $params);
+		$access_token_extended = array('access_token' => $params['access_token']); 
 
-		echo json_encode($post_id, JSON_FORCE_OBJECT);
+		echo json_encode($access_token_extended, JSON_FORCE_OBJECT);
 		exit();
 	} // get_descripcion_coleccion
 	add_action("wp_ajax_guardar_historia", "guardar_historia");

@@ -1,6 +1,7 @@
 <?php
 	get_header();
-
+	global $id_historia_usuario;
+	$id_historia_usuario = ( isset($_GET['u']) ) ? $_GET['u'] : '';
 	$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 ?>
 	<section class="[ cover ][ z-index-3 ]">
@@ -61,8 +62,7 @@
 						$generacion   = get_post_meta($post->ID, '_detalles_generacion_meta', true);
 						$thumbnailSRC = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );
 						$nombre = get_the_title( $post->ID );
-						$nombre = urlencode ( $nombre );
-						$actual_link = $actual_link+'?x='+$post->ID
+						$actual_link = $actual_link+'?u='+$post->ID
 				?>
 
 					<article class="[ span xmall-12 medium-6 ][ item ][ bg-image ]" data-id="<?php echo $post->ID; ?>" style="background-image: url(<?php echo $thumbnailSRC[0]; ?>">
@@ -87,7 +87,7 @@
 							<a href="facebook" class="[ button button--circle button--light ][ js-share-fb ][ inline-block ]">
 								<i class="[ icon-facebook ]"></i>
 							</a>
-							<a href="https://twitter.com/share?url=<?php echo $actual_link; ?>&text=<?php echo $nombre ?>&via=Tec" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="[ button button--circle button--light ][ inline-block ]">
+							<a href="https://twitter.com/share?url=<?php echo $actual_link; ?>&text=<?php echo urlencode($nombre) ?>&via=Tec" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="[ button button--circle button--light ][ inline-block ]">
 								<i class="[ icon-twitter ]"></i>
 							</a>
 						</div>
