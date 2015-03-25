@@ -52,6 +52,7 @@
 							<a class="[ js-open-search ]" href="#">
 								<i class="icon-search"></i>
 							</a>
+							
 							<div class="[ search-form--wrapper ]">
 								<form action="#" class="[ search-form ]">
 									<div class="[ radios ][ row ][ margin-bottom--small ]">

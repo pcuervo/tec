@@ -68,9 +68,8 @@ function runMCustomScrollbar(selector){
  * Opens Modal
  * @param element
 **/
-function openModal(element){
-	var aAbrir = element.data('modal');
-	aAbrir = $('#modal-'+aAbrir+'.modal-wrapper' );
+function openModal(type){
+	aAbrir = $('#modal-'+type+'.modal-wrapper' );
 	aAbrir.removeClass('hide');
 }
 
@@ -194,6 +193,29 @@ function postToFacebook(postName, postLink, postCaption){
 	}, function(response){});
 }
 
+function radioIsSelected(forma){
+
+	if ( $(forma+" input[name='radio-search']:checked").val() == 'nombre'){
+		$('.search-field').hide();
+		$('.search-field input, .search-field select').removeClass('required');
+		$('.js-search-nombre').show();
+		$('.js-search-nombre input').addClass('required');
+		$('.js-search-submit').show();
+	} else if ( $(forma+" input[name='radio-search']:checked").val() == 'campus'){
+		$('.search-field').hide();
+		$('.search-field input, .search-field select').removeClass('required');
+		$('.js-search-campus').show();
+		$('.js-search-campus select').addClass('required');
+		$('.js-search-submit').show();
+	} else if ( $(forma+" input[name='radio-search']:checked").val() == 'generacion'){
+		$('.search-field').hide();
+		$('.search-field input, .search-field select').removeClass('required');
+		$('.js-search-generacion').show();
+		$('.js-search-generacion select').addClass('required');
+		$('.js-search-submit').show();
+	}
+}
+
 
 
 /*------------------------------------*\
@@ -202,13 +224,16 @@ function postToFacebook(postName, postLink, postCaption){
 
 function loginFacebook(){
 	FB.login(function(response) {
+		var access_token = response.authResponse.accessToken;
 		if (response.authResponse) {
 			console.log('El usuario autorizó ingresar con Facebook...');
 			FB.api('/me', function(response) {
 
+
 				mostrarFotoPerfilHistoria(response.id, 50, 50);
 				$('.js-nombre').val(response.name);
 				$('.js-fb-id').val(response.id);
+				$('.js-fb-token').val(access_token);
 				$('.step-1').addClass('hidden--xmall');
 				$('.step-2').removeClass('hidden--xmall');
 
@@ -217,7 +242,7 @@ function loginFacebook(){
 		} else {
 			console.log('El usuario canceló o no aceptó ingresar con Facebook...');
 		}
-	}, { scope: 'public_profile, publish_actions'});
+	}, { scope: 'publish_actions, user_photos'});
 }
 
 function mostrarFotoPerfilHistoria(id, width, height){
@@ -250,35 +275,76 @@ function mostrarFotoPerfilSingle(id, width, height){
 		},
 		function (response) {
 			if (response && !response.error) {
+				$('.js-profile-pic').empty();
 				var profile_pic = '<img src="'+response.data.url+'" />';
-				console.log(profile_pic);
 				$('.js-profile-pic').prepend(profile_pic);
 			}
 		}
 	);
 }
 
-function radioIsSelected(forma){
-	console.log(forma);
-	if ( $(forma+" input[name='radio-search']:checked").val() == 'nombre'){
-		$('.search-field').hide();
-		$('.search-field input, .search-field select').removeClass('required');
-		$('.js-search-nombre').show();
-		$('.js-search-nombre input').addClass('required');
-		$('.js-search-submit').show();
-	} else if ( $(forma+" input[name='radio-search']:checked").val() == 'campus'){
-		$('.search-field').hide();
-		$('.search-field input, .search-field select').removeClass('required');
-		$('.js-search-campus').show();
-		$('.js-search-campus select').addClass('required');
-		$('.js-search-submit').show();
-	} else if ( $(forma+" input[name='radio-search']:checked").val() == 'generacion'){
-		$('.search-field').hide();
-		$('.search-field input, .search-field select').removeClass('required');
-		$('.js-search-generacion').show();
-		$('.js-search-generacion select').addClass('required');
-		$('.js-search-submit').show();
-	}
+function getFacebookAlbums(facebook_id){
+	console.log('getting Facebook albums...');
+	FB.api(
+		"/"+facebook_id+"/albums",
+		function (response) {
+			var album_ids = [];
+			if (response && !response.error) {
+				album_ids = getAlbumsId(response.data);
+			}
+
+			var photos = [];
+			$.each(album_ids, function(i, id){
+				getAlbumPhotos(id);
+			});
+		}
+	);
+}// getFacebookAlbums
+
+function getAlbumsId(album_data){
+	var ids = [];
+	$.each(album_data, function(i, album){
+		ids.push(album.id)
+	});
+	return ids;
+}// getAlbumsId
+
+function getAlbumPhotos(album_id){
+	var album_photos = [];
+	FB.api(
+		"/"+album_id+"/photos",
+		function (response) {
+			if (response && !response.error) {
+				var current_album_photos = [];
+				current_album_photos = addPhoto(response.data);
+			}
+		}
+	);
+}// getAlbumPhotos
+
+function addPhoto(album_photos_data){
+	var photo_urls = [];
+	$.each(album_photos_data, function(i, photo){
+		var photo_html = '<img src="'+photo.source+'" class="[ fb-photo ]" />';
+		$('.js-facebook-photos-container').append(photo_html);
+	});
+}// addPhoto
+
+function postToWall(user_token, message){
+	FB.api(
+	    "/me/feed",
+	    "POST",
+	    {
+	        "message": message,
+	        access_token: user_token
+	    },
+	    function (response) {
+	      if (response && !response.error) {
+	        /* handle the result */
+	      }
+	      console.log(response);
+	    }
+	);
 }
 
 
@@ -289,33 +355,35 @@ function radioIsSelected(forma){
 
 function guardarHistoria(){
 	var data_historia = $('.forma-tu-historia').serializeArray();
-	//console.log(data_historia);
+
 	$.post(
 		ajax_url,
 		data_historia,
 		function(response){
-			//console.log(response);
+			console.log(response);
+			var token = response.access_token;
+			var mensaje = $('textarea[name="historia"]').val();
+			console.log(mensaje);
+			console.log(token);
+			postToWall(token, mensaje);
 			$('.step-2').addClass('hidden--xmall');
 			$('.step-3').removeClass('hidden--xmall');
 		}
 	);
 }
 
-function insertPostContent(element){
-	var post_id = $(element).data('id');
+function insertPostContent( id ){
 	var data = {};
 	data['action'] = 'get_post_meta_content';
-	data['post_id'] = post_id;
+	data['post_id'] = id;
 	$.post(
 		ajax_url,
 		data,
 		function(response){
-			console.log(response);
 			var json_posts = $.parseJSON(response);
 			var html_resultados;
 			var num_posts = -1;
 
-			console.log(json_posts.meta_content.fb_id);
 			mostrarFotoPerfilSingle(json_posts.meta_content.fb_id, 150, 150);
 			$('#modal-historia h2').text(json_posts.meta_content.titulo);
 			$('#modal-historia .js-nombre').text(json_posts.meta_content.nombre);
@@ -333,7 +401,6 @@ function existeHistoriaUsuario(facebookId){
 	var data = {};
 	data['action'] = 'tiene_historia';
 	data['facebook_id'] = facebookId;
-	console.log(facebookId);
 
 	$.ajax({
         async: false,

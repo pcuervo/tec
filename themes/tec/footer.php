@@ -150,7 +150,8 @@
 									</div><!-- formplate -->
 								</fieldset>
 								<fieldset class="[ margin-bottom ]">
-									<input class="[ block ][ xmall-12 ]" type="file" value="Agregar imagen a mi historia">
+									<img src="#" class="[ js-fb-selected-photo ]" alt="">
+									<button class="[ block ][ columna xmall-12 ][ button button--rounded-corners ][ js-facebook-photos ]">Agregar imagen a mi historia</button>
 								</fieldset>
 								<fieldset class="[ margin-bottom ]">
 									<div class="[ formplate ]">
@@ -159,12 +160,17 @@
 									</div><!-- formplate -->
 								</fieldset>
 								<input type="hidden" class="js-fb-id" name="id">
+								<input type="hidden" class="js-fb-token" name="access_token">
+								<input type="hidden" class="js-fb-photo-url" name="fb_photo_url">
 								<input type="hidden" name="action" value="guardar_historia">
 								<fieldset class="[ margin-bottom--small ]">
 									<button class="[ block ][ columna xmall-12 ][ button button--rounded-corners ]" type="submit">Enviar</button>
 								</fieldset>
 							</form>
 						</article><!-- step-2 -->
+						<article class="js-facebook-photos-container">
+								
+						</article>
 						<article class="[ step-3 ][ hidden--xmall ]">
 							<div class="[ success-message ][ text-center ]">
 								<p class="[ title ][ margin-bottom--large ][ light ]">Gracias por compartir tu historia con México</p>
