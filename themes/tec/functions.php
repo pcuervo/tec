@@ -207,8 +207,8 @@
 							fjs.parentNode.insertBefore(js, fjs);
 						}(document, 'script', 'facebook-jssdk'));
 
-						
-					
+
+
 				});
 			}(jQuery));
 		</script>
@@ -466,11 +466,11 @@
 		add_post_meta( $post_id, '_detalles_fbid_meta', $facebook_id, false ) || update_post_meta( $post_id, '_detalles_fbid_meta', $facebook_id );
 		add_post_meta( $post_id, '_detalles_publicar_fb_meta', $publicar_fb, false ) || update_post_meta( $post_id, '_detalles_publicar_fb_meta', $publicar_fb );
 
-		$token_url = "https://graph.facebook.com/oauth/access_token?client_id=". $app_id ."&client_secret=". $app_secret ."&grant_type=fb_exchange_token&fb_exchange_token=". $fb_access_token; 
+		$token_url = "https://graph.facebook.com/oauth/access_token?client_id=". $app_id ."&client_secret=". $app_secret ."&grant_type=fb_exchange_token&fb_exchange_token=". $fb_access_token;
 	    $token_response = file_get_contents($token_url);
 		$params = null;
 		parse_str($token_response, $params);
-		$access_token_extended = array('access_token' => $params['access_token']); 
+		$access_token_extended = array('access_token' => $params['access_token']);
 
 		echo json_encode($access_token_extended, JSON_FORCE_OBJECT);
 		exit();
@@ -512,7 +512,7 @@
 
 
 	/**
-	 * Revisar si el usuario ya posteo una historia. 
+	 * Revisar si el usuario ya posteo una historia.
 	 */
 	function tiene_historia(){
 
@@ -546,7 +546,7 @@
 	function check_post_story_facebook( $hook ){
 		global $post;
 
-		if ( 'post.php' == $hook  && 'post' == $post->post_type && isset($_GET['message']) ) {     
+		if ( 'post.php' == $hook  && 'post' == $post->post_type && isset($_GET['message']) ) {
 	        $message_id = absint( $_GET['message'] );
 	        $post_id = $_GET['post'];
 
