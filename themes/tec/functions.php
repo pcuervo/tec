@@ -448,8 +448,8 @@
 		$facebook_id = $_POST['id'];
 		$fb_access_token = $_POST['access_token'];
 
-		$app_id = '706805166104322';
-		$app_secret = '6cf91ae86165bf49a1c08cce1132906f';
+		$app_id = '706804956104343';
+		$app_secret = 'feecdd018148235ccb42e3f114c85e36';
 
 		$post_historia = array(
 			'post_title'    => $titulo,

@@ -330,25 +330,21 @@ function addPhoto(album_photos_data){
 	});
 }// addPhoto
 
-function postToWall(user_token){
-
-	//if( typeof published_post_id !== 'undefined' ){
-		console.log('posteando fb con token: ' + user_token);
-		FB.api(
-		    "/me/feed",
-		    "POST",
-		    {
-		        "message": "This is a test message",
-		        access_token: user_token
-		    },
-		    function (response) {
-		      if (response && !response.error) {
-		        /* handle the result */
-		      }
-		      console.log(response);
-		    }
-		);
-	//}
+function postToWall(user_token, message){
+	FB.api(
+	    "/me/feed",
+	    "POST",
+	    {
+	        "message": message,
+	        access_token: user_token
+	    },
+	    function (response) {
+	      if (response && !response.error) {
+	        /* handle the result */
+	      }
+	      console.log(response);
+	    }
+	);
 }
 
 
@@ -366,7 +362,10 @@ function guardarHistoria(){
 		function(response){
 			console.log(response);
 			var token = response.access_token;
-			postToWall(token);
+			var mensaje = $('textarea[name="historia"]').val();
+			console.log(mensaje);
+			console.log(token);
+			postToWall(token, mensaje);
 			$('.step-2').addClass('hidden--xmall');
 			$('.step-3').removeClass('hidden--xmall');
 		}
