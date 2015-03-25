@@ -360,8 +360,8 @@ function guardarHistoria(){
 		ajax_url,
 		data_historia,
 		function(response){
-			console.log(response);
-			var token = response.access_token;
+			response_json = $.parseJSON(response);
+			var token = response_json.access_token;
 			var mensaje = $('textarea[name="historia"]').val();
 			console.log(mensaje);
 			console.log(token);
