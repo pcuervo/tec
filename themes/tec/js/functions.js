@@ -29,20 +29,20 @@ var $=jQuery.noConflict();
 
 
 function runCycle(selector){
-	$(selector).on( 'cycle-initialized cycle-after', function( event, opts ) {
-		videoEnds('.cycle-slide-active .covervid-video' );
-	});
+	// $(selector).on( 'cycle-initialized cycle-after', function( event, opts ) {
+	// 	videoEnds('.cycle-slide-active .covervid-video' );
+	// });
 
 	$(selector).cycle({
 		'fx'               	: 'scrollHorz',
 		'timeout'          	: 0,
 		'swipe'				: true,
-		'slides'           	: '.covervid-wrapper--wrapper',
+		//'slides'           	: '.covervid-wrapper--wrapper',
 		'youtube'          	: true,
 		'log'				: false
 	});
 
-	toggleVideoPlay(selector);
+	//toggleVideoPlay(selector);
 
 }
 
@@ -116,14 +116,14 @@ function toggleCover(toggled){
 		showCover();
 		showGrid();
 		if ( $('#modal-historia').hasClass('hide') ){
-			playVideo('.cycle-slide-active .covervid-video');
+			//playVideo('.cycle-slide-active .covervid-video');
 		}
 		return;
 	}
 
 	hideCover();
 	hideGrid();
-	pauseVideos('.covervid-wrapper--wrapper .covervid-video');
+	//pauseVideos('.covervid-wrapper--wrapper .covervid-video');
 }
 
 function showCover(){
@@ -161,7 +161,6 @@ function pauseVideos(selector){
 
 function playVideo(selector){
 	$(selector).get(0).play();
-
 }
 
 function videoEnds(selector){
@@ -318,7 +317,7 @@ function showAlbumInfo( id, name, cover_id ){
 }// showAlbumInfo
 
 function getAlbumHTML( id, name, url ){
-	
+
 	album_html = ' <div data-id="' + id + '"><img src="' + url + '" /><h3>' + name + '</h3></div>';
 	return album_html;
 
@@ -335,7 +334,7 @@ function getAlbumsId(album_data){
 }// getAlbumsId
 
 function getAlbumPhotos( album_id ){
-	
+
 	var album_photos = [];
 	FB.api(
 		"/"+album_id+"/photos",
@@ -442,7 +441,7 @@ function existeHistoriaUsuario(facebookId){
 			}
         },
     });
-	
+
 }// existeHistoriaUsuario
 
 /*------------------------------------*\
