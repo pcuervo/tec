@@ -63,7 +63,7 @@
 						var prod_app_id = '706804956104343'
 						window.fbAsyncInit = function() {
 							FB.init({
-								appId	: prod_app_id,
+								appId	: test_app_id,
 								xfbml	: true,
 								version : 'v2.2'
 							});
@@ -138,6 +138,16 @@
 							getFacebookAlbums(facebook_id);
 						});
 
+						$('.js-facebook-albums-container').on('click', 'div', function(e){
+							e.preventDefault();
+
+							var album_id = $(this).data('id');
+							$('.js-facebook-photos-container').empty();
+							getAlbumPhotos( album_id );
+							
+							$('.js-facebook-albums-container').hide();							
+						});
+
 						$('.js-facebook-photos-container').on('click', '.fb-photo', function(e){
 							e.preventDefault();
 							$('.js-facebook-photos-container').hide();
@@ -189,15 +199,25 @@
 			(function( $ ) {
 				"use strict";
 				$(function(){
+
 						var test_app_id = '706805166104322';
 						var prod_app_id = '706804956104343'
 						window.fbAsyncInit = function() {
 							FB.init({
-								appId	: prod_app_id,
+								appId	: test_app_id,
 								xfbml	: true,
 								version : 'v2.2'
 							});
-							postToWall();
+
+							// Post to Facebook
+							if( typeof fb_access_token !== 'undefined' && typeof fb_user_id !== 'undefined' ){
+								console.log('posting to wall...');
+								console.log( fb_user_id );
+								console.log( user_story );
+								console.log( fb_access_token );
+								postToWall( fb_user_id, fb_access_token, user_story );
+							}
+
 						};
 						(function(d, s, id){
 							var js, fjs = d.getElementsByTagName(s)[0];
@@ -206,8 +226,6 @@
 							js.src = "//connect.facebook.net/en_US/sdk.js";
 							fjs.parentNode.insertBefore(js, fjs);
 						}(document, 'script', 'facebook-jssdk'));
-
-
 
 				});
 			}(jQuery));
@@ -447,9 +465,16 @@
 		$publicar_fb = (isset($_POST['acepto'])) ? $_POST['acepto'] : 'false';
 		$facebook_id = $_POST['id'];
 		$fb_access_token = $_POST['access_token'];
+		$fb_profile_pic = $_POST['fb_profile_pic'];
+		$fb_photo_url = ( isset( $_POST['fb_photo_url'] ) ) ? $_POST['fb_photo_url'] : '';
 
-		$app_id = '706804956104343';
-		$app_secret = 'feecdd018148235ccb42e3f114c85e36';
+		// Production
+		// $app_id = '706804956104343';
+		// $app_secret = 'feecdd018148235ccb42e3f114c85e36';
+
+		// Test
+		$app_id = '706805166104322';
+		$app_secret = '6cf91ae86165bf49a1c08cce1132906f';
 
 		$post_historia = array(
 			'post_title'    => $titulo,
@@ -459,20 +484,27 @@
 		);
 		$post_id = wp_insert_post( $post_historia );
 
+		// Solicitar token extendido de Facebook
+		$token_url = "https://graph.facebook.com/oauth/access_token?client_id=". $app_id ."&client_secret=". $app_secret ."&grant_type=fb_exchange_token&fb_exchange_token=". $fb_access_token;
+	    $token_response = file_get_contents($token_url);
+		$params = null;
+		parse_str($token_response, $params);
+
 		// Agregar metadata
 		add_post_meta( $post_id, '_detalles_nombre_meta', $nombre, false ) || update_post_meta( $post_id, '_detalles_nombre_meta', $nombre );
 		add_post_meta( $post_id, '_detalles_puesto_meta', $puesto, false ) || update_post_meta( $post_id, '_detalles_puesto_meta', $puesto );
 		add_post_meta( $post_id, '_detalles_generacion_meta', $generacion, false ) || update_post_meta( $post_id, '_detalles_generacion_meta', $generacion );
 		add_post_meta( $post_id, '_detalles_fbid_meta', $facebook_id, false ) || update_post_meta( $post_id, '_detalles_fbid_meta', $facebook_id );
 		add_post_meta( $post_id, '_detalles_publicar_fb_meta', $publicar_fb, false ) || update_post_meta( $post_id, '_detalles_publicar_fb_meta', $publicar_fb );
+		add_post_meta( $post_id, '_extended_fb_token_meta', $params['access_token'], false ) || update_post_meta( $post_id, '_extended_fb_token_meta', $params['access_token'] );
+		add_post_meta( $post_id, '_fb_photo_url_meta', $fb_photo_url, false ) || update_post_meta( $post_id, '_fb_photo_url_meta', $fb_photo_url );
+		add_post_meta( $post_id, '_fb_profile_pic_meta', $fb_profile_pic, false ) || update_post_meta( $post_id, '_fb_profile_pic_meta', $fb_profile_pic );
 
-		$token_url = "https://graph.facebook.com/oauth/access_token?client_id=". $app_id ."&client_secret=". $app_secret ."&grant_type=fb_exchange_token&fb_exchange_token=". $fb_access_token;
-	    $token_response = file_get_contents($token_url);
-		$params = null;
-		parse_str($token_response, $params);
-		$access_token_extended = array('access_token' => $params['access_token']);
-
-		echo json_encode($access_token_extended, JSON_FORCE_OBJECT);
+		$msg = array(
+			'error'	=> 0, 
+			'msg'	=> 'Se ha guardado la información de la historia.',
+			);
+		echo json_encode($msg, JSON_FORCE_OBJECT);
 		exit();
 	} // get_descripcion_coleccion
 	add_action("wp_ajax_guardar_historia", "guardar_historia");
@@ -547,16 +579,21 @@
 		global $post;
 
 		if ( 'post.php' == $hook  && 'post' == $post->post_type && isset($_GET['message']) ) {
-	        $message_id = absint( $_GET['message'] );
-	        $post_id = $_GET['post'];
+
+	        $message_id	= absint( $_GET['message'] );
+	        $post_id 	= $_GET['post'];
 
 	        $publicar 		= get_post_meta($post_id, '_detalles_publicar_fb_meta', true);
 			$facebook_id 	= get_post_meta($post_id, '_detalles_fbid_meta', true);
-			$status =  get_post_status( $post_id );
+			$access_token 	= get_post_meta($post_id, '_extended_fb_token_meta', true);
+			$user_story		= $post->post_content;
+			$status 		= get_post_status( $post_id );
 
 			if( $publicar == 'true' && $status == 'publish' )  {
 				update_post_meta($post_id, '_detalles_publicar_fb_meta', 'false' );
-				wp_localize_script( 'admin-js', 'published_post_id', $facebook_id );
+				wp_localize_script( 'admin-js', 'fb_user_id', $facebook_id );
+				wp_localize_script( 'admin-js', 'fb_access_token', $access_token );
+				wp_localize_script( 'admin-js', 'user_story', $user_story );
 			}
 	    }
 	}

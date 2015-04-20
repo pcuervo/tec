@@ -161,6 +161,7 @@
 								</fieldset>
 								<input type="hidden" class="js-fb-id" name="id">
 								<input type="hidden" class="js-fb-token" name="access_token">
+								<input type="hidden" class="js-fb-profile-pic" name="fb_profile_pic">
 								<input type="hidden" class="js-fb-photo-url" name="fb_photo_url">
 								<input type="hidden" name="action" value="guardar_historia">
 								<fieldset class="[ margin-bottom--small ]">
@@ -168,8 +169,11 @@
 								</fieldset>
 							</form>
 						</article><!-- step-2 -->
+						<article class="js-facebook-albums-container">
+							<!-- Aquí se muestran los albums -->
+						</article>
 						<article class="js-facebook-photos-container">
-								
+							<!-- Aquí se muestran las fotos de los albums -->
 						</article>
 						<article class="[ step-3 ][ hidden--xmall ]">
 							<div class="[ success-message ][ text-center ]">

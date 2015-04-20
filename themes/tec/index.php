@@ -57,15 +57,19 @@
 			<div class="[ clearfix ]">
 				<?php
 					if( have_posts() ) : while( have_posts() ) : the_post();
-						$puesto       = get_post_meta($post->ID, '_detalles_puesto_meta', true);
-						$nombre       = get_post_meta($post->ID, '_detalles_nombre_meta', true);
-						$generacion   = get_post_meta($post->ID, '_detalles_generacion_meta', true);
-						$thumbnailSRC = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );
-						$nombre = get_the_title( $post->ID );
-						$actual_link = $actual_link+'?u='+$post->ID
+						$puesto       	= get_post_meta($post->ID, '_detalles_puesto_meta', true);
+						$nombre       	= get_post_meta($post->ID, '_detalles_nombre_meta', true);
+						$fb_profile_pic	= get_post_meta($post->ID, '_fb_profile_pic_meta', true);
+						$fb_photo_url	= get_post_meta($post->ID, '_fb_photo_url_meta', true);
+						$generacion   	= get_post_meta($post->ID, '_detalles_generacion_meta', true);
+						$actual_link 	= $actual_link+'?u='+$post->ID;
+
+						if( $fb_photo_url == '' ){
+							$fb_photo_url = $fb_profile_pic;
+						}
 				?>
 
-					<article class="[ span xmall-12 medium-6 ][ item ][ bg-image ]" data-id="<?php echo $post->ID; ?>" style="background-image: url(<?php echo $thumbnailSRC[0]; ?>">
+					<article class="[ span xmall-12 medium-6 ][ item ][ bg-image ]" data-id="<?php echo $post->ID; ?>" style="background-image: url('<?php echo $fb_photo_url; ?>')">
 						<span class="[ screen opacity--full ]"></span>
 						<a href="#" class="[ block ][ js-open-modal ]" data-modal="historia" data-id="<?php echo $post->ID; ?>">
 							<div class="[ square ][ z-index z-index-2 ]">

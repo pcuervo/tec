@@ -2,8 +2,7 @@
 	"use strict";
 	$(function(){
 
-		console.log('estamos en el noris');
-		console.log('id: '+published_post_id);
+		
 
 		/*------------------------------------*\
 			#ON LOAD

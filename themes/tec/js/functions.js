@@ -246,6 +246,7 @@ function loginFacebook(){
 }
 
 function mostrarFotoPerfilHistoria(id, width, height){
+
 	FB.api(
 		"/"+id+"/picture",
 		{
@@ -257,11 +258,13 @@ function mostrarFotoPerfilHistoria(id, width, height){
 		function (response) {
 			if (response && !response.error) {
 				var profile_pic = '<img src="'+response.data.url+'" />';
-				$('.forma-tu-historia').prepend(profile_pic);
+				$('.forma-tu-historia').prepend( profile_pic );
+				$('.js-fb-profile-pic').val( profile_pic );
 			}
 		}
 	);
-}
+
+}// mostrarFotoPerfilHistoria
 
 function mostrarFotoPerfilSingle(id, width, height){
 
@@ -284,32 +287,55 @@ function mostrarFotoPerfilSingle(id, width, height){
 }
 
 function getFacebookAlbums(facebook_id){
-	console.log('getting Facebook albums...');
+
 	FB.api(
 		"/"+facebook_id+"/albums",
 		function (response) {
-			var album_ids = [];
-			if (response && !response.error) {
-				album_ids = getAlbumsId(response.data);
-			}
+			$.each( response.data, function( i, album_data ) {
+				var album_id = album_data.id;
+				var album_name = album_data.name;
+				var album_cover_id = album_data.cover_photo;
 
-			var photos = [];
-			$.each(album_ids, function(i, id){
-				getAlbumPhotos(id);
+				showAlbumInfo( album_id, album_name, album_cover_id );
 			});
 		}
 	);
+
 }// getFacebookAlbums
 
+function showAlbumInfo( id, name, cover_id ){
+
+	// Get the album cover picture
+	FB.api(
+		"/"+id+"/picture",
+		function ( album_response ) {
+			var cover_url = album_response.data.url;
+			html_album = getAlbumHTML( id, name, cover_url );
+			$('.js-facebook-albums-container').append( html_album );
+		}
+	);
+
+}// showAlbumInfo
+
+function getAlbumHTML( id, name, url ){
+	
+	album_html = ' <div data-id="' + id + '"><img src="' + url + '" /><h3>' + name + '</h3></div>';
+	return album_html;
+
+}// getAlbumHTML
+
 function getAlbumsId(album_data){
+
 	var ids = [];
 	$.each(album_data, function(i, album){
 		ids.push(album.id)
 	});
 	return ids;
+
 }// getAlbumsId
 
-function getAlbumPhotos(album_id){
+function getAlbumPhotos( album_id ){
+	
 	var album_photos = [];
 	FB.api(
 		"/"+album_id+"/photos",
@@ -320,14 +346,19 @@ function getAlbumPhotos(album_id){
 			}
 		}
 	);
+
 }// getAlbumPhotos
 
-function addPhoto(album_photos_data){
+function addPhoto( album_photos_data ){
+
 	var photo_urls = [];
 	$.each(album_photos_data, function(i, photo){
-		var photo_html = '<img src="'+photo.source+'" class="[ fb-photo ]" />';
-		$('.js-facebook-photos-container').append(photo_html);
+		var photo_html = '<img src="' + photo.source + '" class="[ fb-photo ]" />';
+		$('.js-fb-photo-url').val( photo.source );
+		console.log( 'FB Photo URL: ' + photo.source );
+		$('.js-facebook-photos-container').append( photo_html );
 	});
+
 }// addPhoto
 
 function postToWall(user_token, message){
@@ -360,19 +391,16 @@ function guardarHistoria(){
 		ajax_url,
 		data_historia,
 		function(response){
-			response_json = $.parseJSON(response);
-			var token = response_json.access_token;
 			var mensaje = $('textarea[name="historia"]').val();
-			console.log(mensaje);
-			console.log(token);
-			postToWall(token, mensaje);
 			$('.step-2').addClass('hidden--xmall');
 			$('.step-3').removeClass('hidden--xmall');
 		}
 	);
+
 }
 
 function insertPostContent( id ){
+
 	var data = {};
 	data['action'] = 'get_post_meta_content';
 	data['post_id'] = id;
@@ -395,7 +423,8 @@ function insertPostContent( id ){
 
 		}
 	);
-}
+
+}// insertPostContent
 
 function existeHistoriaUsuario(facebookId){
 	var data = {};
