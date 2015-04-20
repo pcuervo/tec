@@ -355,7 +355,6 @@ function addPhoto( album_photos_data ){
 	$.each(album_photos_data, function(i, photo){
 		var photo_html = '<img src="' + photo.source + '" class="[ fb-photo ]" />';
 		$('.js-fb-photo-url').val( photo.source );
-		console.log( 'FB Photo URL: ' + photo.source );
 		$('.js-facebook-photos-container').append( photo_html );
 	});
 

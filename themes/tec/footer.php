@@ -169,10 +169,11 @@
 								</fieldset>
 							</form>
 						</article><!-- step-2 -->
-						<article class="js-facebook-albums-container">
+						<article class="[ js-facebook-albums-container ] ">
 							<!-- Aquí se muestran los albums -->
 						</article>
-						<article class="js-facebook-photos-container">
+						<article class="[ js-facebook-photos-container ]">
+							<a href="#" class="[ js-regresar-albumes ]"> <- Regresar a álbumes</a>
 							<!-- Aquí se muestran las fotos de los albums -->
 						</article>
 						<article class="[ step-3 ][ hidden--xmall ]">

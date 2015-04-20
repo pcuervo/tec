@@ -87,6 +87,9 @@
 
 						radioIsSelected('.search-form');
 
+						$('.js-facebook-photos-container').hide();
+						$('.js-facebook-albums-container').hide();
+
 
 						<?php if ($id_historia_usuario != '') { ?>
 							openModal( 'historia' );
@@ -133,23 +136,31 @@
 
 						$('.js-facebook-photos').on('click', function(e){
 							e.preventDefault();
-							$('.js-facebook-photos-container').show();
+							$('.js-facebook-albums-container').show();
 							var facebook_id = $('.js-fb-id').val();
-							getFacebookAlbums(facebook_id);
+							getFacebookAlbums( facebook_id );
 						});
 
 						$('.js-facebook-albums-container').on('click', 'div', function(e){
 							e.preventDefault();
 
 							var album_id = $(this).data('id');
-							$('.js-facebook-photos-container').empty();
+							$('.js-facebook-photos-container img').remove();
 							getAlbumPhotos( album_id );
-							
-							$('.js-facebook-albums-container').hide();							
+							$('.js-facebook-photos-container').show();
+							$('.js-facebook-albums-container').hide();		
+
+						});
+
+						$('.js-regresar-albumes').on('click', function( e ){
+							e.preventDefault();
+							$('.js-facebook-photos-container').hide();
+							$('.js-facebook-albums-container').show();		
 						});
 
 						$('.js-facebook-photos-container').on('click', '.fb-photo', function(e){
 							e.preventDefault();
+
 							$('.js-facebook-photos-container').hide();
 							var selected_photo_url = $(this).attr('src');
 							$('.js-fb-selected-photo').attr('src', selected_photo_url);
