@@ -25,7 +25,7 @@
 					</video>
 				</div>
 			</div> -->
-			<!-- <img src="images/persona.jpg" alt=""> -->
+			<img src="<?php echo THEMEPATH; ?>images/persona.jpg" alt="">
 			<!-- <a href="http://www.youtube.com/v/seX7jYI96GE?version=3&hl=en_US&rel=0&showinfo=0">Alex Russel</a> -->
 			<div class="[ cycle-control cycle-prev ]">
 				<i class="icon-prev"></i>

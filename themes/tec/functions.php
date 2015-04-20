@@ -78,7 +78,7 @@
 
 						runCycle('.js-slideshow');
 						runMCustomScrollbar('.modal');
-						$('.covervid-video').coverVid(640, 360);
+						//$('.covervid-video').coverVid(640, 360);
 
 						$('body').formplate();
 						$('.forma-tu-historia input[type=file]').nicefileinput({
@@ -148,14 +148,14 @@
 							$('.js-facebook-photos-container img').remove();
 							getAlbumPhotos( album_id );
 							$('.js-facebook-photos-container').show();
-							$('.js-facebook-albums-container').hide();		
+							$('.js-facebook-albums-container').hide();
 
 						});
 
 						$('.js-regresar-albumes').on('click', function( e ){
 							e.preventDefault();
 							$('.js-facebook-photos-container').hide();
-							$('.js-facebook-albums-container').show();		
+							$('.js-facebook-albums-container').show();
 						});
 
 						$('.js-facebook-photos-container').on('click', '.fb-photo', function(e){
@@ -512,7 +512,7 @@
 		add_post_meta( $post_id, '_fb_profile_pic_meta', $fb_profile_pic, false ) || update_post_meta( $post_id, '_fb_profile_pic_meta', $fb_profile_pic );
 
 		$msg = array(
-			'error'	=> 0, 
+			'error'	=> 0,
 			'msg'	=> 'Se ha guardado la información de la historia.',
 			);
 		echo json_encode($msg, JSON_FORCE_OBJECT);

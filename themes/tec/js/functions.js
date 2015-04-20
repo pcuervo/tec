@@ -29,9 +29,9 @@ var $=jQuery.noConflict();
 
 
 function runCycle(selector){
-	$(selector).on( 'cycle-initialized cycle-after', function( event, opts ) {
-		videoEnds('.cycle-slide-active .covervid-video' );
-	});
+	// $(selector).on( 'cycle-initialized cycle-after', function( event, opts ) {
+	// 	videoEnds('.cycle-slide-active .covervid-video' );
+	// });
 
 	$(selector).cycle({
 		'fx'               	: 'scrollHorz',
@@ -42,7 +42,7 @@ function runCycle(selector){
 		'log'				: false
 	});
 
-	toggleVideoPlay(selector);
+	//toggleVideoPlay(selector);
 
 }
 
@@ -116,14 +116,14 @@ function toggleCover(toggled){
 		showCover();
 		showGrid();
 		if ( $('#modal-historia').hasClass('hide') ){
-			playVideo('.cycle-slide-active .covervid-video');
+			//playVideo('.cycle-slide-active .covervid-video');
 		}
 		return;
 	}
 
 	hideCover();
 	hideGrid();
-	pauseVideos('.covervid-wrapper--wrapper .covervid-video');
+	//pauseVideos('.covervid-wrapper--wrapper .covervid-video');
 }
 
 function showCover(){
@@ -161,7 +161,6 @@ function pauseVideos(selector){
 
 function playVideo(selector){
 	$(selector).get(0).play();
-
 }
 
 function videoEnds(selector){
