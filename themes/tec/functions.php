@@ -63,7 +63,7 @@
 						var prod_app_id = '706804956104343'
 						window.fbAsyncInit = function() {
 							FB.init({
-								appId	: test_app_id,
+								appId	: prod_app_id,
 								xfbml	: true,
 								version : 'v2.2'
 							});
@@ -215,7 +215,7 @@
 						var prod_app_id = '706804956104343'
 						window.fbAsyncInit = function() {
 							FB.init({
-								appId	: test_app_id,
+								appId	: prod_app_id,
 								xfbml	: true,
 								version : 'v2.2'
 							});
