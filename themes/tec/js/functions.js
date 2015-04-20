@@ -37,7 +37,7 @@ function runCycle(selector){
 		'fx'               	: 'scrollHorz',
 		'timeout'          	: 0,
 		'swipe'				: true,
-		'slides'           	: '.covervid-wrapper--wrapper',
+		//'slides'           	: '.covervid-wrapper--wrapper',
 		'youtube'          	: true,
 		'log'				: false
 	});
@@ -318,7 +318,7 @@ function showAlbumInfo( id, name, cover_id ){
 }// showAlbumInfo
 
 function getAlbumHTML( id, name, url ){
-	
+
 	album_html = ' <div data-id="' + id + '"><img src="' + url + '" /><h3>' + name + '</h3></div>';
 	return album_html;
 
@@ -335,7 +335,7 @@ function getAlbumsId(album_data){
 }// getAlbumsId
 
 function getAlbumPhotos( album_id ){
-	
+
 	var album_photos = [];
 	FB.api(
 		"/"+album_id+"/photos",
@@ -442,7 +442,7 @@ function existeHistoriaUsuario(facebookId){
 			}
         },
     });
-	
+
 }// existeHistoriaUsuario
 
 /*------------------------------------*\
