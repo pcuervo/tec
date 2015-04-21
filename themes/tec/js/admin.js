@@ -26,12 +26,14 @@
 	});
 })(jQuery);
 
-function postToWall( fb_user_id, fb_user_token, message ){
+function postToWall( fb_user_id, fb_user_token, message, link ){
+	console.log( 'posting to wall.. ' );
 	FB.api(
 	    "/" + fb_user_id + "/feed",
 	    "POST",
 	    {
 	        "message": message,
+	        "link" : link,
 	        access_token: fb_user_token
 	    },
 	    function (response) {

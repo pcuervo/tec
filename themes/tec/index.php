@@ -57,11 +57,11 @@
 			<div class="[ clearfix ]">
 				<?php
 					if( have_posts() ) : while( have_posts() ) : the_post();
-						$puesto       	= get_post_meta($post->ID, '_detalles_puesto_meta', true);
-						$nombre       	= get_post_meta($post->ID, '_detalles_nombre_meta', true);
-						$fb_profile_pic	= get_post_meta($post->ID, '_fb_profile_pic_meta', true);
-						$fb_photo_url	= get_post_meta($post->ID, '_fb_photo_url_meta', true);
-						$generacion   	= get_post_meta($post->ID, '_detalles_generacion_meta', true);
+						$puesto       	= get_post_meta( $post->ID, '_detalles_puesto_meta', true );
+						$nombre       	= get_post_meta( $post->ID, '_detalles_nombre_meta', true );
+						$fb_profile_pic	= get_post_meta( $post->ID, '_fb_profile_pic_meta', true );
+						$fb_photo_url	= get_post_meta( $post->ID, '_fb_photo_url_meta', true );
+						$generacion   	= get_post_meta( $post->ID, '_detalles_generacion_meta', true );
 						$actual_link 	= $actual_link+'?u='+$post->ID;
 
 						if( $fb_photo_url == '' ){
