@@ -178,6 +178,8 @@ function formValidation(forma){
 				case '.forma-tu-historia':
 					guardarHistoria();
 					break;
+				default:
+					form.submit();
 			}
 		}
 	});
