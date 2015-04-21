@@ -13,8 +13,6 @@
 		$results = get_search_results( 'campus', $_POST['campus'] );
 	}
 
-	var_dump( $_POST );
-
 	//the_post();
 ?>
 	<section class="[ wrapper ][ bg-light ][ padding ]">
