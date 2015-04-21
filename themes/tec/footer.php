@@ -61,7 +61,7 @@
 									<div class="[ formplate ][ generacion ]">
 										<select name="generacion" id="campus" class="[ required ]">
 											<option selected="true" disabled="disabled">Generación*</option>
-											<?php 
+											<?php
 											for ( $i=2018; $i > 1947 ; $i--)  {
 												echo '<option value="' . $i . '">' . $i . '</option>';
 											}
@@ -115,7 +115,7 @@
 							</div>
 						</article><!-- step-3 -->
 						<article class="[ step-4 ][ hidden--xmall ]">
-							<p class="[ title ][ margin-bottom--large ][ light ]">Ya has creado una historia... CAMBIAR COPY</p>
+							<p class="[ title ][ margin-bottom--large ][ light ]">Ya has creado una historia, agradecemos tu participación.</p>
 						</article><!-- step-4 -->
 					</div><!-- modal-body -->
 				</div><!-- modal-content -->

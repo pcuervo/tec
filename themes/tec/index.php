@@ -7,27 +7,8 @@
 	<section class="[ cover ][ z-index-3 ]">
 		<span class="[ screen opacity-gradient--full--5 ][ z-index-3 ]"></span>
 		<div class="[ slideshow ][ js-slideshow ][ z-index zindex-1 ]">
-			<!-- <div class="[ covervid-wrapper--wrapper ]">
-				<div class="covervid-wrapper">
-					<video class="covervid-video">
-						<source src="<?php echo THEMEPATH; ?>videos/video1.mp4" type="video/mp4">
-						<source src="<?php echo THEMEPATH; ?>videos/video1.webm" type="video/webm">
-						<source src="<?php echo THEMEPATH; ?>videos/video1.ogv" type="video/ogg">
-					</video>
-				</div>
-			</div>
-			<div class="[ covervid-wrapper--wrapper ]">
-				<div class="covervid-wrapper">
-					<video class="covervid-video">
-						<source src="<?php echo THEMEPATH; ?>videos/video1.mp4" type="video/mp4">
-						<source src="<?php echo THEMEPATH; ?>videos/video1.webm" type="video/webm">
-						<source src="<?php echo THEMEPATH; ?>videos/video1.ogv" type="video/ogg">
-					</video>
-				</div>
-			</div> -->
 			<img src="<?php echo THEMEPATH; ?>images/persona.jpg" alt="">
 			<img src="<?php echo THEMEPATH; ?>images/persona.jpg" alt="">
-			<!-- <a href="http://www.youtube.com/v/seX7jYI96GE?version=3&hl=en_US&rel=0&showinfo=0">Alex Russel</a> -->
 			<div class="[ cycle-control cycle-prev ]">
 				<i class="icon-prev"></i>
 			</div><!-- cycle-prev  -->
@@ -96,9 +77,6 @@
 								<i class="[ icon-twitter ]"></i>
 							</a>
 						</div>
-
-
-
 					</article><!-- item -->
 
 				<?php endwhile; endif; ?>
