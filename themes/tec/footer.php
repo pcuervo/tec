@@ -80,7 +80,7 @@
 									</div><!-- formplate -->
 								</fieldset>
 								<fieldset class="[ margin-bottom ]">
-									<img src="#" class="[ js-fb-selected-photo ][ image-responsive ]" alt="">
+									<img src="#" class="[ js-fb-selected-photo ][ image-responsive ][ margin-bottom ]" alt="">
 									<button class="[ block ][ columna xmall-12 ][ button button--rounded-corners ][ js-facebook-photos ]">Agregar imagen a mi historia</button>
 								</fieldset>
 								<fieldset class="[ margin-bottom ]">
