@@ -52,9 +52,8 @@
 							<a class="[ js-open-search ]" href="#">
 								<i class="icon-search"></i>
 							</a>
-							
 							<div class="[ search-form--wrapper ]">
-								<form action="#" class="[ search-form ]">
+								<form action="<?php echo site_url() ?>" class="[ search-form ]" method="POST">
 									<div class="[ radios ][ row ][ margin-bottom--small ]">
 										<div class="[ formplate ][ columna xmall-4 ][ text-center ]">
 											<input type="radio" name="radio-search" value="nombre" id="radio-nombre">
@@ -71,7 +70,7 @@
 									</div>
 
 									<fieldset class="[ formplate ][ search-field search-nombre ][ js-search-nombre ]">
-										<input type="text" placeholder="Nombre">
+										<input type="text" placeholder="Nombre" name="nombre">
 									</fieldset>
 									<div class="[ formplate ][ search-field search-campus ][ js-search-campus ]">
 										<select name="campus" id="campus">
@@ -105,7 +104,7 @@
 										</select>
 									</div>
 									<div class="[ formplate ][ search-field search-generacion ][ js-search-generacion ]">
-										<select name="generación" id="generación">
+										<select name="generacion" id="generación">
 											<option selected="true" disabled="disabled">Generación</option>
 											<option value="1947">1947</option>
 											<option value="1948">1948</option>

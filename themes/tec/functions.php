@@ -459,6 +459,36 @@
 			echo 'active';
 	}
 
+	/**
+	 * Regresa los posts que coincidan con la búsqueda.
+	 * @param  string $type - Tipo de búsqueda (nombre, generación, campus)
+	 * @param  string $value - Valor buscado
+	 * @return array $posts - ID de los posts encontrados o vacío
+	 */
+	function get_search_results( $type, $value ){
+		global $wpdb;
+		
+		$query = "
+			SELECT DISTINCT ID FROM wp_posts P
+			INNER JOIN wp_postmeta PM ON PM.post_id = P.id
+		";
+
+		switch ( $type ) {
+			case 'nombre':
+				$query .= "
+					WHERE meta_key = '_detalles_nombre_meta'
+					AND meta_value LIKE '%$value%'";
+				break;
+			default:
+				break;
+		}// switch
+
+		echo $query;
+		$results = $wpdb->get_results( $query );
+		return $results;
+
+	}// get_search_results
+
 
 
 // AJAX REQUESTS //////////////////////////////////////////////////////
