@@ -2,7 +2,7 @@
 	get_header();
 	global $id_historia_usuario;
 	$id_historia_usuario = ( isset($_GET['u']) ) ? $_GET['u'] : '';
-	$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+	$current_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 ?>
 	<section class="[ cover ][ z-index-3 ]">
 		<span class="[ screen opacity-gradient--full--5 ][ z-index-3 ]"></span>
@@ -44,7 +44,7 @@
 						$fb_profile_pic	= get_post_meta( $post->ID, '_fb_profile_pic_meta', true );
 						$fb_photo_url	= get_post_meta( $post->ID, '_fb_photo_url_meta', true );
 						$generacion   	= get_post_meta( $post->ID, '_detalles_generacion_meta', true );
-						$actual_link 	= $actual_link+'?u='+$post->ID;
+						$current_link 	= $current_link+'?u='+$post->ID;
 
 						if( $fb_photo_url == '' ){
 							$fb_photo_url = $fb_profile_pic;
@@ -73,7 +73,7 @@
 							<a href="facebook" class="[ button button--circle button--light ][ js-share-fb ][ inline-block ]">
 								<i class="[ icon-facebook ]"></i>
 							</a>
-							<a href="https://twitter.com/share?url=<?php echo $actual_link; ?>&text=<?php echo urlencode($nombre) ?>&via=Tec" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="[ button button--circle button--light ][ inline-block ]">
+							<a href="https://twitter.com/share?url=<?php echo $current_link .'?u=' . $post->ID; ?>&text=Cuéntanos tu historia&via=Tec" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="[ button button--circle button--light ][ inline-block ]">
 								<i class="[ icon-twitter ]"></i>
 							</a>
 						</div>

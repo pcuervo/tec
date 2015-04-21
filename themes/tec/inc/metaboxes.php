@@ -21,6 +21,7 @@
 		$puesto     	= get_post_meta($post->ID, '_detalles_puesto_meta', true);
 		$nombre     	= get_post_meta($post->ID, '_detalles_nombre_meta', true);
 		$generacion 	= get_post_meta($post->ID, '_detalles_generacion_meta', true);
+		$campus 		= get_post_meta($post->ID, '_detalles_campus_meta', true);
 		$fb_id 			= get_post_meta($post->ID, '_detalles_fbid_meta', true);
 		$access_token 	= get_post_meta($post->ID, '_detalles_access_token_meta', true);
 		$publicar_fb 	= get_post_meta($post->ID, '_detalles_publicar_fb_meta', true);
@@ -35,6 +36,8 @@ echo <<<END
 	<input type="text" class="widefat" id="_detalles_nombre" name="_detalles_nombre_meta" value="$nombre" />
 	<label>Generacion:</label>
 	<input type="text" class="widefat" id="_detalles_generacion" name="_detalles_generacion_meta" value="$generacion" />
+	<label>Campus:</label>
+	<input type="text" class="widefat" id="_detalles_campus" name="_detalles_campus_meta" value="$campus" />
 	<label>Publicar en Facebook:</label>
 	<input type="text" class="widefat" id="_detalles_publicar_fb" name="_detalles_publicar_fb_meta" value="$publicar_fb" />
 	<input type="hidden" class="widefat" id="_detalles_fbid" name="_detalles_fbid_meta" value="$fb_id" />
@@ -75,6 +78,10 @@ END;
 
 		if ( isset($_POST['_detalles_generacion_meta']) and check_admin_referer(__FILE__, '_detalles_meta_nonce') ){
 			update_post_meta($post_id, '_detalles_generacion_meta', $_POST['_detalles_generacion_meta']);
+		}
+
+		if ( isset($_POST['_detalles_campus_meta']) and check_admin_referer(__FILE__, '_detalles_meta_nonce') ){
+			update_post_meta($post_id, '_detalles_campus_meta', $_POST['_detalles_campus_meta']);
 		}
 
 		if ( isset($_POST['_detalles_publicar_fb_meta']) and check_admin_referer(__FILE__, '_detalles_meta_nonce') ){

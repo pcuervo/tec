@@ -185,15 +185,6 @@ function formValidation(forma){
 	});
 }
 
-function postToFacebook(postName, postLink, postCaption){
-	FB.ui({
-		method: 'feed',
-		name: postName,
-		link: postLink,
-		caption: postCaption
-	}, function(response){});
-}
-
 function radioIsSelected(forma){
 
 	if ( $(forma+" input[name='radio-search']:checked").val() == 'nombre'){
@@ -397,6 +388,21 @@ function postToWall(user_token, message){
 	);
 }
 
+function shareOnFacebook(url){
+	FB.ui(
+		{
+			method: 'share',
+			href: 'url',
+		},
+		function(response) {
+			if (response && !response.error_code) {
+				//console.log(response);
+			} else {
+				//console.log(response.error_code);
+			}
+		}
+	);
+}// shareOnFacebook
 
 
 /*------------------------------------*\
@@ -427,18 +433,23 @@ function insertPostContent( id ){
 		ajax_url,
 		data,
 		function(response){
+
 			var json_posts = $.parseJSON(response);
 			var html_resultados;
 			var num_posts = -1;
 
-			mostrarFotoPerfilSingle(json_posts.meta_content.fb_id, 150, 150);
+			// mostrarFotoPerfilSingle(json_posts.meta_content.fb_id, 150, 150);
 			$('#modal-historia h2').text(json_posts.meta_content.titulo);
 			$('#modal-historia .js-nombre').text(json_posts.meta_content.nombre);
 			$('#modal-historia .js-puesto').text(json_posts.meta_content.puesto);
 			$('#modal-historia .js-generacion').text(json_posts.meta_content.generacion);
 			$('#modal-historia .js-nombre').text(json_posts.meta_content.nombre);
-			$('#modal-historia .js-imagen').text(json_posts.meta_content.imagen);
+			$('#modal-historia .js-profile-pic img').attr('src', json_posts.meta_content.profile_pic);
 			$('#modal-historia .js-historia').text(json_posts.meta_content.historia);
+
+			if ( json_posts.meta_content.facebook_img !== '' ){
+				$('#modal-historia .js-facebook-pic img').attr('src', json_posts.meta_content.facebook_img);
+			}
 
 		}
 	);

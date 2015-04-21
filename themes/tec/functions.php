@@ -24,6 +24,7 @@
 
 		// localize scripts
 		wp_localize_script( 'functions', 'ajax_url', admin_url('admin-ajax.php') );
+		wp_localize_script( 'functions', 'site_url', site_url('/') );
 
 		// styles
 		wp_enqueue_style( 'styles', get_stylesheet_uri() );
@@ -179,9 +180,8 @@
 						$('.js-share-fb').click(function(e){
 							e.preventDefault();
 
-							var postID = $(this).closest('.js-open-modal').data('id');
-							console.log(postID);
-							//postToFacebook();
+							var postID = $(this).closest('article').data('id');
+							shareOnFacebook( site_url + '?u=' + postID );
 						});
 
 
@@ -227,7 +227,7 @@
 								console.log('posting to wall...');
 								var story_link = site_url + '?u=' + user_story_id;
 								console.log( story_link );
-								postToWall( fb_user_id, fb_access_token, user_story, story_link );
+								postToWall( fb_user_id, fb_access_token, user_quote, story_link );
 							}
 
 						};
@@ -459,6 +459,41 @@
 			echo 'active';
 	}
 
+	/**
+	 * Regresa los posts que coincidan con la búsqueda.
+	 * @param  string $type - Tipo de búsqueda (nombre, generación, campus)
+	 * @param  string $value - Valor buscado
+	 * @return array $posts - ID de los posts encontrados o vacío
+	 */
+	function get_search_results( $type, $value ){
+		global $wpdb;
+		
+		$query = " SELECT DISTINCT ID FROM wp_posts P INNER JOIN wp_postmeta PM ON PM.post_id = P.id";
+		switch ( $type ) {
+			case 'nombre':
+				$query .= "
+					WHERE meta_key = '_detalles_nombre_meta'
+					AND meta_value LIKE '%$value%'";
+				break;
+			case 'generación':
+				$query .= "
+					WHERE meta_key = '_detalles_generacion_meta'
+					AND meta_value = '$value'";
+				break;
+			case 'campus':
+				$query .= "
+					WHERE meta_key = '_detalles_campus_meta'
+					AND meta_value = '$value'";
+				break;
+		}// switch
+
+		$query .= " AND post_status = 'publish'";
+		//echo $query;
+		$results = $wpdb->get_results( $query );
+		return $results;
+
+	}// get_search_results
+
 
 
 // AJAX REQUESTS //////////////////////////////////////////////////////
@@ -507,6 +542,7 @@
 		add_post_meta( $post_id, '_detalles_nombre_meta', $nombre, false ) || update_post_meta( $post_id, '_detalles_nombre_meta', $nombre );
 		add_post_meta( $post_id, '_detalles_puesto_meta', $puesto, false ) || update_post_meta( $post_id, '_detalles_puesto_meta', $puesto );
 		add_post_meta( $post_id, '_detalles_generacion_meta', $generacion, false ) || update_post_meta( $post_id, '_detalles_generacion_meta', $generacion );
+		add_post_meta( $post_id, '_detalles_campus_meta', $campus, false ) || update_post_meta( $post_id, '_detalles_campus_meta', $campus );
 		add_post_meta( $post_id, '_detalles_fbid_meta', $facebook_id, false ) || update_post_meta( $post_id, '_detalles_fbid_meta', $facebook_id );
 		add_post_meta( $post_id, '_detalles_publicar_fb_meta', $publicar_fb, false ) || update_post_meta( $post_id, '_detalles_publicar_fb_meta', $publicar_fb );
 		add_post_meta( $post_id, '_extended_fb_token_meta', $params['access_token'], false ) || update_post_meta( $post_id, '_extended_fb_token_meta', $params['access_token'] );
@@ -537,6 +573,7 @@
 		$generacion 	= get_post_meta($post_id, '_detalles_generacion_meta', true);
 		$facebook_id 	= get_post_meta($post_id, '_detalles_fbid_meta', true);
 		$facebook_img 	= get_post_meta($post_id, '_fb_photo_url_meta', true);
+		$fb_profile_pic = get_post_meta($post_id, '_fb_profile_pic_meta', true);
 		$titulo     	= $post->post_title;
 		$content 		= $post->post_content;
 
@@ -549,6 +586,7 @@
 			'fb_id'			=> $facebook_id,
 			'content'		=> $content,
 			'facebook_img'	=> $facebook_img,
+			'profile_pic'	=> $fb_profile_pic,
 		);
 
 		echo json_encode($post_content, JSON_FORCE_OBJECT);
@@ -601,14 +639,14 @@
 	        $publicar 		= get_post_meta($post_id, '_detalles_publicar_fb_meta', true);
 			$facebook_id 	= get_post_meta($post_id, '_detalles_fbid_meta', true);
 			$access_token 	= get_post_meta($post_id, '_extended_fb_token_meta', true);
-			$user_story		= $post->post_content;
+			$user_quote		= $post->post_title;
 			$status 		= get_post_status( $post_id );
 
 			if( $publicar == 'true' && $status == 'publish' )  {
 				update_post_meta($post_id, '_detalles_publicar_fb_meta', 'false' );
 				wp_localize_script( 'admin-js', 'fb_user_id', $facebook_id );
 				wp_localize_script( 'admin-js', 'fb_access_token', $access_token );
-				wp_localize_script( 'admin-js', 'user_story', $user_story );
+				wp_localize_script( 'admin-js', 'user_quote', $user_quote );
 				wp_localize_script( 'admin-js', 'user_story_id', $post->ID );
 			}
 	    }
