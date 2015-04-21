@@ -80,7 +80,7 @@
 									</div><!-- formplate -->
 								</fieldset>
 								<fieldset class="[ margin-bottom ]">
-									<img src="#" class="[ js-fb-selected-photo ][ image-responsive ]" alt="">
+									<img src="#" class="[ js-fb-selected-photo ][ image-responsive ][ margin-bottom ]" alt="">
 									<button class="[ block ][ columna xmall-12 ][ button button--rounded-corners ][ js-facebook-photos ]">Agregar imagen a mi historia</button>
 								</fieldset>
 								<fieldset class="[ margin-bottom ]">
@@ -135,8 +135,8 @@
 						<div class="[ margin-bottom ][ profile-pic ][ js-profile-pic ]">
 							<img class="[ xmall-6 ][ center block ]" src="" alt="">
 						</div>
-						<div class="[ js-facebook-pic ]">
-							<img src="" alt="">
+						<div class="[ margin-bottom ][ js-facebook-pic ]">
+							<img class="[ xmall-10 ][ center block ]" src="" alt="">
 						</div>
 						<h4 class="[ text-center ]"><span class="[ js-nombre ]"></span> - <span class="[ js-puesto ]"></span></h4>
 						<h3 class="[ text-center ]">Generación <span class="[ js-generacion ]"></span></h3>
