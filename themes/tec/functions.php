@@ -78,7 +78,7 @@
 						}(document, 'script', 'facebook-jssdk'));
 
 						runCycle('.js-slideshow');
-						runMCustomScrollbar('.modal');
+						runMCustomScrollbar('.modal#modal-form');
 						//$('.covervid-video').coverVid(640, 360);
 
 						$('body').formplate();
@@ -87,10 +87,6 @@
 						});
 
 						radioIsSelected('.search-form');
-
-						$('.js-facebook-photos-container').hide();
-						$('.js-facebook-albums-container').hide();
-						$('.js-fb-selected-photo').hide();
 
 
 						<?php if ($id_historia_usuario != '') { ?>
@@ -138,7 +134,7 @@
 
 						$('.js-facebook-photos').on('click', function(e){
 							e.preventDefault();
-							$('.js-facebook-albums-container').show();
+							$('.js-facebook-albums-container').addClass('open');
 							var facebook_id = $('.js-fb-id').val();
 							getFacebookAlbums( facebook_id );
 						});
@@ -149,21 +145,21 @@
 							var album_id = $(this).data('id');
 							$('.js-facebook-photos-container img').remove();
 							getAlbumPhotos( album_id );
-							$('.js-facebook-photos-container').show();
-							$('.js-facebook-albums-container').hide();
+							$('.js-facebook-photos-container').addClass('open');
+							$('.js-facebook-albums-container').removeClass('open');
 
 						});
 
 						$('.js-regresar-albumes').on('click', function( e ){
 							e.preventDefault();
-							$('.js-facebook-photos-container').hide();
-							$('.js-facebook-albums-container').show();
+							$('.js-facebook-photos-container').removeClass('open');
+							$('.js-facebook-albums-container').addClass('open');
 						});
 
 						$('.js-facebook-photos-container').on('click', '.fb-photo', function(e){
 							e.preventDefault();
 
-							$('.js-facebook-photos-container').hide();
+							$('.js-facebook-photos-container').removeClass('open');
 							var selected_photo_url = $(this).attr('src');
 							$('.js-fb-selected-photo').attr('src', selected_photo_url);
 							$('.js-fb-photo-url').val(selected_photo_url);
@@ -467,7 +463,7 @@
 	 */
 	function get_search_results( $type, $value ){
 		global $wpdb;
-		
+
 		$query = " SELECT DISTINCT ID FROM wp_posts P INNER JOIN wp_postmeta PM ON PM.post_id = P.id";
 		switch ( $type ) {
 			case 'nombre':

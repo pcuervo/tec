@@ -80,7 +80,7 @@
 									</div><!-- formplate -->
 								</fieldset>
 								<fieldset class="[ margin-bottom ]">
-									<img src="#" class="[ js-fb-selected-photo ]" alt="">
+									<img src="#" class="[ js-fb-selected-photo ][ image-responsive ]" alt="">
 									<button class="[ block ][ columna xmall-12 ][ button button--rounded-corners ][ js-facebook-photos ]">Agregar imagen a mi historia</button>
 								</fieldset>
 								<fieldset class="[ margin-bottom ]">
@@ -103,7 +103,9 @@
 							<!-- Aquí se muestran los albums -->
 						</article>
 						<article class="[ js-facebook-photos-container ]">
-							<a href="#" class="[ js-regresar-albumes ]"> <- Regresar a álbumes</a>
+							<a href="#" class="[ block ][ columna xmall-12 ][ button button--rounded-corners ][ margin-bottom ][ js-regresar-albumes ]">
+								Regresar
+							</a>
 							<!-- Aquí se muestran las fotos de los albums -->
 						</article>
 						<article class="[ step-3 ][ hidden--xmall ]">
@@ -130,8 +132,8 @@
 					<div class="[ modal-header ][ border-bottom margin-bottom ]">
 						<h2 class="[ text-center ]"></h2>
 						<br />
-						<div class="[ js-profile-pic ]">
-							<img src="" alt="">
+						<div class="[ margin-bottom ][ profile-pic ][ js-profile-pic ]">
+							<img class="[ xmall-6 ][ center block ]" src="" alt="">
 						</div>
 						<div class="[ js-facebook-pic ]">
 							<img src="" alt="">
@@ -144,8 +146,8 @@
 						<div class="[ js-imagen ]">
 
 						</div>
-						<div class="[ js-historia ]">
-
+						<div class="[ js-historia ][  ]">
+							<p></p>
 						</div>
 					</div><!-- modal-body -->
 				</div><!-- modal-content -->

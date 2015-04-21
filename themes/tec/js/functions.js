@@ -322,7 +322,7 @@ function showAlbumInfo( id, name, cover_id ){
 		function ( album_response ) {
 			var cover_url = album_response.data.url;
 			html_album = getAlbumHTML( id, name, cover_url );
-			$('.js-facebook-albums-container').append( html_album );
+			$('.js-facebook-albums-container').append( html_album ).addClass('open');
 		}
 	);
 
@@ -364,9 +364,9 @@ function addPhoto( album_photos_data ){
 
 	var photo_urls = [];
 	$.each(album_photos_data, function(i, photo){
-		var photo_html = '<img src="' + photo.source + '" class="[ fb-photo ]" />';
+		var photo_html = '<img src="' + photo.source + '" class="[ xmall-8 block center ][ margin-bottom--small ][ fb-photo ]" />';
 		$('.js-fb-photo-url').val( photo.source );
-		$('.js-facebook-photos-container').append( photo_html );
+		$('.js-facebook-photos-container').append( photo_html ).addClass('open');
 	});
 
 }// addPhoto
@@ -445,7 +445,7 @@ function insertPostContent( id ){
 			$('#modal-historia .js-generacion').text(json_posts.meta_content.generacion);
 			$('#modal-historia .js-nombre').text(json_posts.meta_content.nombre);
 			$('#modal-historia .js-profile-pic img').attr('src', json_posts.meta_content.profile_pic);
-			$('#modal-historia .js-historia').text(json_posts.meta_content.historia);
+			$('#modal-historia .js-historia p').text(json_posts.meta_content.historia);
 
 			if ( json_posts.meta_content.facebook_img !== '' ){
 				$('#modal-historia .js-facebook-pic img').attr('src', json_posts.meta_content.facebook_img);
