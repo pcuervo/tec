@@ -135,8 +135,8 @@
 						<div class="[ margin-bottom ][ profile-pic ][ js-profile-pic ]">
 							<img class="[ xmall-6 ][ center block ]" src="" alt="">
 						</div>
-						<div class="[ js-facebook-pic ]">
-							<img src="" alt="">
+						<div class="[ margin-bottom ][ js-facebook-pic ]">
+							<img class="[ xmall-10 ][ center block ]" src="" alt="">
 						</div>
 						<h4 class="[ text-center ]"><span class="[ js-nombre ]"></span> - <span class="[ js-puesto ]"></span></h4>
 						<h3 class="[ text-center ]">Generación <span class="[ js-generacion ]"></span></h3>
