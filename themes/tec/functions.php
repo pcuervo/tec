@@ -63,7 +63,7 @@
 						var prod_app_id = '706804956104343'
 						window.fbAsyncInit = function() {
 							FB.init({
-								appId	: prod_app_id,
+								appId	: test_app_id,
 								xfbml	: true,
 								version : 'v2.2'
 							});
@@ -89,6 +89,7 @@
 
 						$('.js-facebook-photos-container').hide();
 						$('.js-facebook-albums-container').hide();
+						$('.js-fb-selected-photo').hide();
 
 
 						<?php if ($id_historia_usuario != '') { ?>
@@ -165,6 +166,7 @@
 							var selected_photo_url = $(this).attr('src');
 							$('.js-fb-selected-photo').attr('src', selected_photo_url);
 							$('.js-fb-photo-url').val(selected_photo_url);
+							$('.js-fb-selected-photo').show();
 						});
 
 						formValidation('.forma-tu-historia');
@@ -215,7 +217,7 @@
 						var prod_app_id = '706804956104343'
 						window.fbAsyncInit = function() {
 							FB.init({
-								appId	: prod_app_id,
+								appId	: test_app_id,
 								xfbml	: true,
 								version : 'v2.2'
 							});
@@ -223,10 +225,9 @@
 							// Post to Facebook
 							if( typeof fb_access_token !== 'undefined' && typeof fb_user_id !== 'undefined' ){
 								console.log('posting to wall...');
-								console.log( fb_user_id );
-								console.log( user_story );
-								console.log( fb_access_token );
-								postToWall( fb_user_id, fb_access_token, user_story );
+								var story_link = site_url + '?u=' + user_story_id;
+								console.log( story_link );
+								postToWall( fb_user_id, fb_access_token, user_story, story_link );
 							}
 
 						};
@@ -257,6 +258,7 @@
 
 		// localize scripts
 		wp_localize_script( 'admin-js', 'ajax_url', admin_url('admin-ajax.php') );
+		wp_localize_script( 'admin-js', 'site_url', site_url('/') );
 
 		// styles
 		wp_enqueue_style( 'admin-css', CSSPATH.'admin.css' );
@@ -534,6 +536,7 @@
 		$nombre     	= get_post_meta($post_id, '_detalles_nombre_meta', true);
 		$generacion 	= get_post_meta($post_id, '_detalles_generacion_meta', true);
 		$facebook_id 	= get_post_meta($post_id, '_detalles_fbid_meta', true);
+		$facebook_img 	= get_post_meta($post_id, '_fb_photo_url_meta', true);
 		$titulo     	= $post->post_title;
 		$content 		= $post->post_content;
 
@@ -544,7 +547,8 @@
 			'titulo'		=> $titulo,
 			'historia'		=> $content,
 			'fb_id'			=> $facebook_id,
-			'content'		=> $content
+			'content'		=> $content,
+			'facebook_img'	=> $facebook_img,
 		);
 
 		echo json_encode($post_content, JSON_FORCE_OBJECT);
@@ -605,6 +609,7 @@
 				wp_localize_script( 'admin-js', 'fb_user_id', $facebook_id );
 				wp_localize_script( 'admin-js', 'fb_access_token', $access_token );
 				wp_localize_script( 'admin-js', 'user_story', $user_story );
+				wp_localize_script( 'admin-js', 'user_story_id', $post->ID );
 			}
 	    }
 	}

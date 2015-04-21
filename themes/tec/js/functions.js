@@ -230,6 +230,7 @@ function loginFacebook(){
 
 
 				mostrarFotoPerfilHistoria(response.id, 50, 50);
+				agregarFotoPerfilHistoria( response.id );
 				$('.js-nombre').val(response.name);
 				$('.js-fb-id').val(response.id);
 				$('.js-fb-token').val(access_token);
@@ -258,12 +259,30 @@ function mostrarFotoPerfilHistoria(id, width, height){
 			if (response && !response.error) {
 				var profile_pic = '<img src="'+response.data.url+'" />';
 				$('.forma-tu-historia').prepend( profile_pic );
-				$('.js-fb-profile-pic').val( profile_pic );
 			}
 		}
 	);
 
 }// mostrarFotoPerfilHistoria
+
+function agregarFotoPerfilHistoria( id ){
+
+	FB.api(
+		"/"+id+"/picture",
+		{
+			"redirect": false,
+			"height": 600,
+			"width": 600,
+			"type": "large"
+		},
+		function (response) {
+			if (response && !response.error) {
+				$('.js-fb-profile-pic').val( response.data.url );
+			}
+		}
+	);
+
+}// agregarFotoPerfilHistoria
 
 function mostrarFotoPerfilSingle(id, width, height){
 
