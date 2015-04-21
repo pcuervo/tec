@@ -76,7 +76,7 @@
 								</fieldset>
 								<fieldset class="[ margin-bottom--small ]">
 									<div class="[ formplate ]">
-										<textarea class="[ required ]" name="titulo" id="" placeholder="Quote*"></textarea>
+										<textarea class="[ required ]" name="titulo" id="" placeholder="Cita o frase*"></textarea>
 									</div><!-- formplate -->
 								</fieldset>
 								<fieldset class="[ margin-bottom ]">

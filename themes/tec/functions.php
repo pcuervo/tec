@@ -24,6 +24,7 @@
 
 		// localize scripts
 		wp_localize_script( 'functions', 'ajax_url', admin_url('admin-ajax.php') );
+		wp_localize_script( 'functions', 'site_url', site_url('/') );
 
 		// styles
 		wp_enqueue_style( 'styles', get_stylesheet_uri() );
@@ -179,7 +180,8 @@
 						$('.js-share-fb').click(function(e){
 							e.preventDefault();
 
-							var postID = $(this).closest('.js-open-modal').data('id');
+							var postID = $(this).closest('article').data('id');
+							shareOnFacebook( site_url + '?u=' + postID );
 						});
 
 

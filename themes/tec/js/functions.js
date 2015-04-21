@@ -388,6 +388,21 @@ function postToWall(user_token, message){
 	);
 }
 
+function shareOnFacebook(url){
+	FB.ui(
+		{
+			method: 'share',
+			href: 'url',
+		},
+		function(response) {
+			if (response && !response.error_code) {
+				//console.log(response);
+			} else {
+				//console.log(response.error_code);
+			}
+		}
+	);
+}// shareOnFacebook
 
 
 /*------------------------------------*\
