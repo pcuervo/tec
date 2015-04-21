@@ -130,7 +130,12 @@
 					<div class="[ modal-header ][ border-bottom margin-bottom ]">
 						<h2 class="[ text-center ]"></h2>
 						<br />
-						<div class="js-profile-pic"></div>
+						<div class="[ js-profile-pic ]">
+							<img src="" alt="">
+						</div>
+						<div class="[ js-facebook-pic ]">
+							<img src="" alt="">
+						</div>
 						<h4 class="[ text-center ]"><span class="[ js-nombre ]"></span> - <span class="[ js-puesto ]"></span></h4>
 						<h3 class="[ text-center ]">Generación <span class="[ js-generacion ]"></span></h3>
 					</div><!-- modal-header -->

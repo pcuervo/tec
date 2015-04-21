@@ -573,6 +573,7 @@
 		$generacion 	= get_post_meta($post_id, '_detalles_generacion_meta', true);
 		$facebook_id 	= get_post_meta($post_id, '_detalles_fbid_meta', true);
 		$facebook_img 	= get_post_meta($post_id, '_fb_photo_url_meta', true);
+		$fb_profile_pic = get_post_meta($post_id, '_fb_profile_pic_meta', true);
 		$titulo     	= $post->post_title;
 		$content 		= $post->post_content;
 
@@ -585,6 +586,7 @@
 			'fb_id'			=> $facebook_id,
 			'content'		=> $content,
 			'facebook_img'	=> $facebook_img,
+			'profile_pic'	=> $fb_profile_pic,
 		);
 
 		echo json_encode($post_content, JSON_FORCE_OBJECT);

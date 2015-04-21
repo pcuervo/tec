@@ -43,7 +43,7 @@
 					<div class="[ row ][ z-index z-index-2 ]">
 						<div class="[ columna xmall-6 ][ menu__item ][ text-left ]">
 							<h1>
-								<a href="#">
+								<a href="<?php site_url() ?>">
 									<i class="icon-logo-tec"></i>
 								</a>
 							</h1>
