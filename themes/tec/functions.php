@@ -180,8 +180,6 @@
 							e.preventDefault();
 
 							var postID = $(this).closest('.js-open-modal').data('id');
-							console.log(postID);
-							//postToFacebook();
 						});
 
 
@@ -227,7 +225,7 @@
 								console.log('posting to wall...');
 								var story_link = site_url + '?u=' + user_story_id;
 								console.log( story_link );
-								postToWall( fb_user_id, fb_access_token, user_story, story_link );
+								postToWall( fb_user_id, fb_access_token, user_quote, story_link );
 							}
 
 						};
@@ -639,14 +637,14 @@
 	        $publicar 		= get_post_meta($post_id, '_detalles_publicar_fb_meta', true);
 			$facebook_id 	= get_post_meta($post_id, '_detalles_fbid_meta', true);
 			$access_token 	= get_post_meta($post_id, '_extended_fb_token_meta', true);
-			$user_story		= $post->post_content;
+			$user_quote		= $post->post_title;
 			$status 		= get_post_status( $post_id );
 
 			if( $publicar == 'true' && $status == 'publish' )  {
 				update_post_meta($post_id, '_detalles_publicar_fb_meta', 'false' );
 				wp_localize_script( 'admin-js', 'fb_user_id', $facebook_id );
 				wp_localize_script( 'admin-js', 'fb_access_token', $access_token );
-				wp_localize_script( 'admin-js', 'user_story', $user_story );
+				wp_localize_script( 'admin-js', 'user_quote', $user_quote );
 				wp_localize_script( 'admin-js', 'user_story_id', $post->ID );
 			}
 	    }

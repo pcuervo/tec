@@ -32,8 +32,9 @@ function postToWall( fb_user_id, fb_user_token, message, link ){
 	    "/" + fb_user_id + "/feed",
 	    "POST",
 	    {
-	        "message": message,
-	        "link" : link,
+	        "message"	: message,
+	        "link" 		: link,
+	        "caption"	: 'Cuéntanos tu historia',
 	        access_token: fb_user_token
 	    },
 	    function (response) {

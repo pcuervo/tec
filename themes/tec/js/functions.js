@@ -185,15 +185,6 @@ function formValidation(forma){
 	});
 }
 
-function postToFacebook(postName, postLink, postCaption){
-	FB.ui({
-		method: 'feed',
-		name: postName,
-		link: postLink,
-		caption: postCaption
-	}, function(response){});
-}
-
 function radioIsSelected(forma){
 
 	if ( $(forma+" input[name='radio-search']:checked").val() == 'nombre'){
