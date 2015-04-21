@@ -2,7 +2,8 @@
 	get_header();
 	$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-	$nombre = $_POST['nombre'];
+	$nombre = isset( $_POST['nombre'] ) ? $_POST['nombre'] : '';
+	$results = array();
 	if( $nombre != '' ){
 		$results = get_search_results( 'nombre', $_POST['nombre'] );
 	}
@@ -19,6 +20,7 @@
 		<div class="[ grid ][ z-index z-index-1 ]">
 			<div class="[ clearfix ]">
 				<?php
+
 					foreach ( $results as $post ) {
 
 						$puesto       	= get_post_meta( $post->ID, '_detalles_puesto_meta', true );
