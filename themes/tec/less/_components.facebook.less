@@ -1,0 +1,62 @@
+.js-facebook-albums-container{
+	width: 100%; height: 0;
+	position: absolute; top: -100%;
+	background: black;
+	.transition;
+	z-index: @zIndex-3;
+	overflow: hidden;
+}
+
+.js-facebook-albums-container.open{
+	height: auto;
+	top: 0; left: 0;
+}
+
+.js-facebook-albums-container div{
+	width: 50%;
+	margin-bottom: 20px;
+	position: relative; left: 25%;
+}
+
+
+.js-facebook-albums-container img{
+	max-width: 100%;
+}
+
+.js-facebook-albums-container h3{
+	font-size: 14px;
+	color: @light;
+	text-align: center;
+}
+
+
+//----------------------------
+
+
+.js-facebook-photos-container{
+	width: 100%; height: 0;
+	position: absolute; top: -100%;
+	text-align: center;
+	background: black;
+	.transition;
+	z-index: @zIndex-4;
+	overflow: hidden;
+}
+
+.js-facebook-photos-container.open{
+	height: auto;
+	top: 0; left: 0;
+}
+
+.js-facebook-photos-container a{
+}
+
+//--------------------------------------
+
+.js-fb-selected-photo{
+ display: none;
+}
+
+.js-fb-selected-photo.open{
+	display: block;
+}
