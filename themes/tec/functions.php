@@ -64,7 +64,7 @@
 						var prod_app_id = '706804956104343'
 						window.fbAsyncInit = function() {
 							FB.init({
-								appId	: test_app_id,
+								appId	: prod_app_id,
 								xfbml	: true,
 								version : 'v2.2'
 							});
@@ -217,7 +217,7 @@
 						var prod_app_id = '706804956104343'
 						window.fbAsyncInit = function() {
 							FB.init({
-								appId	: test_app_id,
+								appId	: prod_app_id,
 								xfbml	: true,
 								version : 'v2.2'
 							});
@@ -517,12 +517,12 @@
 		$fb_photo_url = ( isset( $_POST['fb_photo_url'] ) ) ? $_POST['fb_photo_url'] : '';
 
 		// Production
-		// $app_id = '706804956104343';
-		// $app_secret = 'feecdd018148235ccb42e3f114c85e36';
+		$app_id = '706804956104343';
+		$app_secret = 'feecdd018148235ccb42e3f114c85e36';
 
 		// Test
-		$app_id = '706805166104322';
-		$app_secret = '6cf91ae86165bf49a1c08cce1132906f';
+		// $app_id = '706805166104322';
+		// $app_secret = '6cf91ae86165bf49a1c08cce1132906f';
 
 		$post_historia = array(
 			'post_title'    => $titulo,
