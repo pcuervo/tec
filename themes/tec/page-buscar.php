@@ -2,30 +2,24 @@
 	get_header();
 	$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-	if( isset( $_POST['nombre'] ) ){
+	$nombre = $_POST['nombre'];
+	if( $nombre != '' ){
 		$results = get_search_results( 'nombre', $_POST['nombre'] );
 	}
+	if( isset( $_POST['generacion'] ) ){
+		$results = get_search_results( 'generación', $_POST['generacion'] );
+	}
+	if( isset( $_POST['campus'] ) ){
+		$results = get_search_results( 'campus', $_POST['campus'] );
+	}
+
+	var_dump( $_POST );
+
 	//the_post();
 ?>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
 	<section class="[ wrapper ][ bg-light ][ padding ]">
-		<form action="<?php echo site_url('buscar') ?>" method="POST">
-			<fieldset class="[ margin-bottom--small ][ text-center ]">
-				<input type="text" name="nombre">
-			</fieldset>
-			<fieldset class="[ margin-bottom--small ][ text-center ]">
-				<button class="[ button button--rounded-corners ]" type="submit">Buscar</button>
-			</fieldset>
-		</form>
 		<div class="[ grid ][ z-index z-index-1 ]">
 			<div class="[ clearfix ]">
-				
 				<?php
 					foreach ( $results as $post ) {
 
@@ -70,7 +64,6 @@
 
 					</article><!-- item -->
 				<?php } ?>
-
 			</div><!-- clearfix -->
 		</div><!-- grid -->
 	</section><!-- wrapper -->

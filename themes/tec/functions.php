@@ -468,22 +468,27 @@
 	function get_search_results( $type, $value ){
 		global $wpdb;
 		
-		$query = "
-			SELECT DISTINCT ID FROM wp_posts P
-			INNER JOIN wp_postmeta PM ON PM.post_id = P.id
-		";
-
+		$query = " SELECT DISTINCT ID FROM wp_posts P INNER JOIN wp_postmeta PM ON PM.post_id = P.id";
 		switch ( $type ) {
 			case 'nombre':
 				$query .= "
 					WHERE meta_key = '_detalles_nombre_meta'
 					AND meta_value LIKE '%$value%'";
 				break;
-			default:
+			case 'generación':
+				$query .= "
+					WHERE meta_key = '_detalles_generacion_meta'
+					AND meta_value = '$value'";
+				break;
+			case 'campus':
+				$query .= "
+					WHERE meta_key = '_detalles_campus_meta'
+					AND meta_value = '$value'";
 				break;
 		}// switch
 
-		echo $query;
+		$query .= " AND post_status = 'publish'";
+		//echo $query;
 		$results = $wpdb->get_results( $query );
 		return $results;
 
@@ -537,6 +542,7 @@
 		add_post_meta( $post_id, '_detalles_nombre_meta', $nombre, false ) || update_post_meta( $post_id, '_detalles_nombre_meta', $nombre );
 		add_post_meta( $post_id, '_detalles_puesto_meta', $puesto, false ) || update_post_meta( $post_id, '_detalles_puesto_meta', $puesto );
 		add_post_meta( $post_id, '_detalles_generacion_meta', $generacion, false ) || update_post_meta( $post_id, '_detalles_generacion_meta', $generacion );
+		add_post_meta( $post_id, '_detalles_campus_meta', $campus, false ) || update_post_meta( $post_id, '_detalles_campus_meta', $campus );
 		add_post_meta( $post_id, '_detalles_fbid_meta', $facebook_id, false ) || update_post_meta( $post_id, '_detalles_fbid_meta', $facebook_id );
 		add_post_meta( $post_id, '_detalles_publicar_fb_meta', $publicar_fb, false ) || update_post_meta( $post_id, '_detalles_publicar_fb_meta', $publicar_fb );
 		add_post_meta( $post_id, '_extended_fb_token_meta', $params['access_token'], false ) || update_post_meta( $post_id, '_extended_fb_token_meta', $params['access_token'] );
