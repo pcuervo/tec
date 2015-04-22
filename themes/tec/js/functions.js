@@ -317,9 +317,11 @@ function getFacebookAlbums(facebook_id){
 function showAlbumInfo( id, name, cover_id ){
 
 	// Get the album cover picture
+	console.log(id + name + cover_id);
 	FB.api(
 		"/"+id+"/picture",
 		function ( album_response ) {
+			console.log(album_response);
 			var cover_url = album_response.data.url;
 			html_album = getAlbumHTML( id, name, cover_url );
 			$('.js-facebook-albums-container').append( html_album ).addClass('open');

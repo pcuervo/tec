@@ -70,10 +70,10 @@
 							</div><!-- square -->
 						</a>
 						<div class="[ item__share ][ z-index z-index-3 ]">
-							<a href="facebook" class="[ button button--circle button--light ][ js-share-fb ][ inline-block ]">
+							<!-- <a href="facebook" class="[ button button--circle button--light ][ js-share-fb ][ inline-block ]">
 								<i class="[ icon-facebook ]"></i>
-							</a>
-							<a href="https://twitter.com/share?url=<?php echo $current_link .'?u=' . $post->ID; ?>&text=Cuéntanos tu historia&via=Tec" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="[ button button--circle button--light ][ inline-block ]">
+							</a> -->
+							<a href="https://twitter.com/share?url=<?php echo $current_link .'?u=' . $post->ID; ?>&text=Todos buscamos el camino al éxito, descubre cómo lo conseguí.&via=Tec" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="[ button button--circle button--light ][ inline-block ]">
 								<i class="[ icon-twitter ]"></i>
 							</a>
 						</div>
