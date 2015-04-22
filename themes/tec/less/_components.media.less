@@ -2,8 +2,17 @@
     #GRID
 \*------------------------------------*/
 .grid{
-	padding: 20px 0; margin-top: 100vh;
-	.transition;
+	padding: 20px 0;
+	.transition(all .5s cubic-bezier(0.22, 0.61, 0.36, 1));
+}
+
+.home .grid{
+	margin-top: 100vh;
+	background: url('images/bg.png') repeat #fff;
+}
+
+.page .grid{
+	padding: 0;
 }
 
 
@@ -84,42 +93,5 @@
 	#GRID STATES
 \*------------------------------------*/
 .grid.closed{
-
-	margin-top: 150px;
-
-
-	/**
-	 * small
-	**/
-	@media (min-width: @small) {
-	}
-
-	/**
-	 * small & landscape
-	**/
-	@media (min-width: @small) and (orientation: landscape) {
-		margin-top: 100px;
-	}
-
-	/**
-	 * medium
-	**/
-	@media (min-width: @medium) {
-		margin-top: 300px;
-	}
-
-	/**
-	 * medium & landscape
-	**/
-	@media (min-width: @medium) and (orientation: landscape) {
-		margin-top: 150px;
-	}
-
-	/**
-	 * large
-	**/
-	@media (min-width: @large) {
-		margin-top: 300px;
-	}
-
+	padding-top: 45px; margin-top: 45px;
 }

@@ -16,8 +16,8 @@
 
 	//the_post();
 ?>
-	<section class="[ wrapper ][ bg-light ][ padding ]">
-		<div class="[ grid ][ z-index z-index-1 ]">
+	<section class="[ grid ]">
+		<div class="[ wrapper ]">
 			<div class="[ clearfix ]">
 				<?php
 
@@ -65,6 +65,6 @@
 					</article><!-- item -->
 				<?php } ?>
 			</div><!-- clearfix -->
-		</div><!-- grid -->
-	</section><!-- wrapper -->
+		</div><!-- wrapper -->
+	</section><!-- grid -->
 <?php get_footer(); ?>
