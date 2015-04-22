@@ -81,7 +81,7 @@
 								</fieldset>
 								<fieldset class="[ margin-bottom ]">
 									<img src="#" class="[ js-fb-selected-photo ][ center block xmall-6 medium-5 ][ margin-bottom ]" alt="">
-									<button class="[ block ][ columna xmall-12 ][ button button--rounded-corners ][ js-facebook-photos ]">Agregar imagen a mi historia</button>
+									<button class="[ block ][ span xmall-12 no-margin ][ button button--rounded-corners ][ js-facebook-photos ]">Agregar imagen a mi historia</button>
 								</fieldset>
 								<fieldset class="[ margin-bottom ]">
 									<div class="[ formplate ]">
@@ -95,18 +95,18 @@
 								<input type="hidden" class="js-fb-photo-url" name="fb_photo_url">
 								<input type="hidden" name="action" value="guardar_historia">
 								<fieldset class="[ margin-bottom--small ]">
-									<button class="[ block ][ columna xmall-12 ][ button button--rounded-corners ]" type="submit">Enviar</button>
+									<button class="[ block ][ span xmall-12 no-margin ][ button button--rounded-corners ]" type="submit">Enviar</button>
 								</fieldset>
 							</form>
 						</article><!-- step-2 -->
 						<article class="[ js-facebook-albums-container ] ">
-							<a href="#" class="[ block ][ columna xmall-12 ][ button button--rounded-corners ][ margin-bottom ][ js-regresar-forma ]">
+							<a href="#" class="[ block ][ span xmall-12 no-margin ][ button button--rounded-corners ][ margin-bottom ][ js-regresar-forma ]">
 								Regresar
 							</a>
 							<!-- Aquí se muestran los albums -->
 						</article>
 						<article class="[ js-facebook-photos-container ]">
-							<a href="#" class="[ block ][ columna xmall-12 ][ button button--rounded-corners ][ margin-bottom ][ js-regresar-albumes ]">
+							<a href="#" class="[ block ][ span xmall-12 no-margin ][ button button--rounded-corners ][ margin-bottom ][ js-regresar-albumes ]">
 								Regresar
 							</a>
 							<!-- Aquí se muestran las fotos de los albums -->

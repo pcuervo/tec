@@ -438,7 +438,7 @@ function getAlbumPhotos( album_id ){
 }// getAlbumPhotos
 
 function addPhoto( album_photos_data ){
-
+	$('.js-facebook-photos-container > div').remove();
 	var photo_urls = [];
 	$.each(album_photos_data, function(i, photo){
 		var photo_html = '<div class="[ margin-bottom--small ]"><img src="' + photo.source + '" class="[ fb-photo ]" /><div>';
