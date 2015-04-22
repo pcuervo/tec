@@ -139,7 +139,7 @@
 								<img class="[ image-circle image-responsive ]" src="" alt="">
 							</div>
 							<div class="[ columna xmall-9 ]">
-								<h4 class=""><span class="[ js-nombre ]"></span> <span class="[ js-puesto ]"></span></h4>
+								<h4 class=""><span class="[ js-nombre ]"></span> <br /><small class="[ js-puesto ]"></small></h4>
 								<h3 class="[ js-generacion ]"></h3>
 								<h3 class="[ js-campus ]"></h3>
 							</div>
