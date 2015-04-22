@@ -185,7 +185,8 @@
 							e.preventDefault();
 
 							var postID = $(this).closest('article').data('id');
-							shareOnFacebook( site_url + '?u=' + postID );
+							var share_url = site_url + '?u=' + postID;
+							shareOnFacebook( "http://pcuervo.com/tec/" );
 						});
 
 
