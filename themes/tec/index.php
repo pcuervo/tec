@@ -44,7 +44,7 @@
 						$fb_profile_pic	= get_post_meta( $post->ID, '_fb_profile_pic_meta', true );
 						$fb_photo_url	= get_post_meta( $post->ID, '_fb_photo_url_meta', true );
 						$generacion   	= get_post_meta( $post->ID, '_detalles_generacion_meta', true );
-						$current_link 	= $current_link+'?u='+$post->ID;
+						$share_link 	= $current_link . '?u=' . $post->ID;
 
 						if( $fb_photo_url == '' ){
 							$fb_photo_url = $fb_profile_pic;
@@ -73,8 +73,7 @@
 							<a href="facebook" class="[ button button--circle button--light ][ js-share-fb ][ inline-block ]">
 								<i class="[ icon-facebook ]"></i>
 							</a>
-							<?php $share_link = $current_link .'?u=' . $post->ID; ?>
-							<a href="https://twitter.com/share?url=http://pcuervo.com/tec&text=Todos buscamos el camino al éxito, descubre cómo lo conseguí.&via=Tec" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="[ button button--circle button--light ][ inline-block ]">
+							<a href="https://twitter.com/share?url=<?php echo $share_link; ?>&text=Todos buscamos el camino al éxito, descubre cómo lo conseguí.&via=Tec" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="[ button button--circle button--light ][ inline-block ]">
 								<i class="[ icon-twitter ]"></i>
 							</a>
 						</div>

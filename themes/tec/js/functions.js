@@ -480,7 +480,7 @@ function shareOnFacebook(url){
 	FB.ui(
 		{
 			method: 'share',
-			href: 'url',
+			href: url,
 		},
 		function(response) {
 			if (response && !response.error_code) {
