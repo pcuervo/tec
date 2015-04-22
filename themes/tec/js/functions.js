@@ -79,6 +79,7 @@ function openModal(type){
 **/
 function closeModal(element){
 	$('.modal-wrapper').addClass('hide');
+	$('body').removeClass('body-modal');
 }
 
 /**
@@ -104,26 +105,21 @@ function closeSearch(){
 
 function isTop(){
 	var scrollAmount = $(window).scrollTop();
-	if ( scrollAmount <= 0 ){
+	if ( scrollAmount <= 10 ){
+		console.log(true);
 		return true;
 	}
+	console.log(false);
 	return false;
 }
 
 function toggleCover(toggled){
 
 	if ( toggled ){
-		showCover();
 		showGrid();
-		if ( $('#modal-historia').hasClass('hide') ){
-			//playVideo('.cycle-slide-active .covervid-video');
-		}
 		return;
 	}
-
-	hideCover();
 	hideGrid();
-	//pauseVideos('.covervid-wrapper--wrapper .covervid-video');
 }
 
 function showCover(){
@@ -140,6 +136,15 @@ function showGrid(){
 
 function hideGrid(){
 	$('.grid').addClass('closed');
+}
+
+/**
+* Scroll past the cover
+**/
+function scrollDown(positionElement){
+	var position = $(positionElement).offset().top;
+	position = position - $('header').height();
+	$('html, body').animate({scrollTop: position}, 650);
 }
 
 
@@ -173,6 +178,12 @@ function videoEnds(selector){
 
 function formValidation(forma){
 	$(forma).validate({
+		rules: {
+			historia: {
+				required: true,
+				max: 60
+			}
+		},
 		submitHandler:function(){
 			switch(forma){
 				case '.forma-tu-historia':
@@ -297,6 +308,72 @@ function mostrarFotoPerfilSingle(id, width, height){
 	);
 }
 
+var selector, logActivity, callbackAlbumSelected, callbackPhotoUnselected, callbackSubmit;
+var buttonOK = $('#CSPhotoSelector_buttonOK');
+var o = this;
+
+
+/* --------------------------------------------------------------------
+ * Photo selector functions
+ * ----------------------------------------------------------------- */
+
+fbphotoSelect = function(id) {
+	// if no user/friend id is sent, default to current user
+	if (!id) id = 'me';
+
+	callbackAlbumSelected = function(albumId) {
+		var album, name;
+		album = CSPhotoSelector.getAlbumById(albumId);
+		// show album photos
+		selector.showPhotoSelector(null, album.id);
+	};
+
+	callbackAlbumUnselected = function(albumId) {
+		var album, name;
+		album = CSPhotoSelector.getAlbumById(albumId);
+	};
+
+	callbackPhotoSelected = function(photoId) {
+		var photo;
+		photo = CSPhotoSelector.getPhotoById(photoId);
+		buttonOK.show();
+		logActivity('Selected ID: ' + photo.id);
+	};
+
+	callbackPhotoUnselected = function(photoId) {
+		var photo;
+		album = CSPhotoSelector.getPhotoById(photoId);
+		buttonOK.hide();
+	};
+
+	callbackSubmit = function(photoId) {
+		var photo;
+		photo = CSPhotoSelector.getPhotoById(photoId);
+		logActivity('<br><strong>Submitted</strong><br> Photo ID: ' + photo.id + '<br>Photo URL: ' + photo.source + '<br>');
+	};
+
+
+	// Initialise the Photo Selector with options that will apply to all instances
+	CSPhotoSelector.init({debug: true});
+
+	// Create Photo Selector instances
+	selector = CSPhotoSelector.newInstance({
+		callbackAlbumSelected	: callbackAlbumSelected,
+		callbackAlbumUnselected	: callbackAlbumUnselected,
+		callbackPhotoSelected	: callbackPhotoSelected,
+		callbackPhotoUnselected	: callbackPhotoUnselected,
+		callbackSubmit			: callbackSubmit,
+		maxSelection			: 1,
+		albumsPerPage			: 6,
+		photosPerPage			: 200,
+		autoDeselection			: true
+	});
+
+	// reset and show album selector
+	selector.reset();
+	selector.showAlbumSelector(id);
+}
+
 function getFacebookAlbums(facebook_id){
 
 	FB.api(
@@ -364,7 +441,7 @@ function addPhoto( album_photos_data ){
 
 	var photo_urls = [];
 	$.each(album_photos_data, function(i, photo){
-		var photo_html = '<img src="' + photo.source + '" class="[ xmall-8 block center ][ margin-bottom--small ][ fb-photo ]" />';
+		var photo_html = '<div class="[ margin-bottom--small ]"><img src="' + photo.source + '" class="[ fb-photo ]" /><div>';
 		$('.js-fb-photo-url').val( photo.source );
 		$('.js-facebook-photos-container').append( photo_html ).addClass('open');
 	});
@@ -442,7 +519,8 @@ function insertPostContent( id ){
 			$('#modal-historia h2').text(json_posts.meta_content.titulo);
 			$('#modal-historia .js-nombre').text(json_posts.meta_content.nombre);
 			$('#modal-historia .js-puesto').text(json_posts.meta_content.puesto);
-			$('#modal-historia .js-generacion').text(json_posts.meta_content.generacion);
+			$('#modal-historia .js-generacion').text('Generación '+json_posts.meta_content.generacion);
+			$('#modal-historia .js-campus').text('Campus '+json_posts.meta_content.campus);
 			$('#modal-historia .js-nombre').text(json_posts.meta_content.nombre);
 			$('#modal-historia .js-profile-pic img').attr('src', json_posts.meta_content.profile_pic);
 			$('#modal-historia .js-historia p').text(json_posts.meta_content.historia);

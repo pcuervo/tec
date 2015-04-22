@@ -8,6 +8,7 @@
 	position: fixed; top: 0; left: 0;
 	z-index: 9999;
 	.transition( all 0.5s ease-in );
+	overflow-y: scroll;
 }
 
 .modal-wrapper.hide{
@@ -15,7 +16,7 @@
 }
 
 .modal{
-	width: 90%; max-width: 400px; height: auto; max-height: 90%; overflow-y: scroll;
+	width: 90%; max-width: 400px; height: auto; max-height: 90%;
 	padding: @unidad;
 	background: @light;
 	position: relative;
@@ -57,7 +58,7 @@ p:last-child, .paso:last-child{
 }
 
 .modal--read-mode .modal-content{
-	width: 90%; max-width: 800px;
+	width: 90%; max-width: 450px;
 	margin: 40px auto 0px auto;
 }
 

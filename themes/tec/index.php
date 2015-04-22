@@ -4,7 +4,7 @@
 	$id_historia_usuario = ( isset($_GET['u']) ) ? $_GET['u'] : '';
 	$current_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 ?>
-	<section class="[ cover ][ z-index-3 ]">
+	<section class="[ cover ][ z-index-1 ]">
 		<span class="[ screen opacity-gradient--full--5 ][ z-index-3 ]"></span>
 		<div class="[ slideshow ][ js-slideshow ][ z-index zindex-1 ]">
 			<img src="<?php echo THEMEPATH; ?>images/persona.jpg" alt="">
@@ -34,8 +34,8 @@
 			</section>
 		</div><!-- wrapper -->
 	</section>
-	<section class="[ wrapper ]">
-		<div class="[ grid ][ z-index z-index-1 ]">
+	<section class="[ grid ][ z-index z-index-3 ]">
+		<div class="[ wrapper ]">
 			<div class="[ clearfix ]">
 				<?php
 					if( have_posts() ) : while( have_posts() ) : the_post();
@@ -73,7 +73,7 @@
 							<a href="facebook" class="[ button button--circle button--light ][ js-share-fb ][ inline-block ]">
 								<i class="[ icon-facebook ]"></i>
 							</a>
-							<a href="https://twitter.com/share?url=<?php echo $current_link .'?u=' . $post->ID; ?>&text=Cuéntanos tu historia&via=Tec" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="[ button button--circle button--light ][ inline-block ]">
+							<a href="https://twitter.com/share?url=<?php echo $current_link .'?u=' . $post->ID; ?>&text=Todos buscamos el camino al éxito, descubre cómo lo conseguí&via=Tec" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="[ button button--circle button--light ][ inline-block ]">
 								<i class="[ icon-twitter ]"></i>
 							</a>
 						</div>
@@ -81,6 +81,6 @@
 
 				<?php endwhile; endif; ?>
 			</div><!-- row -->
-		</div><!-- grid -->
-	</section><!-- wrapper -->
+		</div><!-- wrapper -->
+	</section><!-- grid -->
 <?php get_footer(); ?>

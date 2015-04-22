@@ -32,18 +32,17 @@
 		<?php wp_head(); ?>
 	</head>
 
-	<body>
+	<body <?php body_class(); ?>>
 		<!--[if lt IE 9]>
 			<p class="chromeframe">Estás usando una versión <strong>vieja</strong> de tu explorador. Por favor <a href="http://browsehappy.com/" target="_blank"> actualiza tu explorador</a> para tener una experiencia completa.</p>
 		<![endif]-->
 		<div class="container">
 			<header>
-				<div class="[ opacity-gradient--full ][ z-index-1 ]"></div>
 				<div class="[ wrapper ]">
 					<div class="[ row ][ z-index z-index-2 ]">
 						<div class="[ columna xmall-6 ][ menu__item ][ text-left ]">
 							<h1>
-								<a href="<?php site_url() ?>">
+								<a href="<?php echo site_url(); ?>">
 									<i class="icon-logo-tec"></i>
 								</a>
 							</h1>
@@ -107,7 +106,7 @@
 									<div class="[ formplate ][ search-field search-generacion ][ js-search-generacion ]">
 										<select name="generacion" id="generación">
 											<option selected="true" disabled="disabled">Generación</option>
-											<?php 
+											<?php
 											for ( $i=2018; $i > 1947 ; $i--)  {
 												echo '<option value="' . $i . '">' . $i . '</option>';
 											}

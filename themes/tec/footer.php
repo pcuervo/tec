@@ -71,7 +71,7 @@
 								</fieldset>
 								<fieldset class="[ margin-bottom--small ]">
 									<div class="[ formplate ]">
-										<textarea class="[ required ]" name="historia" id="" placeholder="Tu historia*"></textarea>
+										<textarea class="[ required ]" name="historia" id="" placeholder="Tu historia* (max 60 caracteres)"></textarea>
 									</div><!-- formplate -->
 								</fieldset>
 								<fieldset class="[ margin-bottom--small ]">
@@ -80,7 +80,7 @@
 									</div><!-- formplate -->
 								</fieldset>
 								<fieldset class="[ margin-bottom ]">
-									<img src="#" class="[ js-fb-selected-photo ][ image-responsive ][ margin-bottom ]" alt="">
+									<img src="#" class="[ js-fb-selected-photo ][ center block xmall-6 medium-5 ][ margin-bottom ]" alt="">
 									<button class="[ block ][ columna xmall-12 ][ button button--rounded-corners ][ js-facebook-photos ]">Agregar imagen a mi historia</button>
 								</fieldset>
 								<fieldset class="[ margin-bottom ]">
@@ -100,6 +100,9 @@
 							</form>
 						</article><!-- step-2 -->
 						<article class="[ js-facebook-albums-container ] ">
+							<a href="#" class="[ block ][ columna xmall-12 ][ button button--rounded-corners ][ margin-bottom ][ js-regresar-forma ]">
+								Regresar
+							</a>
 							<!-- Aquí se muestran los albums -->
 						</article>
 						<article class="[ js-facebook-photos-container ]">
@@ -110,7 +113,8 @@
 						</article>
 						<article class="[ step-3 ][ hidden--xmall ]">
 							<div class="[ success-message ][ text-center ]">
-								<p class="[ title ][ margin-bottom--large ][ light ]">Gracias por compartir tu historia con México</p>
+								<p class="[ title ][ margin-bottom--large ][ light ]">Tu historia de éxito ya fue registrada</p>
+								<p class="[ title ][ margin-bottom--large ][ light ]"> ¡Gracias por compartirla!</p>
 								<p class="[ light ]">Tu historia será revisada por nosotros y se te notificará en cuanto esté aprobada.</p>
 								<div class="[ clear ]"></div>
 								<button class="[ js-close ][ button ]">Hecho</button>
@@ -130,27 +134,29 @@
 				</div>
 				<div class="[ modal-content ]">
 					<div class="[ modal-header ][ border-bottom margin-bottom ]">
-						<div class="[ margin-bottom ][ profile-pic ][ js-profile-pic ]">
-							<img class="[ xmall-6 medium-4 large-3 ][ center block ]" src="" alt="">
-						</div>
-						<h4 class="[ text-center ]"><span class="[ js-nombre ]"></span> - <span class="[ js-puesto ]"></span></h4>
-						<h3 class="[ text-center ][ margin-bottom ]">Generación <span class="[ js-generacion ]"></span></h3>
-						<br />
+						<div class="[ row ][ margin-bottom ]">
+							<div class="[ columna xmall-3 ][ margin-bottom ][ profile-pic ][ js-profile-pic ]">
+								<img class="[ image-circle image-responsive ]" src="" alt="">
+							</div>
+							<div class="[ columna xmall-9 ]">
+								<h4 class=""><span class="[ js-nombre ]"></span> <span class="[ js-puesto ]"></span></h4>
+								<h3 class="[ js-generacion ]"></h3>
+								<h3 class="[ js-campus ]"></h3>
+							</div>
+						</div><!-- row -->
 						<h2 class="[ text-center ]"></h2>
 						<br />
 						<div class="[ margin-bottom ][ js-facebook-pic ]">
-							<img class="[ xmall-10 ][ center block ]" src="" alt="">
+							<img class="[ xmall-10 medium-8 large-6 ][ center block ]" src="" alt="">
 						</div>
 
 					</div><!-- modal-header -->
 					<br />
 					<div class="[ modal-body ]">
-						<div class="[ js-imagen ]">
-
-						</div>
-						<div class="[ js-historia ][  ]">
+						<div class="[ js-historia ][ margin-bottom ]">
 							<p></p>
 						</div>
+						<div class="[ js-imagen ]"></div>
 					</div><!-- modal-body -->
 				</div><!-- modal-content -->
 			</div>
