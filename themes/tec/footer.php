@@ -71,12 +71,12 @@
 								</fieldset>
 								<fieldset class="[ margin-bottom--small ]">
 									<div class="[ formplate ]">
-										<textarea class="[ required ]" name="historia" id="" placeholder="Tu historia* (max 60 caracteres)"></textarea>
+										<textarea class="[ required ]" name="historia" id="" placeholder="Tu historia*"></textarea>
 									</div><!-- formplate -->
 								</fieldset>
 								<fieldset class="[ margin-bottom--small ]">
 									<div class="[ formplate ]">
-										<textarea class="[ required ]" name="titulo" id="" placeholder="Cita o frase*"></textarea>
+										<textarea class="[ required ]" name="titulo" id="" placeholder="Cita o frase*(max 60 caracteres)"></textarea>
 									</div><!-- formplate -->
 								</fieldset>
 								<fieldset class="[ margin-bottom ]">

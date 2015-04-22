@@ -179,10 +179,6 @@ function videoEnds(selector){
 function formValidation(forma){
 	$(forma).validate({
 		rules: {
-			historia: {
-				required: true,
-				max: 60
-			}
 		},
 		submitHandler:function(){
 			switch(forma){
@@ -217,6 +213,18 @@ function radioIsSelected(forma){
 		$('.js-search-generacion select').addClass('required');
 		$('.js-search-submit').show();
 	}
+}
+
+function clearModalStory(){
+	$('#modal-historia h2').text('');
+	$('#modal-historia .js-nombre').text('');
+	$('#modal-historia .js-puesto').text('');
+	$('#modal-historia .js-generacion').text('');
+	$('#modal-historia .js-campus').text('');
+	$('#modal-historia .js-nombre').text('');
+	$('#modal-historia .js-profile-pic img').attr('src', '');
+	$('#modal-historia .js-historia p').text('');
+	$('#modal-historia .js-facebook-pic img').attr('src', '');
 }
 
 
@@ -528,8 +536,10 @@ function insertPostContent( id ){
 			$('#modal-historia .js-profile-pic img').attr('src', json_posts.meta_content.profile_pic);
 			$('#modal-historia .js-historia p').text(json_posts.meta_content.historia);
 
+			$('.js-facebook-pic').hide();
 			if ( json_posts.meta_content.facebook_img !== '' ){
 				$('#modal-historia .js-facebook-pic img').attr('src', json_posts.meta_content.facebook_img);
+				$('.js-facebook-pic').show();
 			}
 
 		}
