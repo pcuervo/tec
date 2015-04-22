@@ -466,6 +466,7 @@ function postToWall(user_token, message){
 }
 
 function shareOnFacebook(url){
+	console.log(url);
 	FB.ui(
 		{
 			method: 'share',
