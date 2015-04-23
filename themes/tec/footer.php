@@ -17,7 +17,7 @@
 						</article><!-- step-1 -->
 						<div class="clear"></div>
 						<article class="[ step-2 ][ hidden--xmall ]">
-							<form action="" class="[ forma forma-tu-historia ]">
+							<form action="" class="[ forma forma-tu-historia ]" enctype="multipart/form-data">
 								<fieldset class="[ margin-bottom--small ]">
 									<div class="[ formplate ]">
 										<!-- <label for="nombre">Tu nombre</label> -->
@@ -59,7 +59,7 @@
 										</select>
 									</div><!-- formplate -->
 									<div class="[ formplate ][ generacion ]">
-										<select name="generacion" id="campus" class="[ required ]">
+										<select name="generacion" class="[ required ]">
 											<option selected="true" disabled="disabled">Generación*</option>
 											<?php
 											for ( $i=2018; $i > 1947 ; $i--)  {
@@ -81,7 +81,13 @@
 								</fieldset>
 								<fieldset class="[ margin-bottom ]">
 									<img src="#" class="[ js-fb-selected-photo ][ center block xmall-6 medium-5 ][ margin-bottom ]" alt="">
-									<button class="[ block ][ span xmall-12 no-margin ][ button button--rounded-corners ][ js-facebook-photos ]">Agregar imagen a mi historia</button>
+									<button class="[ block ][ span xmall-12 no-margin ][ button button--rounded-corners ][ js-facebook-photos ]">Agregar imagen de Facebook a mi historia</button>
+								</fieldset>
+								<h3 class="[ text-center ][ margin-bottom ][ js-o ]">ó</h3>
+								<fieldset class="[ margin-bottom ]">
+									<input type="file" name="file" id="file" class="[ block ][ span xmall-12 no-margin ][ js-file-btn ]">
+									<label for="" class="[ NFI-filename ]"></label>
+									<small>La imagen debe ser formato JPEG, PNG o PDF y no puede exceder 3.0 MB</small>
 								</fieldset>
 								<fieldset class="[ margin-bottom ]">
 									<div class="[ formplate ]">
@@ -93,7 +99,7 @@
 								<input type="hidden" class="js-fb-token" name="access_token">
 								<input type="hidden" class="js-fb-profile-pic" name="fb_profile_pic">
 								<input type="hidden" class="js-fb-photo-url" name="fb_photo_url">
-								<input type="hidden" name="action" value="guardar_historia">
+								<input type="hidden" class="js-is-upload" name="is_upload" value="0">
 								<fieldset class="[ margin-bottom--small ]">
 									<button class="[ block ][ span xmall-12 no-margin ][ button button--rounded-corners ]" type="submit">Enviar</button>
 								</fieldset>

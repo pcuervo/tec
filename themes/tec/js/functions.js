@@ -500,15 +500,57 @@ function shareOnFacebook(url){
 function guardarHistoria(){
 	var data_historia = $('.forma-tu-historia').serializeArray();
 
-	$.post(
-		ajax_url,
-		data_historia,
-		function(response){
-			var mensaje = $('textarea[name="historia"]').val();
-			$('.step-2').addClass('hidden--xmall');
-			$('.step-3').removeClass('hidden--xmall');
-		}
-	);
+	var data = new FormData();
+	$.each( $('#file')[0].files, function(i, file) {
+	    data.append('file-'+i, file);
+	});
+
+	data.append( 'nombre', $('.js-nombre').val() );
+	data.append( 'puesto', $('input[name="puesto"]').val() );
+	data.append( 'campus', $('select[name="campus"] option:selected').text().replace('Campus', '') );
+	data.append( 'generacion', $('select[name="generacion"] option:selected').text().replace('Generación', '') );
+
+	if( $('input[name="acepto"]:checked').length > 0)
+		data.append( 'acepto', 'true');
+	else
+		data.append( 'acepto', 'false');
+	
+	data.append( 'historia', $('textarea[name="historia"]').val() );
+	data.append( 'titulo', $('textarea[name="titulo"]').val() );
+	data.append( 'id', $('.js-fb-id').val() );
+	data.append( 'access_token', $('.js-fb-token').val() );
+	data.append( 'fb_profile_pic', $('.js-fb-profile-pic').val() );
+	data.append( 'fb_photo_url', $('.js-fb-photo-url').val() );
+	data.append( 'is_upload', $('.js-is-upload').val() );
+	data.append( 'action', 'guardar_historia');
+
+	$.ajax({
+	    url: ajax_url,
+	    data: data,
+	    processData: false,
+	    contentType: false,
+	    type: 'POST',
+    	success: function(data){
+        	var msg_json = $.parseJSON( data );
+        	if( msg_json.error == '1'){
+        		alert( msg_json.msg );
+        		return 0;
+        	}
+
+	 		$('.step-2').addClass('hidden--xmall');
+	 		$('.step-3').removeClass('hidden--xmall');
+	    }
+	});
+
+	// $.post(
+	// 	ajax_url,
+	// 	data,
+	// 	function(response){
+	// 		var mensaje = $('textarea[name="historia"]').val();
+	// 		$('.step-2').addClass('hidden--xmall');
+	// 		$('.step-3').removeClass('hidden--xmall');
+	// 	}
+	// );
 
 }
 

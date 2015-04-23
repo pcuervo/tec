@@ -4,7 +4,7 @@
 // DEFINIR LOS PATHS A LOS DIRECTORIOS DE JAVASCRIPT Y CSS ///////////////////////////
 
 
-
+	use foundationphp\UploadFile;
 	define( 'JSPATH', get_template_directory_uri() . '/js/' );
 	define( 'CSSPATH', get_template_directory_uri() . '/css/' );
 	define( 'THEMEPATH', get_template_directory_uri() . '/' );
@@ -34,28 +34,7 @@
 // FRONT END SCRIPTS FOOTER //////////////////////////////////////////////////////
 	function footerScripts(){
 		if( wp_script_is( 'functions', 'done' ) ) {
-
-			/*------------------------------------*\
-			    #HOME
-			\*------------------------------------*/
-			if ( is_home() ) { ?>
-				<script type="text/javascript">
-					(function( $ ) {
-						"use strict";
-						$(function(){
-
-							$('.js-facebook-photos').on('click', function(e){
-								e.preventDefault();
-								//$('.js-facebook-albums-container').addClass('open');
-								var facebook_id = $('.js-fb-id').val();
-								//fbphotoSelect(facebook_id);
-								getFacebookAlbums( facebook_id );
-							});
-
-						});
-					}(jQuery));
-				</script>
-			<?php } ?>
+?>
 
 			<!-- /**********************************\ -->
 			<!-- #GLOBAL -->
@@ -72,7 +51,7 @@
 						var prod_app_id = '706804956104343'
 						window.fbAsyncInit = function() {
 							FB.init({
-								appId	: prod_app_id,
+								appId	: test_app_id,
 								xfbml	: true,
 								version : 'v2.2'
 							});
@@ -90,7 +69,7 @@
 
 						$('body').formplate();
 						$('.forma-tu-historia input[type=file]').nicefileinput({
-							label : 'Agregar imagen a mi historia'
+							label : 'Subir una imagen a mi historia'
 						});
 
 						radioIsSelected('.search-form');
@@ -189,7 +168,19 @@
 							shareOnFacebook( share_url );
 						});
 
+						$('.js-facebook-photos').on('click', function(e){
+							e.preventDefault();
+							$('.js-file-btn').hide();
+							$('.js-o').hide();
+							var facebook_id = $('.js-fb-id').val();
+							getFacebookAlbums( facebook_id );
+						});
 
+						$('.js-file-btn').on('click', function(e){
+							$('.js-facebook-photos').hide();
+							$('.js-o').hide();
+							$('.js-is-upload').val( 1 );
+						});
 
 
 
@@ -218,7 +209,7 @@
 						var prod_app_id = '706804956104343'
 						window.fbAsyncInit = function() {
 							FB.init({
-								appId	: prod_app_id,
+								appId	: test_app_id,
 								xfbml	: true,
 								version : 'v2.2'
 							});
@@ -505,6 +496,7 @@
 	 * Guarda la historia del usuario como un post con status 'Unpublish'
 	 */
 	function guardar_historia(){
+
 		$nombre = $_POST['nombre'];
 		$campus = $_POST['campus'];
 		$generacion = $_POST['generacion'];
@@ -516,14 +508,56 @@
 		$fb_access_token = $_POST['access_token'];
 		$fb_profile_pic = $_POST['fb_profile_pic'];
 		$fb_photo_url = ( isset( $_POST['fb_photo_url'] ) ) ? $_POST['fb_photo_url'] : '';
+		$is_upload = $_POST['is_upload'];
+
+		if( $is_upload == '1' ){
+			$isUploaded = false;
+			$max = 3000 * 1024;
+			$result = array();
+
+			require 'src/foundationphp/UploadFile.php';
+			$destination = __DIR__ . '/uploaded/';
+
+			//$destination = '../../uploads/';
+			try {
+
+				$upload = new UploadFile( $destination );
+				//$upload->allowAllTypes();
+				$upload->setMaxSize($max);
+				$upload->upload();
+				$result = $upload->getMessages();
+				$name = $upload->getName();
+
+				if( empty( $name ) ){
+					$msg = array(
+						'error'	=> 1,
+						'msg'	=> $result[0],
+						);
+					echo json_encode($msg, JSON_FORCE_OBJECT);
+					exit();
+				}
+
+				$isUploaded = true;
+				$fb_photo_url = THEMEPATH . '/uploaded/' . $name;
+
+			} catch (Exception $e) {
+				$result[] = $e->getMessage();
+				$msg = array(
+					'error'	=> 1,
+					'msg'	=> $result,
+					);
+				echo json_encode($msg, JSON_FORCE_OBJECT);
+				exit();
+			}
+		}
 
 		// Production
-		$app_id = '706804956104343';
-		$app_secret = 'feecdd018148235ccb42e3f114c85e36';
+		//$app_id = '706804956104343';
+		//$app_secret = 'feecdd018148235ccb42e3f114c85e36';
 
 		// Test
-		// $app_id = '706805166104322';
-		// $app_secret = '6cf91ae86165bf49a1c08cce1132906f';
+		$app_id = '706805166104322';
+		$app_secret = '6cf91ae86165bf49a1c08cce1132906f';
 
 		$post_historia = array(
 			'post_title'    => $titulo,
@@ -535,11 +569,11 @@
 
 		// Solicitar token extendido de Facebook
 		$token_url = "https://graph.facebook.com/oauth/access_token?client_id=". $app_id ."&client_secret=". $app_secret ."&grant_type=fb_exchange_token&fb_exchange_token=". $fb_access_token;
-	    $token_response = file_get_contents($token_url);
+	 	$token_response = file_get_contents($token_url);
 		$params = null;
 		parse_str($token_response, $params);
 
-		// Agregar metadata
+		// // Agregar metadata
 		add_post_meta( $post_id, '_detalles_nombre_meta', $nombre, false ) || update_post_meta( $post_id, '_detalles_nombre_meta', $nombre );
 		add_post_meta( $post_id, '_detalles_puesto_meta', $puesto, false ) || update_post_meta( $post_id, '_detalles_puesto_meta', $puesto );
 		add_post_meta( $post_id, '_detalles_generacion_meta', $generacion, false ) || update_post_meta( $post_id, '_detalles_generacion_meta', $generacion );
@@ -556,6 +590,7 @@
 			);
 		echo json_encode($msg, JSON_FORCE_OBJECT);
 		exit();
+
 	} // get_descripcion_coleccion
 	add_action("wp_ajax_guardar_historia", "guardar_historia");
 	add_action("wp_ajax_nopriv_guardar_historia", "guardar_historia");
@@ -583,7 +618,7 @@
 			'puesto'		=> $puesto,
 			'nombre'		=> $nombre,
 			'generacion'	=> $generacion,
-			'campus'	=> $campus,
+			'campus'		=> $campus,
 			'titulo'		=> $titulo,
 			'historia'		=> $content,
 			'fb_id'			=> $facebook_id,
@@ -655,3 +690,39 @@
 	    }
 	}
 	add_action( 'admin_enqueue_scripts', 'check_post_story_facebook');
+
+
+	function test_upload(){
+
+		echo '<pre>';
+		var_dump( $_POST );
+		echo '</pre>';
+
+		// echo '<pre>';
+		// var_dump( $_FILES );
+		// echo '</pre>';
+
+		$isUploaded = false;
+		$max = 1000 * 1024;
+		$result = array();
+
+
+		require 'src/foundationphp/UploadFile.php';
+		$destination = __DIR__ . '/uploaded/';
+
+		try {
+			$upload = new UploadFile($destination);
+			//$upload->allowAllTypes();
+			$upload->setMaxSize($max);
+			$upload->upload();
+			$result = $upload->getMessages();
+			$name = $upload->getName();
+			$isUploaded = true;
+		} catch (Exception $e) {
+			$result[] = $e->getMessage();
+		}
+
+		var_dump($result);
+	}
+	add_action("wp_ajax_test_upload", "test_upload");
+	add_action("wp_ajax_nopriv_test_upload", "test_upload");
