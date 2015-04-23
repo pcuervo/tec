@@ -499,6 +499,7 @@ function shareOnFacebook(url){
 
 function guardarHistoria(){
 
+	$('.forma-tu-historia button[type="submit"]').attr("disabled", "disabled");
 	$('.forma-tu-historia button[type="submit"]').html('Enviando…');
 
 	var data_historia = $('.forma-tu-historia').serializeArray();

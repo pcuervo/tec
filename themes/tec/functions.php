@@ -172,6 +172,7 @@
 							e.preventDefault();
 							$('.js-file-btn').hide();
 							$('.js-o').hide();
+							$('.js-file-requirements').hide();
 							var facebook_id = $('.js-fb-id').val();
 							getFacebookAlbums( facebook_id );
 						});
