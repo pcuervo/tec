@@ -498,6 +498,9 @@ function shareOnFacebook(url){
 \*------------------------------------*/
 
 function guardarHistoria(){
+
+	$('.forma-tu-historia button[type="submit"]').html('Enviando…');
+
 	var data_historia = $('.forma-tu-historia').serializeArray();
 
 	var data = new FormData();
@@ -514,7 +517,7 @@ function guardarHistoria(){
 		data.append( 'acepto', 'true');
 	else
 		data.append( 'acepto', 'false');
-	
+
 	data.append( 'historia', $('textarea[name="historia"]').val() );
 	data.append( 'titulo', $('textarea[name="titulo"]').val() );
 	data.append( 'id', $('.js-fb-id').val() );

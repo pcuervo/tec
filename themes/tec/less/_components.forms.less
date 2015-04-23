@@ -734,19 +734,44 @@ background-color:@highlight;
 }
 
 .NFI-wrapper {
-	// the container div
+	width: 100%; height: 50px;
 }
 .NFI-button {
-	width: 100%; height: auto;
-	padding: 20px;
-	.border-radius(5px);
-	.font( 16px, 1, 400, 'haas th' ); text-align: center; text-transform: uppercase; text-decoration: none; color: @light;
+	width: 100%; height: 50px;
+	padding: 10px;
+	.border-radiuses(5px 5px 0 0);
+	.font( 16px, 30px, 400, 'haas th' ); text-align: center; text-transform: uppercase; text-decoration: none; color: @light;
 	background: @dark;
 	color: @light;
 	.transition();
+
+	@media (min-width: @medium){
+
+		width: 50%;
+		.border-radiuses(5px 0 0 5px);
+		font-size: 14px;
+		float: left;
+
+	}
+
 }
+
 .NFI-filename {
-	display: none !important;
+	width: 100%; height: 30px;
+	border: none; .border-radiuses( 0 0 5px 5px);
+	font-size: 80%;
+	background: @highlight;
+	color: @light;
+	.transition();
+
+	@media (min-width: @medium){
+
+		width: 50%; height: 50px;
+		.border-radiuses( 0 5px 5px 0);
+		float: left;
+
+	}
+
 }
 
 
