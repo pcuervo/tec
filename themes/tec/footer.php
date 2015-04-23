@@ -87,7 +87,7 @@
 								<fieldset class="[ margin-bottom ]">
 									<input type="file" name="file" id="file" class="[ block ][ span xmall-12 no-margin ][ js-file-btn ]">
 									<label for="" class="[ NFI-filename ]"></label>
-									<small>La imagen debe ser formato JPEG, PNG o PDF y no puede exceder 3.0 MB</small>
+									<small class="[ js-o ]">La imagen debe ser formato JPEG, PNG o PDF y no puede exceder 3.0 MB</small>
 								</fieldset>
 								<fieldset class="[ margin-bottom ]">
 									<div class="[ formplate ]">

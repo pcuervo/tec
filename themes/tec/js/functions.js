@@ -514,7 +514,7 @@ function guardarHistoria(){
 		data.append( 'acepto', 'true');
 	else
 		data.append( 'acepto', 'false');
-	
+
 	data.append( 'historia', $('textarea[name="historia"]').val() );
 	data.append( 'titulo', $('textarea[name="titulo"]').val() );
 	data.append( 'id', $('.js-fb-id').val() );
@@ -531,6 +531,7 @@ function guardarHistoria(){
 	    contentType: false,
 	    type: 'POST',
     	success: function(data){
+    		console.log( data );
         	var msg_json = $.parseJSON( data );
         	if( msg_json.error == '1'){
         		alert( msg_json.msg );
