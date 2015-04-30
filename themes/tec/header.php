@@ -122,7 +122,7 @@
 										</select>
 									</div>
 									<fieldset class="[ margin-bottom--small ][ text-center ][ search-submit ][ js-search-submit ]">
-										<button class="[ button button--rounded-corners ]" type="submit">Buscar</button>
+										<button class="[ button button--rounded-corners ][ js-btn-buscar ]" type="submit">Buscar</button>
 									</fieldset>
 									<fieldset class="[ margin-bottom--small ][ text-center ]">
 										<button class="[ button button--rounded-corners button--dark ][ js-close-search ]" type="button">Cancelar<buttona>

@@ -22,7 +22,7 @@
 					<h5 class="[ display-text display-text--large display-text--bold display-text--uppercase ][ title ][ js-title ]">Cuéntanos tu historia</h5>
 					<h5 class="[ display-text ][ sub-title ][ js-sub-title ]">Buscamos las mejores historias del Tecnológico de Monterrey</h5>
 					<h5 class="[ display-text display-text--medium display-text--bold ][ sub-sub-title ][ js-sub-sub-title ]">Nosotros se la contaremos a todo México</h5>
-					<a href="#" class="[ button ][ inline-block ][ js-open-modal ]" data-modal="form">
+					<a href="#" class="[ button ][ inline-block ][ js-open-modal ][ js-sumate ]" data-modal="form">
 						Súmate
 					</a>
 				</article>

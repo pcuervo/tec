@@ -85,7 +85,7 @@
 								</fieldset>
 								<h3 class="[ text-center ][ margin-bottom ][ js-o ]">ó</h3>
 								<fieldset class="[ margin-bottom ]">
-									<input type="file" name="file" id="file" class="[ block ][ js-file-btn ]">
+									<input type="file" name="file" id="file" class="[ block ][ js-file-btn ]" onclick="ga('send', 'event', 'RegistroHistoria', 'click', 'SubirImagen');">
 									<small class="[ js-file-requirements ]">La imagen debe ser formato JPEG, PNG o PDF y no puede exceder 3.0 MB</small>
 								</fieldset>
 								<fieldset class="[ margin-bottom ]">
@@ -100,7 +100,7 @@
 								<input type="hidden" class="js-fb-photo-url" name="fb_photo_url">
 								<input type="hidden" class="js-is-upload" name="is_upload" value="0">
 								<fieldset class="[ margin-bottom--small ]">
-									<button class="[ block ][ span xmall-12 no-margin ][ button button--rounded-corners ]" type="submit">Enviar</button>
+									<button class="[ block ][ span xmall-12 no-margin ][ button button--rounded-corners ]" type="submit" onclick="ga('send', 'event', 'RegistroHistoria', 'click', 'Enviar');">Enviar</button>
 								</fieldset>
 							</form>
 						</article><!-- step-2 -->
@@ -122,7 +122,7 @@
 								<p class="[ title ][ margin-bottom--large ][ light ]"> ¡Gracias por compartirla!</p>
 								<p class="[ light ]">Tu historia será revisada por nosotros y se te notificará en cuanto esté aprobada.</p>
 								<div class="[ clear ]"></div>
-								<button class="[ js-close ][ button ]">Hecho</button>
+								<button class="[ js-close ][ button ][ js-hecho ]">Hecho</button>
 							</div>
 						</article><!-- step-3 -->
 						<article class="[ step-4 ][ hidden--xmall ]">

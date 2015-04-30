@@ -40,6 +40,15 @@
 			<!-- #GLOBAL -->
 			<!-- \**********************************/ -->
 			<script type="text/javascript">
+
+				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+				ga('create', 'UA-62410823-2', 'auto');
+				ga('send', 'pageview');
+
 				(function( $ ) {
 					"use strict";
 					$(function(){
@@ -88,6 +97,17 @@
 							#Triggered events
 						\*------------------------------------*/
 
+						$('.js-sumate').on('click', function(){
+							ga('send', 'event', 'CuéntanosTuHistoria', 'click', 'Súmate');
+						});
+						
+						$('.js-hecho').on('click', function(){
+							ga('send', 'event', 'HistoriaEnviada', 'click', 'Hecho');
+						});
+
+						$('.js-btn-buscar').on('click', function(){
+							ga('send', 'event', 'Buscador', 'click', 'Buscar');
+						});
 
 						$('.js-open-modal').on('click', function(){
 							var modalType = $(this).data('modal');
@@ -104,6 +124,7 @@
 						});
 
 						$('.js-open-search').on('click', function(){
+							ga('send', 'event', 'CuéntanosTuHistoria', 'click', 'Buscador');
 							openSearch();
 						});
 						$('.js-close-search').on('click', function(){
@@ -116,8 +137,10 @@
 						});
 
 						$('.bg-facebook').on('click', function(e){
+							ga('send', 'event', 'CuéntanosTuHistoria', 'click', 'IngresaFacebook');
 							e.preventDefault();
 							loginFacebook();
+							ga('send', 'pageview', 'IngresaFB');
 						});
 
 						$('.js-facebook-albums-container').on('click', 'div', function(e){
@@ -169,6 +192,7 @@
 						});
 
 						$('.js-facebook-photos').on('click', function(e){
+							ga('send', 'event', 'RegistroHistoria', 'click', 'AgregarImagenFB');
 							e.preventDefault();
 							$('.js-file-btn').hide();
 							$('.js-o').hide();

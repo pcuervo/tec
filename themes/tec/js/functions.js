@@ -234,6 +234,7 @@ function clearModalStory(){
 \*------------------------------------*/
 
 function loginFacebook(){
+	
 	FB.login(function(response) {
 		var access_token = response.authResponse.accessToken;
 		if (response.authResponse) {
@@ -250,6 +251,8 @@ function loginFacebook(){
 				$('.step-2').removeClass('hidden--xmall');
 
 				existeHistoriaUsuario(response.id);
+
+				ga('send', 'pageview', 'RegistroHistoria');
 			});
 		} else {
 			console.log('El usuario canceló o no aceptó ingresar con Facebook...');
@@ -544,6 +547,7 @@ function guardarHistoria(){
 
 	 		$('.step-2').addClass('hidden--xmall');
 	 		$('.step-3').removeClass('hidden--xmall');
+	 		ga('send', 'pageview', 'HistoriaEnviada');
 	    }
 	});
 
